@@ -1,3 +1,14 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# generated files
+bin/
+gen/
+
 # Compiled class file
 *.class
 
@@ -20,3 +31,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+#Gradle
+.gradletasknamecache
+.gradle/
+build/
