@@ -4,9 +4,8 @@ import de.felixroske.jfxsupport.AbstractFxmlView;
 import de.felixroske.jfxsupport.FXMLView;
 
 /**
- * @author Yuriy on 22.07.2017.
+ * @author Yuriy on 28.07.2017.
  */
-@FXMLView("/fxml/mainWindow.fxml")
-public class MainWindowView extends AbstractFxmlView {
-
+@FXMLView("/fxml/endFileWindow.fxml")
+public class EndFileView extends AbstractFxmlView {
 }

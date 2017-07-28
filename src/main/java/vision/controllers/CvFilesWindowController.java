@@ -14,7 +14,10 @@ import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
+import vision.service.ScreensManager;
+
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -25,6 +28,8 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class CvFilesWindowController implements Initializable {
+    @Autowired
+    ScreensManager screensManager;
     @FXML
     private JFXButton addCvFileID;
     @FXML
@@ -69,7 +74,7 @@ public class CvFilesWindowController implements Initializable {
         fileNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<File, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<File, String> param) {
-                return new SimpleStringProperty(FilenameUtils.getName(param.getValue().getPath()));
+                return new SimpleStringProperty(FilenameUtils.getBaseName(param.getValue().getPath()));
             }
         });
         fileLocationColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<File, String>, ObservableValue<String>>() {
@@ -112,5 +117,9 @@ public class CvFilesWindowController implements Initializable {
         }
     }
 
+    @FXML
+    void nextPageClick() {
+        screensManager.showDataForExtractionWindow();
+    }
 
 }

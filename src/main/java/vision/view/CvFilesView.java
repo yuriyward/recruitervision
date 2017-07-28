@@ -6,6 +6,6 @@ import de.felixroske.jfxsupport.FXMLView;
 /**
  * @author Yuriy on 24.07.2017.
  */
-@FXMLView("/fxml/CvFilesWindow.fxml")
+@FXMLView("/fxml/cvFilesWindow.fxml")
 public class CvFilesView extends AbstractFxmlView {
 }

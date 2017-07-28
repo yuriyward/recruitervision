@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.DataForExtractionController">
+   <children>
+      <Pane layoutX="51.0" layoutY="37.0" prefHeight="194.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <Label layoutX="148.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Base data" />
+            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="nameSurname" style="-fx-font-size: 16;" text="Name and surname" />
+                  <JFXCheckBox fx:id="email" style="-fx-font-size: 16;" text="Email" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="phone" style="-fx-font-size: 16;" text="Phone number" GridPane.rowIndex="2" />
+                  <JFXCheckBox fx:id="birthdate" style="-fx-font-size: 16;" text="Birthdate" GridPane.columnIndex="1" />
+                  <JFXCheckBox fx:id="city" style="-fx-font-size: 16;" text="City" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <JFXCheckBox layoutX="307.0" layoutY="6.0" onAction="#allBasicClick" text="All" />
+         </children>
+      </Pane>
+      <Pane layoutX="474.0" layoutY="41.0" prefHeight="194.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <Label layoutX="121.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Work experience" />
+            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="work" style="-fx-font-size: 16;" text="Work place" />
+                  <JFXCheckBox fx:id="post" style="-fx-font-size: 16;" text="The post" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="date" style="-fx-font-size: 16;" text="Date" GridPane.columnIndex="1" />
+                  <JFXCheckBox fx:id="information" style="-fx-font-size: 16;" text="Information" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <JFXCheckBox layoutX="307.0" layoutY="6.0" onAction="#allWorkClick" text="All" />
+         </children>
+      </Pane>
+      <Pane layoutX="93.0" layoutY="351.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="300.0">
+         <children>
+            <Label layoutX="120.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Skills &amp; expertise" />
+            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="skills" style="-fx-font-size: 16;" text="Skills information" />
+                  <JFXCheckBox fx:id="knowledge" style="-fx-font-size: 16;" text="The exteent of knowledge" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <JFXCheckBox layoutX="307.0" layoutY="6.0" onAction="#allSkillsClick" text="All" />
+         </children>
+      </Pane>
+      <Pane layoutX="490.0" layoutY="350.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="300.0">
+         <children>
+            <Label layoutX="100.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Educational &amp; training" />
+            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="place" style="-fx-font-size: 16;" text="Educational place" />
+                  <JFXCheckBox fx:id="field" style="-fx-font-size: 16;" text="Field of study" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="dateEducational" style="-fx-font-size: 16;" text="Date" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <JFXCheckBox layoutX="307.0" layoutY="6.0" onAction="#allEducationalClick" text="All" />
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" layoutY="523.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.topAnchor="475.0">
+         <children>
+            <Label layoutX="149.0" layoutY="15.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Summury" />
+            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="summury" style="-fx-font-size: 16;" text="Summury information" />
+               </children>
+            </GridPane>
+            <JFXCheckBox layoutX="307.0" layoutY="6.0" onAction="#allSummuryClick" text="All" />
+         </children>
+      </Pane>
+      <Pane layoutX="510.0" layoutY="525.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="475.0">
+         <children>
+            <Label layoutX="149.0" layoutY="15.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Interests" />
+            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="interests" style="-fx-font-size: 16;" text="Interests information" />
+               </children>
+            </GridPane>
+            <JFXCheckBox layoutX="307.0" layoutY="6.0" onAction="#allInterestsClick" text="All" />
+         </children>
+      </Pane>
+      <JFXButton layoutX="45.0" layoutY="27.0" onAction="#checkAllClick" prefWidth="150.0" style="-fx-background-color: #00C0EF;" text="Check All" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="654.0" layoutY="50.0" onAction="#uncheckAllClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Uncheck All" textFill="WHITE" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXToolbar layoutX="274.0" layoutY="658.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <left>
+            <JFXButton buttonType="RAISED" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </left>
+         <right>
+            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </right>
+      </JFXToolbar>
+   </children>
+</AnchorPane>

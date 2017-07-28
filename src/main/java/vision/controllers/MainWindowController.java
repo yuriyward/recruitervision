@@ -55,7 +55,7 @@ public class MainWindowController {
 
     @FXML
     void informationBtnAct(ActionEvent event) {
-
+        screensManager.showDataForExtractionWindow();
     }
 
     @FXML
