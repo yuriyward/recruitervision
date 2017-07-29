@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.CvFilesWindowController">
+<AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.CvFilesWindowController">
    <children>
       <TableView fx:id="fileTable" layoutX="22.0" layoutY="22.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="20.0">
         <columns>
@@ -40,6 +40,13 @@
                </font>
             </JFXButton>
          </right>
+         <left>
+            <JFXButton buttonType="RAISED" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </left>
       </JFXToolbar>
    </children>
 </AnchorPane>

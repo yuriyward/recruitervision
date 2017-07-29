@@ -8,6 +8,7 @@ import vision.controllers.MainWindowController;
 import vision.view.CvFilesView;
 import vision.view.DataForExtractionView;
 import vision.view.EndFileView;
+import vision.view.HomeView;
 
 /**
  * @author Yuriy on 22.07.2017.
@@ -15,6 +16,9 @@ import vision.view.EndFileView;
 @Component
 public class ScreensManager {
     private MainWindowController mainWindowController;
+
+    @Autowired
+    HomeView homeView;
 
     @Autowired
     CvFilesView cvFilesView;
@@ -43,6 +47,11 @@ public class ScreensManager {
     public void showEndFileWindow(){
         mainWindowController.getAnchorPane().getChildren().clear();
         mainWindowController.getAnchorPane().getChildren().add(endFileView.getView());
+    }
+
+    public void showHomeWindow(){
+        mainWindowController.getAnchorPane().getChildren().clear();
+        mainWindowController.getAnchorPane().getChildren().add(homeView.getView());
     }
 
 }

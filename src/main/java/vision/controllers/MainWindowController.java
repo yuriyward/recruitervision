@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  * @author Yuriy on 22.07.2017.
  */
 @FXMLController
-public class MainWindowController {
+public class MainWindowController implements Initializable {
     @Autowired
     ScreensManager screensManager;
     @FXML
@@ -34,6 +34,12 @@ public class MainWindowController {
     private JFXButton endFileBtn;
 
     @FXML
+    private JFXButton advancedSelectionId;
+
+    @FXML
+    private JFXButton processingId;
+
+    @FXML
     private JFXButton exploreDataBtn;
 
     public AnchorPane getAnchorPane() {
@@ -45,7 +51,7 @@ public class MainWindowController {
 
     @FXML
     void homeBtnAct(ActionEvent event) {
-
+        screensManager.showHomeWindow();
     }
 
     @FXML
@@ -59,13 +65,27 @@ public class MainWindowController {
     }
 
     @FXML
-    void exploreDataBtnAct(ActionEvent event) {
+    void advancedSelectionBtn(ActionEvent event) {
+
+    }
+
+    @FXML
+    void processingBtn(ActionEvent event) {
 
     }
 
     @FXML
     void endFileBtnAct(ActionEvent event) {
+        screensManager.showEndFileWindow();
+    }
+
+    @FXML
+    void exploreDataBtnAct(ActionEvent event) {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        screensManager.showHomeWindow();
+    }
 }

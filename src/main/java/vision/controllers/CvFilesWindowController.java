@@ -122,4 +122,9 @@ public class CvFilesWindowController implements Initializable {
         screensManager.showDataForExtractionWindow();
     }
 
+    @FXML
+    void backPageClick() {
+        screensManager.showHomeWindow();
+    }
+
 }
