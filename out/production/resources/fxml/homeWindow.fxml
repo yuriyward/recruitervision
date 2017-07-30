@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.HomeWindowController">
    <children>
       <ImageView fitHeight="494.0" fitWidth="735.0" layoutX="243.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
@@ -18,7 +17,7 @@
       </ImageView>
       <JFXToolbar layoutX="536.0" layoutY="687.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <right>
-            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton buttonType="RAISED" defaultButton="true" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>

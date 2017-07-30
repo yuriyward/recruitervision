@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.AdvancedSelectionController">
    <children>
       <Pane layoutX="14.0" layoutY="69.0" prefHeight="54.0" prefWidth="942.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="70.0">
@@ -21,14 +20,14 @@
       <Label layoutX="265.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Show the only CV which includes the following information:" />
       <JFXToolbar layoutX="284.0" layoutY="668.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <left>
-            <JFXButton buttonType="RAISED" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton buttonType="RAISED" cancelButton="true" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
             </JFXButton>
          </left>
          <right>
-            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton buttonType="RAISED" defaultButton="true" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>

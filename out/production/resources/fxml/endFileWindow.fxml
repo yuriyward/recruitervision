@@ -77,14 +77,14 @@
       <JFXButton layoutX="540.0" layoutY="463.0" onAction="#extractDOC" style="-fx-background-color: #337AB7; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Extract now!" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="329.0" AnchorPane.topAnchor="375.0" />
       <Separator layoutX="454.0" layoutY="486.0" prefHeight="5.0" prefWidth="200.0" AnchorPane.bottomAnchor="385.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="360.0" />
       <JFXTextField fx:id="selectFolderFld" labelFloat="true" layoutX="37.0" layoutY="23.0" prefHeight="30.0" promptText="Select folder for save file" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="25.0" />
-      <JFXButton layoutX="589.0" layoutY="25.0" onAction="#selectFolderBtn" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00A65A;" text="Select ..." textFill="WHITE">
+      <JFXButton defaultButton="true" layoutX="589.0" layoutY="25.0" onAction="#selectFolderBtn" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00A65A;" text="Select ..." textFill="WHITE">
          <font>
             <Font name="Roboto Medium" size="14.0" />
          </font>
       </JFXButton>
       <JFXToolbar layoutX="284.0" layoutY="668.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <left>
-            <JFXButton buttonType="RAISED" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton buttonType="RAISED" cancelButton="true" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
