@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vision.Start;
 import vision.controllers.MainWindowController;
-import vision.view.CvFilesView;
-import vision.view.DataForExtractionView;
-import vision.view.EndFileView;
-import vision.view.HomeView;
+import vision.view.*;
 
 /**
  * @author Yuriy on 22.07.2017.
@@ -28,6 +25,9 @@ public class ScreensManager {
 
     @Autowired
     EndFileView endFileView;
+
+    @Autowired
+    AdvancedSelectionView advancedSelectionView;
 
     @Autowired
     public void setMainWindowController(MainWindowController mainWindowController) {
@@ -52,6 +52,11 @@ public class ScreensManager {
     public void showHomeWindow(){
         mainWindowController.getAnchorPane().getChildren().clear();
         mainWindowController.getAnchorPane().getChildren().add(homeView.getView());
+    }
+
+    public void showAdvancedSelectionWindow(){
+        mainWindowController.getAnchorPane().getChildren().clear();
+        mainWindowController.getAnchorPane().getChildren().add(advancedSelectionView.getView());
     }
 
 }

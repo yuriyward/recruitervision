@@ -66,7 +66,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void advancedSelectionBtn(ActionEvent event) {
-
+        screensManager.showAdvancedSelectionWindow();
     }
 
     @FXML
