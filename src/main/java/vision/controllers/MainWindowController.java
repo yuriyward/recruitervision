@@ -81,7 +81,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void exploreDataBtnAct(ActionEvent event) {
-
+        screensManager.showExploreDataWindow();
     }
 
     @Override
