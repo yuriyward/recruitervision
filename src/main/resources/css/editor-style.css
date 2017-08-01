@@ -1,0 +1,14 @@
+.html-editor {
+    -fx-background-color: white;
+    -fx-border-width: 2 0 2 0;
+    -fx-border-color: -swatch-grey;
+}
+
+.html-editor .web-view {
+    -fx-border-color: grey;
+    -fx-border-width: grey;
+}
+
+.web-view {
+    -fx-font-smoothing-type: gray;
+}
