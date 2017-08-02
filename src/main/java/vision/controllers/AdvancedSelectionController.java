@@ -1,19 +1,12 @@
 package vision.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.Start;
 import vision.service.ScreensManager;
-import vision.utils.OwnTagBar;
+import vision.javafx_own_components.OwnTagBar;
 
 import java.net.URL;
 import java.util.ResourceBundle;

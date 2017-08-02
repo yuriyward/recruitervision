@@ -11,7 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.stage.DirectoryChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
+import vision.service.FileServiceImpl;
 import vision.service.ScreensManager;
+import vision.service.TikaServiceImpl;
 
 import java.io.File;
 import java.net.URL;
@@ -24,6 +26,15 @@ import java.util.ResourceBundle;
 public class EndFileController implements Initializable {
     @Autowired
     ScreensManager screensManager;
+
+    @Autowired
+    FileServiceImpl fileService;
+
+    @Autowired
+    TikaServiceImpl tikaService;
+
+    @Autowired
+    CvFilesWindowController cvFilesWindowController;
 
     @FXML
     private JFXTextField selectFolderFld;
@@ -62,7 +73,10 @@ public class EndFileController implements Initializable {
 
     @FXML
     void extractPDF(ActionEvent event) {
-
+        if (folderExist()) {
+            tikaService.parsePDFtoTEXT(cvFilesWindowController.getFirstFile());
+            System.out.println("Parsed");
+        }
     }
 
     private void folderValidator() {
@@ -83,5 +97,12 @@ public class EndFileController implements Initializable {
                 selectFolderFld.validate();
             }
         });
+    }
+
+    private boolean folderExist() {
+        if (selectFolderFld.getText().length() != 0)
+            return true;
+        selectFolderFld.validate();
+        return false;
     }
 }

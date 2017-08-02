@@ -1,5 +1,6 @@
 package vision.service;
 
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,24 +48,26 @@ public class ScreensManager {
         mainWindowController.getAnchorPane().getChildren().add(dataForExtractionView.getView());
     }
 
-    public void showEndFileWindow(){
+    public void showEndFileWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
         mainWindowController.getAnchorPane().getChildren().add(endFileView.getView());
     }
 
-    public void showHomeWindow(){
+    public void showHomeWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
         mainWindowController.getAnchorPane().getChildren().add(homeView.getView());
     }
 
-    public void showAdvancedSelectionWindow(){
+    public void showAdvancedSelectionWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
         mainWindowController.getAnchorPane().getChildren().add(advancedSelectionView.getView());
     }
 
-    public void showExploreDataWindow(){
+    public void showExploreDataWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
-        mainWindowController.getAnchorPane().getChildren().add(exploreDataView.getView());
+        Platform.runLater(() -> {
+            mainWindowController.getAnchorPane().getChildren().add(exploreDataView.getView());
+        });
     }
 
 }

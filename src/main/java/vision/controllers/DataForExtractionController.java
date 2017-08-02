@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.service.ScreensManager;
-import vision.utils.AssociatedCheckBoxes;
+import vision.javafx_own_components.AssociatedCheckBoxes;
 
 import java.net.URL;
 import java.util.ArrayList;
