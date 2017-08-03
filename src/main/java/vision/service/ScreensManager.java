@@ -31,7 +31,10 @@ public class ScreensManager {
     AdvancedSelectionView advancedSelectionView;
 
     @Autowired
-    ExploreDataView exploreDataView;
+    ParsedFilesView parsedFilesView;
+
+//    @Autowired
+//    ExploreDataView exploreDataView;
 
     @Autowired
     public void setMainWindowController(MainWindowController mainWindowController) {
@@ -63,10 +66,16 @@ public class ScreensManager {
         mainWindowController.getAnchorPane().getChildren().add(advancedSelectionView.getView());
     }
 
-    public void showExploreDataWindow() {
+    public void showParesedFiles() {
         mainWindowController.getAnchorPane().getChildren().clear();
+        mainWindowController.getAnchorPane().getChildren().add(parsedFilesView.getView());
+    }
+
+    public void showExploreDataWindow() {
+//        mainWindowController.getAnchorPane().getChildren().clear();
         Platform.runLater(() -> {
-            mainWindowController.getAnchorPane().getChildren().add(exploreDataView.getView());
+                Start.showView(ExploreDataView.class);
+//            mainWindowController.getAnchorPane().getChildren().add(exploreDataView.getView());
         });
     }
 

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.web.HTMLEditor;
 import org.springframework.beans.factory.annotation.Autowired;
+import vision.Start;
 import vision.service.ScreensManager;
 import vision.service.TikaServiceImpl;
 
@@ -25,17 +26,12 @@ public class ExploreDataController implements Initializable {
     private HTMLEditor editorId;
 
     @FXML
-    void backPageClick() {
-        screensManager.showEndFileWindow();
-    }
-
-    @FXML
-    void nextPageClick() {
-
+    void closeWindow() {
+        Start.getStage().close();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        editorId.setHtmlText(tikaService.getParsedTEXT());
+//        editorId.setHtmlText(tikaService.getParsedTEXT());
     }
 }

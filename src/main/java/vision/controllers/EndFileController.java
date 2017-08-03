@@ -63,7 +63,7 @@ public class EndFileController implements Initializable {
 
     @FXML
     void nextPageClick(ActionEvent event) {
-        screensManager.showExploreDataWindow();
+        screensManager.showParesedFiles();
     }
 
     @FXML

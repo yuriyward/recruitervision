@@ -40,7 +40,7 @@ public class MainWindowController implements Initializable {
     private JFXButton processingId;
 
     @FXML
-    private JFXButton exploreDataBtn;
+    private JFXButton showParsedDataBtn;
 
     public AnchorPane getAnchorPane() {
         return anchorPane;
@@ -80,8 +80,8 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void exploreDataBtnAct(ActionEvent event) {
-        screensManager.showExploreDataWindow();
+    void showParsedData(ActionEvent event) {
+        screensManager.showParesedFiles();
     }
 
     @Override

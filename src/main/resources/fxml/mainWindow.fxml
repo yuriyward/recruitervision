@@ -16,8 +16,8 @@
                   <JFXButton fx:id="advancedSelectionId" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#advancedSelectionBtn" prefHeight="60.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="Advanced selection" />
                   <JFXButton fx:id="endFileBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#endFileBtnAct" prefHeight="60.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="End file" />
                   <JFXButton fx:id="processingId" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#processingBtn" prefHeight="60.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="Processing" />
-                  <JFXButton fx:id="exploreDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#exploreDataBtnAct" prefHeight="60.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="Explore data" />
-                  <JFXButton fx:id="exploreDataBtn1" buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" onAction="#exploreDataBtnAct" prefHeight="238.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text=" " />
+                  <JFXButton fx:id="showParsedDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#showParsedData" prefHeight="60.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="Persed&amp;Extracted data" />
+                  <JFXButton buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="238.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text=" " />
                </children>
             </VBox>
          </children>
