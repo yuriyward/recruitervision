@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,13 +12,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
+import lombok.Getter;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
-import vision.service.FileServiceImpl;
+import vision.service.FileService;
 import vision.service.ScreensManager;
-import vision.service.TikaServiceImpl;
+import vision.service.TikaService;
 
 import java.io.File;
 import java.net.URL;
@@ -31,12 +30,9 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class CvFilesWindowController implements Initializable {
-    @Autowired
-    ScreensManager screensManager;
-    @Autowired
-    FileServiceImpl fileService;
-    @Autowired
-    TikaServiceImpl tikaService;
+    private final ScreensManager screensManager;
+    private final FileService fileService;
+    private final TikaService tikaService;
 
     @FXML
     private JFXButton addCvFileID;
@@ -53,8 +49,15 @@ public class CvFilesWindowController implements Initializable {
     @FXML
     private TableColumn<File, String> fileExtensionColumn;
 
-    ObservableList<File> observableFiles;
+    @Getter ObservableList<File> observableFiles;
     final FileChooser fileChooser = new FileChooser();
+
+    @Autowired
+    public CvFilesWindowController(ScreensManager screensManager, FileService fileService, TikaService tikaService) {
+        this.screensManager = screensManager;
+        this.fileService = fileService;
+        this.tikaService = tikaService;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,25 +88,9 @@ public class CvFilesWindowController implements Initializable {
     }
 
     private void initTable() {
-        fileNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<File, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<File, String> param) {
-                return new SimpleStringProperty(FilenameUtils.getBaseName(param.getValue().getPath()));
-            }
-        });
-        fileLocationColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<File, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<File, String> param) {
-                return new SimpleStringProperty(param.getValue().getPath());
-            }
-        });
-        fileExtensionColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<File, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<File, String> param) {
-                return new SimpleStringProperty(FilenameUtils.getExtension(param.getValue().getPath())
-                );
-            }
-        });
+        fileNameColumn.setCellValueFactory(param -> new SimpleStringProperty(FilenameUtils.getBaseName(param.getValue().getPath())));
+        fileLocationColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPath()));
+        fileExtensionColumn.setCellValueFactory(param -> new SimpleStringProperty(FilenameUtils.getExtension(param.getValue().getPath())));
         fileTable.getColumns().setAll(fileNameColumn, fileLocationColumn, fileExtensionColumn);
         observableFiles = FXCollections.observableArrayList();
     }
@@ -128,16 +115,13 @@ public class CvFilesWindowController implements Initializable {
 
     @FXML
     void nextPageClick() {
+        tikaService.parseAllFiles(observableFiles);
         screensManager.showDataForExtractionWindow();
     }
 
     @FXML
     void backPageClick() {
         screensManager.showHomeWindow();
-    }
-
-    public ObservableList<File> getFiles() {
-        return observableFiles;
     }
 
     public File getFirstFile() {
@@ -148,7 +132,7 @@ public class CvFilesWindowController implements Initializable {
     void extractOnlyText() {
         File file = fileTable.getSelectionModel().getSelectedItem();
         if (file != null) {
-            tikaService.parsePDFtoTEXT(file);
+            tikaService.parse(file);
         } else {
             showAlert();
         }

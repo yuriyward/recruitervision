@@ -1,12 +1,16 @@
 package vision.service;
 
+import javafx.collections.ObservableList;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
-import org.apache.tika.parser.pdf.PDFParser;
 import org.apache.tika.sax.BodyContentHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
+import vision.controllers.ParsedFilesController;
+import vision.models.Filed;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,43 +22,51 @@ import java.io.IOException;
  */
 @Service
 public class TikaServiceImpl implements TikaService {
-    BodyContentHandler handler;
-    Metadata metadata;
-    FileInputStream inputstream;
-    ParseContext pcontext;
+    private FileInputStream inputstream;
+    private String parsedStatus = "OK";
+    private String extractedStatus = "In queue";
+    private final ParsedFilesController parsedFilesController;
 
-    TikaServiceImpl() {
-        handler = new BodyContentHandler();
-        metadata = new Metadata();
-        pcontext = new ParseContext();
+    @Autowired
+    TikaServiceImpl(ParsedFilesController parsedFilesController) {
+        this.parsedFilesController = parsedFilesController;
     }
 
     @Override
-    public void parsePDFtoTEXT(File file) {
+    public void parseAllFiles(ObservableList<File> files) {
+        new Thread(() -> {
+            if (files.size() > 0) {
+                for (File file : files) {
+                    parsedFilesController.addFiledToTable(new Filed(file, parse(file), parsedStatus, null, extractedStatus));
+                }
+            }
+        }).start();
+    }
+
+    @Override
+    public String parse(File file) {
         try {
             inputstream = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        PDFParser pdfparser = new PDFParser();
+        BodyContentHandler handler = new BodyContentHandler();
+        Metadata metadata = new Metadata();
+        ParseContext pcontext = new ParseContext();
+        AutoDetectParser parser = new AutoDetectParser();
         try {
-            pdfparser.parse(inputstream, handler, metadata, pcontext);
+            parser.parse(inputstream, handler, metadata, pcontext);
+            return handler.toString();
         } catch (IOException e) {
+            parsedStatus = "IO error";
             e.printStackTrace();
         } catch (SAXException e) {
+            parsedStatus = "SAX error";
             e.printStackTrace();
         } catch (TikaException e) {
+            parsedStatus = "Tika error";
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public String getParsedTEXT() {
-        return handler.toString();
-    }
-
-    @Override
-    public String[] getMetedata() {
-        return metadata.names();
+        return null;
     }
 }

@@ -24,23 +24,24 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class EndFileController implements Initializable {
-    @Autowired
-    ScreensManager screensManager;
-
-    @Autowired
-    FileServiceImpl fileService;
-
-    @Autowired
-    TikaServiceImpl tikaService;
-
-    @Autowired
-    CvFilesWindowController cvFilesWindowController;
+    private final ScreensManager screensManager;
+    private final FileServiceImpl fileService;
+    private final TikaServiceImpl tikaService;
+    private final CvFilesWindowController cvFilesWindowController;
 
     @FXML
     private JFXTextField selectFolderFld;
 
-    DirectoryChooser directoryChooser;
-    File selectedDirectory;
+    private DirectoryChooser directoryChooser;
+    private File selectedDirectory;
+
+    @Autowired
+    public EndFileController(ScreensManager screensManager, FileServiceImpl fileService, TikaServiceImpl tikaService, CvFilesWindowController cvFilesWindowController) {
+        this.screensManager = screensManager;
+        this.fileService = fileService;
+        this.tikaService = tikaService;
+        this.cvFilesWindowController = cvFilesWindowController;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,7 +75,7 @@ public class EndFileController implements Initializable {
     @FXML
     void extractPDF(ActionEvent event) {
         if (folderExist()) {
-            tikaService.parsePDFtoTEXT(cvFilesWindowController.getFirstFile());
+            tikaService.parse(cvFilesWindowController.getFirstFile());
             System.out.println("Parsed");
         }
     }

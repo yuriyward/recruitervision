@@ -1,11 +1,11 @@
 package vision.service;
 
-import javafx.application.Platform;
-import javafx.scene.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vision.Start;
+import vision.controllers.ExploreDataController;
 import vision.controllers.MainWindowController;
+import vision.models.Filed;
 import vision.view.*;
 
 /**
@@ -33,8 +33,10 @@ public class ScreensManager {
     @Autowired
     ParsedFilesView parsedFilesView;
 
-//    @Autowired
-//    ExploreDataView exploreDataView;
+    @Autowired
+    ExploreDataView exploreDataView;
+    @Autowired
+    ExploreDataController exploreDataController;
 
     @Autowired
     public void setMainWindowController(MainWindowController mainWindowController) {
@@ -71,12 +73,13 @@ public class ScreensManager {
         mainWindowController.getAnchorPane().getChildren().add(parsedFilesView.getView());
     }
 
-    public void showExploreDataWindow() {
-//        mainWindowController.getAnchorPane().getChildren().clear();
-        Platform.runLater(() -> {
-                Start.showView(ExploreDataView.class);
-//            mainWindowController.getAnchorPane().getChildren().add(exploreDataView.getView());
-        });
+    public void showExploreDataWindow(Filed filed) {
+        Start.showView(ExploreDataView.class);
+        exploreDataController.setFiled(filed);
+    }
+
+    public void closeExploreDataWindow() {
+        Start.showView(MainWindowView.class);
     }
 
 }

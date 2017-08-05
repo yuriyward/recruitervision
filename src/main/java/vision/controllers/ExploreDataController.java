@@ -1,37 +1,36 @@
 package vision.controllers;
 
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.web.HTMLEditor;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.Start;
+import vision.models.Filed;
 import vision.service.ScreensManager;
-import vision.service.TikaServiceImpl;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * @author Yuriy on 30.07.2017.
  */
 @FXMLController
-public class ExploreDataController implements Initializable {
-    @Autowired
-    ScreensManager screensManager;
-    @Autowired
-    TikaServiceImpl tikaService;
+public class ExploreDataController {
+    private final ScreensManager screensManager;
+    private Filed field;
 
     @FXML
     private HTMLEditor editorId;
 
-    @FXML
-    void closeWindow() {
-        Start.getStage().close();
+    @Autowired
+    public ExploreDataController(ScreensManager screensManager) {
+        this.screensManager = screensManager;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-//        editorId.setHtmlText(tikaService.getParsedTEXT());
+    @FXML
+    void closeWindow() {
+        screensManager.closeExploreDataWindow();
+    }
+
+    public void setFiled(Filed filed) {
+        this.field = filed;
+        Platform.runLater(() -> editorId.setHtmlText(filed.getParsed()));
     }
 }

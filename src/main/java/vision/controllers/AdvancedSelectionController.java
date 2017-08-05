@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.service.ScreensManager;
 import vision.javafx_own_components.OwnTagBar;
+import vision.service.ScreensManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,8 +16,7 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class AdvancedSelectionController implements Initializable {
-    @Autowired
-    ScreensManager screensManager;
+    private final ScreensManager screensManager;
 
     @FXML
     private VBox base;
@@ -36,6 +35,11 @@ public class AdvancedSelectionController implements Initializable {
 
     @FXML
     private VBox interests;
+
+    @Autowired
+    public AdvancedSelectionController(ScreensManager screensManager) {
+        this.screensManager = screensManager;
+    }
 
     @FXML
     void backPageClick() {

@@ -1,14 +1,16 @@
 package vision.service;
 
+import javafx.collections.ObservableList;
+
 import java.io.File;
 
 /**
  * @author Yuriy on 01.08.2017.
  */
 public interface TikaService {
-    void parsePDFtoTEXT(File file);
+    void parseAllFiles(ObservableList<File> files);
 
-    String getParsedTEXT();
+    String parse(File file);
 
-    String[] getMetedata();
+
 }

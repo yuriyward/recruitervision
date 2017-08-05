@@ -10,7 +10,7 @@ import java.io.File;
 @Service
 public class FileServiceImpl implements FileService {
     @Override
-    public File createTextFile(String path) {
+    public File saveAsHtml(String path) {
         File file = new File(path + File.separator + "extractedTEXT.txt");
         return file;
     }
