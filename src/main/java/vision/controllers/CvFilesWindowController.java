@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
@@ -109,7 +108,7 @@ public class CvFilesWindowController implements Initializable {
         if (file != null) {
             observableFiles.remove(file);
         } else {
-            showAlert();
+            screensManager.showMaterialDialog("File not selected","Please select file for removing","OK");
         }
     }
 
@@ -126,25 +125,6 @@ public class CvFilesWindowController implements Initializable {
 
     public File getFirstFile() {
         return observableFiles.get(0);
-    }
-
-    @FXML
-    void extractOnlyText() {
-        File file = fileTable.getSelectionModel().getSelectedItem();
-        if (file != null) {
-            tikaService.parse(file);
-        } else {
-            showAlert();
-        }
-    }
-
-    private void showAlert() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initOwner(Start.getStage());
-        alert.setTitle("File not selected");
-        alert.setHeaderText("File not selected");
-        alert.setContentText("Please select file for removing");
-        alert.showAndWait();
     }
 
 }

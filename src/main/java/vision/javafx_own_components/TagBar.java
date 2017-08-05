@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 /**
  * @author Yuriy on 29.07.2017.
  */
-public class OwnTagBar extends HBox {
+public class TagBar extends HBox {
 
     private final ObservableList<String> tags;
     private final JFXTextField inputTextField;
@@ -26,7 +26,7 @@ public class OwnTagBar extends HBox {
         return tags;
     }
 
-    public OwnTagBar() {
+    public TagBar() {
         getStyleClass().setAll("tag-bar");
         getStylesheets().add(getClass().getResource("/css/tag-style.css").toExternalForm());
         tags = FXCollections.observableArrayList();

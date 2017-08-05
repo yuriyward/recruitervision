@@ -76,7 +76,7 @@ public class ParsedFilesController implements Initializable {
         if (filed != null) {
             screensManager.showExploreDataWindow(filed);
         } else {
-            showAlert();
+            screensManager.showMaterialDialog("File not selected","Please select file for showing","OK");
         }
     }
 
@@ -103,14 +103,5 @@ public class ParsedFilesController implements Initializable {
                 observableFiles.add(filed);
             }
         });
-    }
-
-    private void showAlert() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initOwner(Start.getStage());
-        alert.setTitle("File not selected");
-        alert.setHeaderText("File not selected");
-        alert.setContentText("Please select file for removing");
-        alert.showAndWait();
     }
 }

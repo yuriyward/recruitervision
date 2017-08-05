@@ -57,10 +57,5 @@
          </left>
       </JFXToolbar>
       <JFXCheckBox fx:id="defaultPath" layoutX="745.0" layoutY="20.0" selected="true" text="Default path" />
-      <JFXButton defaultButton="true" layoutX="275.0" layoutY="470.0" onAction="#extractOnlyText" style="-fx-background-color: #337AB7;" text="Extract only text from selected" textFill="WHITE">
-         <font>
-            <Font name="Roboto Medium" size="14.0" />
-         </font>
-      </JFXButton>
    </children>
 </AnchorPane>

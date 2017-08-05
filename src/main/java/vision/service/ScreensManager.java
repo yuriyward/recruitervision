@@ -1,10 +1,12 @@
 package vision.service;
 
+import javafx.scene.layout.StackPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vision.Start;
 import vision.controllers.ExploreDataController;
 import vision.controllers.MainWindowController;
+import vision.javafx_own_components.MaterialDialog;
 import vision.models.Filed;
 import vision.view.*;
 
@@ -80,6 +82,12 @@ public class ScreensManager {
 
     public void closeExploreDataWindow() {
         Start.showView(MainWindowView.class);
+    }
+
+    public void showMaterialDialog(String header, String content, String buttonLabel) {
+        mainWindowController.getStackPane().setVisible(true);
+        MaterialDialog materialDialog = new MaterialDialog(header, content, buttonLabel, mainWindowController.getStackPane());
+        materialDialog.showDialog();
     }
 
 }

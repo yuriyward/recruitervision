@@ -2,8 +2,9 @@ package vision;
 
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import vision.controllers.SplashScreen;
+import vision.javafx_own_components.SplashScreen;
 import vision.view.MainWindowView;
+
 /**
  * @author Yuriy on 22.07.2017.
  */

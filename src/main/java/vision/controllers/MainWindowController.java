@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.service.ScreensManager;
 
@@ -40,17 +42,16 @@ public class MainWindowController implements Initializable {
     @FXML
     private JFXButton showParsedDataBtn;
 
+    @FXML
+    @Getter private AnchorPane anchorPane;
+
+    @FXML
+    @Getter private StackPane stackPane;
+
     @Autowired
     public MainWindowController(ScreensManager screensManager) {
         this.screensManager = screensManager;
     }
-
-    public AnchorPane getAnchorPane() {
-        return anchorPane;
-    }
-
-    @FXML
-    private AnchorPane anchorPane;
 
     @FXML
     void homeBtnAct(ActionEvent event) {

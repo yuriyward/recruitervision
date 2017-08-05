@@ -2,9 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.MainWindowController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #BDD684;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="980.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,5 +24,6 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorPane" minHeight="600.0" minWidth="620.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

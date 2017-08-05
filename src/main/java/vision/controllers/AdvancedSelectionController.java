@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.javafx_own_components.OwnTagBar;
+import vision.javafx_own_components.TagBar;
 import vision.service.ScreensManager;
 
 import java.net.URL;
@@ -57,12 +57,12 @@ public class AdvancedSelectionController implements Initializable {
     }
 
     private void loadTagBars() {
-        OwnTagBar baseBar = new OwnTagBar();
-        OwnTagBar workBar = new OwnTagBar();
-        OwnTagBar educationalBar = new OwnTagBar();
-        OwnTagBar skillsBar = new OwnTagBar();
-        OwnTagBar summuryBar = new OwnTagBar();
-        OwnTagBar interestsBar = new OwnTagBar();
+        TagBar baseBar = new TagBar();
+        TagBar workBar = new TagBar();
+        TagBar educationalBar = new TagBar();
+        TagBar skillsBar = new TagBar();
+        TagBar summuryBar = new TagBar();
+        TagBar interestsBar = new TagBar();
         base.getChildren().addAll(baseBar);
         work.getChildren().addAll(workBar);
         educational.getChildren().addAll(educationalBar);
