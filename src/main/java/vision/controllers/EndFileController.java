@@ -59,7 +59,7 @@ public class EndFileController implements Initializable {
 
     @FXML
     void backPageClick(ActionEvent event) {
-        screensManager.showDataForExtractionWindow();
+        screensManager.showAdvancedSelectionWindow();
     }
 
     @FXML

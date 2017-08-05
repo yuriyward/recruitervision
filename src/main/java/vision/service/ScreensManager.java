@@ -1,5 +1,6 @@
 package vision.service;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.scene.layout.StackPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,31 +48,37 @@ public class ScreensManager {
 
     public void showCvFilesWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
+        handleSelection(mainWindowController.getFilesBtn());
         mainWindowController.getAnchorPane().getChildren().add(cvFilesView.getView());
     }
 
     public void showDataForExtractionWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
+        handleSelection(mainWindowController.getInformationBtn());
         mainWindowController.getAnchorPane().getChildren().add(dataForExtractionView.getView());
     }
 
     public void showEndFileWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
+        handleSelection(mainWindowController.getEndFileBtn());
         mainWindowController.getAnchorPane().getChildren().add(endFileView.getView());
     }
 
     public void showHomeWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
+        handleSelection(mainWindowController.getHomeBtn());
         mainWindowController.getAnchorPane().getChildren().add(homeView.getView());
     }
 
     public void showAdvancedSelectionWindow() {
         mainWindowController.getAnchorPane().getChildren().clear();
+        handleSelection(mainWindowController.getAdvancedSelectionId());
         mainWindowController.getAnchorPane().getChildren().add(advancedSelectionView.getView());
     }
 
     public void showParesedFiles() {
         mainWindowController.getAnchorPane().getChildren().clear();
+        handleSelection(mainWindowController.getShowParsedDataBtn());
         mainWindowController.getAnchorPane().getChildren().add(parsedFilesView.getView());
     }
 
@@ -90,4 +97,8 @@ public class ScreensManager {
         materialDialog.showDialog();
     }
 
+    private void handleSelection(JFXButton selectedBtn) {
+        selectedBtn.setStyle("-fx-background-color: #6aae31;-fx-font-size: 16;-fx-font-weight:bold;-fx-text-fill:white");
+        mainWindowController.unmarkNotSelectedButtons(selectedBtn);
+    }
 }

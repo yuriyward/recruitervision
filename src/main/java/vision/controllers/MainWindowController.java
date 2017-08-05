@@ -11,7 +11,9 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.service.ScreensManager;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -22,31 +24,40 @@ public class MainWindowController implements Initializable {
     private final
     ScreensManager screensManager;
     @FXML
+    @Getter
     private JFXButton homeBtn;
 
     @FXML
+    @Getter
     private JFXButton filesBtn;
 
     @FXML
+    @Getter
     private JFXButton informationBtn;
 
     @FXML
+    @Getter
     private JFXButton endFileBtn;
 
     @FXML
+    @Getter
     private JFXButton advancedSelectionId;
 
     @FXML
+    @Getter
     private JFXButton processingId;
 
     @FXML
+    @Getter
     private JFXButton showParsedDataBtn;
 
     @FXML
-    @Getter private AnchorPane anchorPane;
+    @Getter
+    private AnchorPane anchorPane;
 
     @FXML
-    @Getter private StackPane stackPane;
+    @Getter
+    private StackPane stackPane;
 
     @Autowired
     public MainWindowController(ScreensManager screensManager) {
@@ -91,5 +102,13 @@ public class MainWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         screensManager.showHomeWindow();
+    }
+
+    public void unmarkNotSelectedButtons(JFXButton button) {
+        for (JFXButton btn : Arrays.asList(homeBtn, filesBtn, informationBtn, endFileBtn, advancedSelectionId, showParsedDataBtn)) {
+            if (btn != button) {
+                btn.setStyle("-fx-background-color: #00A65A;-fx-font-size: 16;-fx-font-weight:bold;-fx-text-fill:white");
+            }
+        }
     }
 }
