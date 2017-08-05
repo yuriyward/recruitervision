@@ -3,14 +3,17 @@ package vision.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import lombok.Getter;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +37,6 @@ public class CvFilesWindowController implements Initializable {
     private final TikaService tikaService;
 
     @FXML
-    private JFXButton addCvFileID;
-    @FXML
-    private JFXButton removeCvFileID;
-    @FXML
     private JFXCheckBox defaultPath;
     @FXML
     private TableView<File> fileTable;
@@ -48,7 +47,8 @@ public class CvFilesWindowController implements Initializable {
     @FXML
     private TableColumn<File, String> fileExtensionColumn;
 
-    @Getter ObservableList<File> observableFiles;
+    @Getter
+    ObservableList<File> observableFiles;
     final FileChooser fileChooser = new FileChooser();
 
     @Autowired
@@ -62,6 +62,7 @@ public class CvFilesWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         configuringFileChooser(fileChooser);
         initTable();
+        initRightClick();
     }
 
     @FXML
@@ -94,6 +95,27 @@ public class CvFilesWindowController implements Initializable {
         observableFiles = FXCollections.observableArrayList();
     }
 
+    private void initRightClick() {
+        fileTable.setRowFactory(param -> {
+            final TableRow<File> row = new TableRow<>();
+            final ContextMenu rowMenu = new ContextMenu();
+
+            MenuItem addNewFile = new MenuItem("Add File");
+            addNewFile.setOnAction(event -> addCvFile());
+
+            MenuItem removeFile = new MenuItem("Remove file");
+            removeFile.setOnAction(event -> removeCvFile());
+
+            rowMenu.getItems().addAll(removeFile, addNewFile);
+            row.contextMenuProperty()
+                    .bind(Bindings
+                            .when(Bindings.isNotNull(row.itemProperty()))
+                            .then(rowMenu)
+                            .otherwise((ContextMenu) null));
+            return row;
+        });
+    }
+
     private void addFilesToTable(List<File> files) {
         for (File file : files) {
             if (!observableFiles.contains(file)) {
@@ -108,8 +130,13 @@ public class CvFilesWindowController implements Initializable {
         if (file != null) {
             observableFiles.remove(file);
         } else {
-            screensManager.showMaterialDialog("File not selected","Please select file for removing","OK");
+            screensManager.showMaterialDialog("File not selected", "Please select file for removing", "OK");
         }
+    }
+
+    @FXML
+    void removeAllCvFiles() {
+        observableFiles.clear();
     }
 
     @FXML

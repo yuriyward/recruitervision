@@ -2,14 +2,13 @@ package vision.controllers;
 
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
@@ -76,13 +75,14 @@ public class ParsedFilesController implements Initializable {
         if (filed != null) {
             screensManager.showExploreDataWindow(filed);
         } else {
-            screensManager.showMaterialDialog("File not selected","Please select file for showing","OK");
+            screensManager.showMaterialDialog("File not selected", "Please select file for showing", "OK");
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initTable();
+        initRightClick();
     }
 
     private void initTable() {
@@ -95,6 +95,27 @@ public class ParsedFilesController implements Initializable {
 
         millingTable.getColumns().setAll(fileName, fileLocation, fileExtension, fileStatus);
         millingTable.setItems(observableFiles);
+    }
+
+    private void initRightClick() {
+        millingTable.setRowFactory(param -> {
+            final TableRow<Filed> row = new TableRow<>();
+            final ContextMenu rowMenu = new ContextMenu();
+
+            MenuItem showExtracted = new MenuItem("Show extracted");
+            showExtracted.setOnAction(event -> showExtracted());
+
+            MenuItem showParsed = new MenuItem("Show parsed");
+            showParsed.setOnAction(event -> showParsed());
+
+            rowMenu.getItems().addAll(showParsed, showExtracted);
+            row.contextMenuProperty()
+                    .bind(Bindings
+                            .when(Bindings.isNotNull(row.itemProperty()))
+                            .then(rowMenu)
+                            .otherwise((ContextMenu) null));
+            return row;
+        });
     }
 
     public void addFiledToTable(Filed filed) {

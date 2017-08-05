@@ -26,18 +26,14 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Pane layoutX="730.0" layoutY="28.0" prefHeight="131.0" prefWidth="225.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="160.0">
+      <Pane layoutX="741.0" layoutY="131.0" prefHeight="83.0" prefWidth="225.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="131.0">
          <children>
-            <JFXButton fx:id="removeCvFileID" layoutX="11.0" layoutY="75.0" onAction="#removeCvFile" prefWidth="200.0" style="-fx-background-color: #DD4B39;" text="Remove CV file from list" textFill="WHITE">
+            <JFXButton defaultButton="true" layoutX="13.0" layoutY="14.0" onAction="#addCvFile" prefWidth="200.0" style="-fx-background-color: #337AB7;" text="Add CV Files" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="addCvFileID" defaultButton="true" layoutX="11.0" layoutY="25.0" onAction="#addCvFile" prefWidth="200.0" style="-fx-background-color: #337AB7;" text="Add CV Files" textFill="WHITE">
-               <font>
-                  <Font name="Roboto Medium" size="14.0" />
-               </font>
-            </JFXButton>
+            <JFXCheckBox fx:id="defaultPath" layoutX="13.0" layoutY="52.0" selected="true" text="Default path" />
          </children>
       </Pane>
       <JFXToolbar layoutX="284.0" layoutY="668.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
@@ -56,6 +52,19 @@
             </JFXButton>
          </left>
       </JFXToolbar>
-      <JFXCheckBox fx:id="defaultPath" layoutX="745.0" layoutY="20.0" selected="true" text="Default path" />
+      <Pane layoutX="741.0" layoutY="235.0" prefHeight="106.0" prefWidth="225.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+         <children>
+            <JFXButton layoutX="13.0" layoutY="14.0" onAction="#removeCvFile" prefWidth="200.0" style="-fx-background-color: #DD4B39;" text="Remove CV file from list" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="13.0" layoutY="62.0" onAction="#removeAllCvFiles" prefWidth="200.0" style="-fx-background-color: #DD4B39;" text="Remove All files from list" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
