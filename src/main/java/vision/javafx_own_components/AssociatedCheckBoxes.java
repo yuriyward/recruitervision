@@ -1,4 +1,4 @@
-package vision.utils;
+package vision.javafx_own_components;
 
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.application.Platform;

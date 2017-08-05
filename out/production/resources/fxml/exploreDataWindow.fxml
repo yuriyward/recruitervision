@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.HTMLEditor?>
 
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ExploreDataController">
    <children>
-      <JFXToolbar layoutX="294.0" layoutY="678.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
-         <right>
-            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Roboto Medium" size="14.0" />
-               </font>
-            </JFXButton>
-         </right>
-         <left>
-            <JFXButton buttonType="RAISED" cancelButton="true" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Roboto Medium" size="14.0" />
-               </font>
-            </JFXButton>
-         </left>
-      </JFXToolbar>
-      <HTMLEditor fx:id="editorId" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="14.0" layoutY="27.0" prefHeight="200.0" prefWidth="506.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Label layoutX="455.0" layoutY="240.0" prefHeight="50.0" prefWidth="71.0" text="loading..." AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="240.0" />
+      <JFXButton buttonType="RAISED" cancelButton="true" layoutX="20.0" layoutY="20.0" onAction="#closeWindow" prefWidth="150.0" style="-fx-background-color: #DD4B39;" text="Close" textFill="WHITE" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+      <HTMLEditor fx:id="editorId" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="14.0" layoutY="14.0" prefHeight="604.0" prefWidth="950.0" />
    </children>
 </AnchorPane>

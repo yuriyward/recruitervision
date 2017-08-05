@@ -1,4 +1,4 @@
-package vision.utils;
+package vision.javafx_own_components;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -7,12 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
