@@ -7,9 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.Start;
 import vision.service.ScreensManager;
-import vision.view.CvFilesView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +17,7 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class MainWindowController implements Initializable {
-    @Autowired
+    private final
     ScreensManager screensManager;
     @FXML
     private JFXButton homeBtn;
@@ -40,7 +38,12 @@ public class MainWindowController implements Initializable {
     private JFXButton processingId;
 
     @FXML
-    private JFXButton exploreDataBtn;
+    private JFXButton showParsedDataBtn;
+
+    @Autowired
+    public MainWindowController(ScreensManager screensManager) {
+        this.screensManager = screensManager;
+    }
 
     public AnchorPane getAnchorPane() {
         return anchorPane;
@@ -80,8 +83,8 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void exploreDataBtnAct(ActionEvent event) {
-        screensManager.showExploreDataWindow();
+    void showParsedData(ActionEvent event) {
+        screensManager.showParesedFiles();
     }
 
     @Override

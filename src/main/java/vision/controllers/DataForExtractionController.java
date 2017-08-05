@@ -6,8 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.beans.factory.annotation.Autowired;
+import vision.javafx_own_components.AssociatedCheckBoxes;
 import vision.service.ScreensManager;
-import vision.utils.AssociatedCheckBoxes;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,8 +19,7 @@ import java.util.ResourceBundle;
  */
 @FXMLController
 public class DataForExtractionController implements Initializable {
-    @Autowired
-    ScreensManager screensManager;
+    private final ScreensManager screensManager;
 
     @FXML
     private JFXCheckBox allBasic;
@@ -72,6 +71,11 @@ public class DataForExtractionController implements Initializable {
 
     @FXML
     private JFXCheckBox interests;
+
+    @Autowired
+    public DataForExtractionController(ScreensManager screensManager) {
+        this.screensManager = screensManager;
+    }
 
     @FXML
     void backPageClick(ActionEvent event) {

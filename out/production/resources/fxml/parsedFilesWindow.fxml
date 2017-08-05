@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ParsedFilesController">
+   <children>
+      <TableView fx:id="millingTable" layoutX="41.0" layoutY="54.0" stylesheets="@../css/table-style.css" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <columns>
+          <TableColumn fx:id="fileName" prefWidth="300.0" text="File name" />
+          <TableColumn fx:id="fileLocation" prefWidth="300.0" text="File location" />
+            <TableColumn fx:id="fileExtension" minWidth="-1.0" text="Extension" />
+            <TableColumn fx:id="fileStatus" prefWidth="215.0" text="Status">
+               <columns>
+                  <TableColumn fx:id="fileStatus_parsed" minWidth="-1.0" prefWidth="70.0" text="Parsed" />
+                  <TableColumn fx:id="fileStatus_extracted" minWidth="-1.0" prefWidth="70.0" text="Extracted" />
+               </columns>
+            </TableColumn>
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <JFXToolbar layoutX="304.0" layoutY="688.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <right>
+            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </right>
+         <left>
+            <JFXButton buttonType="RAISED" cancelButton="true" onAction="#backPageClick" prefWidth="150.0" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </left>
+      </JFXToolbar>
+      <Pane layoutX="169.0" layoutY="462.0" prefHeight="70.0" prefWidth="540.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+         <children>
+            <JFXButton defaultButton="true" layoutX="26.0" layoutY="20.0" onAction="#showParsed" style="-fx-background-color: #337AB7;" text="Show parsed data" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton defaultButton="true" layoutX="193.0" layoutY="20.0" onAction="#showExtracted" style="-fx-background-color: #337AB7;" text="Show extraced data" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

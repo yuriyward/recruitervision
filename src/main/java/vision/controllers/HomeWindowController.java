@@ -10,8 +10,12 @@ import vision.service.ScreensManager;
  */
 @FXMLController
 public class HomeWindowController {
+    private final ScreensManager screensManager;
+
     @Autowired
-    ScreensManager screensManager;
+    public HomeWindowController(ScreensManager screensManager) {
+        this.screensManager = screensManager;
+    }
 
     @FXML
     void nextPageClick() {
