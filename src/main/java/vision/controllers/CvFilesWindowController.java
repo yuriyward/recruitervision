@@ -12,6 +12,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import lombok.Getter;
@@ -24,6 +28,7 @@ import vision.service.TikaService;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -38,6 +43,8 @@ public class CvFilesWindowController implements Initializable {
 
     @FXML
     private JFXCheckBox defaultPath;
+    @FXML
+    private Pane dragDrop;
     @FXML
     private TableView<File> fileTable;
     @FXML
@@ -63,6 +70,7 @@ public class CvFilesWindowController implements Initializable {
         configuringFileChooser(fileChooser);
         initTable();
         initRightClick();
+        initDragDrop();
     }
 
     @FXML
@@ -74,7 +82,6 @@ public class CvFilesWindowController implements Initializable {
         List<File> files = fileChooser.showOpenMultipleDialog(Start.getStage());
         if (files != null) {
             addFilesToTable(files);
-            fileTable.setItems(observableFiles);
         }
     }
 
@@ -116,12 +123,51 @@ public class CvFilesWindowController implements Initializable {
         });
     }
 
+    private void initDragDrop() {
+        List<String> validExtensions = new ArrayList<>();
+        validExtensions.add("doc");
+        validExtensions.add("docx");
+        validExtensions.add("pdf");
+        validExtensions.add("rtf");
+        validExtensions.add("html");
+        validExtensions.add("txt");
+
+        dragDrop.setOnDragOver(event -> {
+            if (event.getGestureSource() != dragDrop && event.getDragboard().hasFiles()) {
+                List<File> files = event.getDragboard().getFiles();
+                for (File file : files) {
+                    String ext = FilenameUtils.getExtension(file.getName());
+                    if (!validExtensions.contains(ext)) {
+                        event.consume();
+                        return;
+                    }
+                }
+                event.acceptTransferModes(TransferMode.COPY);
+            }
+            event.consume();
+        });
+
+        dragDrop.setOnDragDropped(event -> {
+            boolean success = false;
+            if (event.getGestureSource() != dragDrop && event.getDragboard().hasFiles()) {
+                List<File> files = event.getDragboard().getFiles();
+                addFilesToTable(files);
+                success = true;
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
+
+        dragDrop.setOnMouseClicked(event -> addCvFile());
+    }
+
     private void addFilesToTable(List<File> files) {
         for (File file : files) {
             if (!observableFiles.contains(file)) {
                 observableFiles.add(file);
             }
         }
+        fileTable.setItems(observableFiles);
     }
 
     @FXML
