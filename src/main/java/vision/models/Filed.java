@@ -14,6 +14,7 @@ import java.io.File;
 @AllArgsConstructor
 public class Filed {
     private File file;
+    private String language;
     private String parsed;
     private String parsedStatus;
     private String extracted;

@@ -1,30 +1,24 @@
 package vision.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
 import lombok.Getter;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
 import vision.service.FileService;
 import vision.service.ScreensManager;
-import vision.service.TikaService;
+import vision.service.ParsingService;
 
 import java.io.File;
 import java.net.URL;
@@ -39,7 +33,7 @@ import java.util.ResourceBundle;
 public class CvFilesWindowController implements Initializable {
     private final ScreensManager screensManager;
     private final FileService fileService;
-    private final TikaService tikaService;
+    private final ParsingService parsingService;
 
     @FXML
     private JFXCheckBox defaultPath;
@@ -59,10 +53,10 @@ public class CvFilesWindowController implements Initializable {
     final FileChooser fileChooser = new FileChooser();
 
     @Autowired
-    public CvFilesWindowController(ScreensManager screensManager, FileService fileService, TikaService tikaService) {
+    public CvFilesWindowController(ScreensManager screensManager, FileService fileService, ParsingService parsingService) {
         this.screensManager = screensManager;
         this.fileService = fileService;
-        this.tikaService = tikaService;
+        this.parsingService = parsingService;
     }
 
     @Override
@@ -187,7 +181,7 @@ public class CvFilesWindowController implements Initializable {
 
     @FXML
     void nextPageClick() {
-        tikaService.parseAllFiles(observableFiles);
+        parsingService.parseAllFiles(observableFiles);
         screensManager.showDataForExtractionWindow();
     }
 

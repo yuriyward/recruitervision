@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ParsedFilesController">
    <children>
       <TableView fx:id="millingTable" layoutX="41.0" layoutY="54.0" stylesheets="@../css/table-style.css" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
@@ -17,6 +16,7 @@
           <TableColumn fx:id="fileName" prefWidth="300.0" text="File name" />
           <TableColumn fx:id="fileLocation" prefWidth="300.0" text="File location" />
             <TableColumn fx:id="fileExtension" minWidth="-1.0" text="Extension" />
+            <TableColumn fx:id="language" minWidth="-1.0" text="Language" />
             <TableColumn fx:id="fileStatus" prefWidth="215.0" text="Status">
                <columns>
                   <TableColumn fx:id="fileStatus_parsed" minWidth="-1.0" prefWidth="70.0" text="Parsed" />

@@ -7,10 +7,11 @@ import java.io.File;
 /**
  * @author Yuriy on 01.08.2017.
  */
-public interface TikaService {
+public interface ParsingService {
     void parseAllFiles(ObservableList<File> files);
 
-    String parse(File file);
+    String parseToText(File file);
 
+    String identifyLanguage(String text);
 
 }

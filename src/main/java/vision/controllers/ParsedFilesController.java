@@ -38,6 +38,9 @@ public class ParsedFilesController implements Initializable {
     private TableColumn<Filed, String> fileExtension;
 
     @FXML
+    private TableColumn<Filed, String> language;
+
+    @FXML
     private TableColumn fileStatus;
 
     @FXML
@@ -89,11 +92,12 @@ public class ParsedFilesController implements Initializable {
         fileName.setCellValueFactory(param -> new SimpleStringProperty(FilenameUtils.getBaseName(param.getValue().getFile().getPath())));
         fileLocation.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFile().getPath()));
         fileExtension.setCellValueFactory(param -> new SimpleStringProperty(FilenameUtils.getExtension(param.getValue().getFile().getPath())));
+        language.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLanguage()));
 
         fileStatus_parsed.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getParsedStatus()));
         fileStatus_extracted.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getExtractedStatus()));
 
-        millingTable.getColumns().setAll(fileName, fileLocation, fileExtension, fileStatus);
+        millingTable.getColumns().setAll(fileName, fileLocation, fileExtension, language, fileStatus);
         millingTable.setItems(observableFiles);
     }
 
