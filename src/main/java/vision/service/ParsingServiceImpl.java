@@ -90,13 +90,10 @@ public class ParsingServiceImpl implements ParsingService {
     }
 
     private void initLanguageDetector() throws IOException {
-        //load all languages:
         List<LanguageProfile> languageProfiles = new LanguageProfileReader().readAllBuiltIn();
-        //build language detector:
         languageDetector = LanguageDetectorBuilder.create(NgramExtractors.standard())
                 .withProfiles(languageProfiles)
                 .build();
-        //create a text object factory
         textObjectFactory = CommonTextObjectFactories.forDetectingOnLargeText();
     }
 

@@ -82,16 +82,24 @@ public class CvFilesWindowController implements Initializable {
     private void configuringFileChooser(FileChooser fileChooser) {
         fileChooser.setTitle("Select CV files (PDF or DOC)");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("PDF, DOC, DOCX", "*.pdf", "*.doc", "*.docx"),
+                new FileChooser.ExtensionFilter("PDF, DOC, DOCX, TXT, HTML, RTF",
+                        "*.pdf", "*.doc", "*.docx", "*.txt", "*.html", "*.rtf"),
                 new FileChooser.ExtensionFilter("PDF", "*.pdf"),
                 new FileChooser.ExtensionFilter("DOCX", "*.docx"),
-                new FileChooser.ExtensionFilter("DOC", "*.doc"));
+                new FileChooser.ExtensionFilter("DOC", "*.doc"),
+                new FileChooser.ExtensionFilter("TXT", "*.txt"),
+                new FileChooser.ExtensionFilter("HTML", "*.html"),
+                new FileChooser.ExtensionFilter("RTF", "*.rtf")
+        );
     }
 
     private void initTable() {
-        fileNameColumn.setCellValueFactory(param -> new SimpleStringProperty(FilenameUtils.getBaseName(param.getValue().getPath())));
-        fileLocationColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPath()));
-        fileExtensionColumn.setCellValueFactory(param -> new SimpleStringProperty(FilenameUtils.getExtension(param.getValue().getPath())));
+        fileNameColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(FilenameUtils.getBaseName(param.getValue().getPath())));
+        fileLocationColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getPath()));
+        fileExtensionColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(FilenameUtils.getExtension(param.getValue().getPath())));
         fileTable.getColumns().setAll(fileNameColumn, fileLocationColumn, fileExtensionColumn);
         observableFiles = FXCollections.observableArrayList();
     }
@@ -170,7 +178,8 @@ public class CvFilesWindowController implements Initializable {
         if (file != null) {
             observableFiles.remove(file);
         } else {
-            screensManager.showMaterialDialog("File not selected", "Please select file for removing", "OK");
+            screensManager.showMaterialDialog("File not selected",
+                    "Please select file for removing", "OK");
         }
     }
 
