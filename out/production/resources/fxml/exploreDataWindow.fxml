@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.web.HTMLEditor?>
 
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ExploreDataController">
    <children>
       <Label layoutX="455.0" layoutY="240.0" prefHeight="50.0" prefWidth="71.0" text="loading..." AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="240.0" />
-      <JFXButton buttonType="RAISED" cancelButton="true" layoutX="20.0" layoutY="20.0" onAction="#closeWindow" prefWidth="150.0" style="-fx-background-color: #DD4B39;" text="Close" textFill="WHITE" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
-         <font>
-            <Font name="Roboto Medium" size="14.0" />
-         </font>
-      </JFXButton>
       <HTMLEditor fx:id="editorId" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="14.0" layoutY="14.0" prefHeight="604.0" prefWidth="950.0" />
    </children>
 </AnchorPane>

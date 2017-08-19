@@ -2,7 +2,9 @@ package vision.service;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import vision.Start;
 import vision.controllers.ExploreDataController;
@@ -40,6 +42,8 @@ public class ScreensManager {
     ExploreDataView exploreDataView;
     @Autowired
     ExploreDataController exploreDataController;
+    @Autowired
+    ApplicationContext applicationContext;
 
     @Autowired
     public void setMainWindowController(MainWindowController mainWindowController) {
@@ -83,12 +87,8 @@ public class ScreensManager {
     }
 
     public void showExploreDataWindow(Filed filed) {
-        Start.showView(ExploreDataView.class);
         exploreDataController.setFiled(filed);
-    }
-
-    public void closeExploreDataWindow() {
-        Start.showView(MainWindowView.class);
+        Start.showView(ExploreDataView.class, Modality.APPLICATION_MODAL);
     }
 
     public void showMaterialDialog(String header, String content, String buttonLabel) {

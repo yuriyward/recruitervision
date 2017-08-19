@@ -4,6 +4,8 @@ import de.felixroske.jfxsupport.FXMLController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.web.HTMLEditor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.models.Filed;
 import vision.service.ScreensManager;
@@ -13,6 +15,8 @@ import vision.service.ScreensManager;
  */
 @FXMLController
 public class ExploreDataController {
+    final static Logger logger = LoggerFactory.getLogger(ExploreDataController.class);
+
     private final ScreensManager screensManager;
     private Filed field;
 
@@ -24,13 +28,9 @@ public class ExploreDataController {
         this.screensManager = screensManager;
     }
 
-    @FXML
-    void closeWindow() {
-        screensManager.closeExploreDataWindow();
-    }
-
     public void setFiled(Filed filed) {
         this.field = filed;
+        logger.info(filed.getParsed());
         Platform.runLater(() -> editorId.setHtmlText(filed.getParsed()));
     }
 }
