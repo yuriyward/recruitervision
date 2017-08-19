@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.run.BootRunTask
+
 plugins {
     id 'org.springframework.boot' version '1.5.4.RELEASE'
 }
@@ -31,7 +33,7 @@ dependencies {
     // language identifier
     compile group: 'com.optimaize.languagedetector', name: 'language-detector', version: '0.6'
     // GATE
-//    compile group: 'uk.ac.gate', name: 'gate-core', version: '8.4.1'
+    compile group: 'uk.ac.gate', name: 'gate-core', version: '8.4.1'
     // tests
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

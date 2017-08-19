@@ -28,6 +28,7 @@ public class GateServiceImpl implements GateService {
 
     private CorpusController corpusController;
     private Corpus corpus;
+    private String userDir = System.getProperty("user.dir");
 
     @Override
     public void initAnnie() {
@@ -43,7 +44,7 @@ public class GateServiceImpl implements GateService {
     }
 
     @Override
-    public void createCorpus(ArrayList<Filed> fileds){
+    public void createCorpus(ArrayList<Filed> fileds) {
         try {
             corpus = Factory.newCorpus("Transient Gate Corpus");
         } catch (ResourceInstantiationException e) {
@@ -61,12 +62,17 @@ public class GateServiceImpl implements GateService {
 
     @Override
     public void initGate() {
+        if (Gate.getGateHome() == null) {
+            Gate.setGateHome(new File(String.format("%s\\src\\main\\resources\\GATE-files", userDir)));
+        }
+        if (Gate.getPluginsHome() == null)
+            Gate.setPluginsHome(new File(String.format("%s\\src\\main\\resources\\GATE-files\\plugins", userDir)));
         try {
             Gate.init();
         } catch (GateException e) {
             e.printStackTrace();
         }
-
+        logger.info("Gate inited");
     }
 
     @Override
