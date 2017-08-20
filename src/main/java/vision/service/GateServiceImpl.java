@@ -28,13 +28,11 @@ public class GateServiceImpl implements GateService {
 
     private CorpusController corpusController;
     private Corpus corpus;
-    private String userDir = System.getProperty("user.dir");
+    private final static String userDir = System.getProperty("user.dir");
 
     @Override
-    public void initAnnie() {
-        File pluginsHome = Gate.getPluginsHome();
-        File anniePlugin = new File(pluginsHome, "RecriuterVision");
-        File annieGapp = new File(anniePlugin, "RecruiterVision.gapp");
+    public void initPlugins() {
+        File annieGapp = new File(Gate.getGateHome(), "recruiterVision.gapp");
         try {
             corpusController = (CorpusController) PersistenceManager.loadObjectFromFile(annieGapp);
         } catch (PersistenceException | IOException | ResourceInstantiationException e) {
@@ -63,10 +61,10 @@ public class GateServiceImpl implements GateService {
     @Override
     public void initGate() {
         if (Gate.getGateHome() == null) {
-            Gate.setGateHome(new File(String.format("%s\\src\\main\\resources\\GATE-files", userDir)));
+            Gate.setGateHome(new File(String.format("%s\\src\\main\\resources\\gate", userDir)));
         }
         if (Gate.getPluginsHome() == null)
-            Gate.setPluginsHome(new File(String.format("%s\\src\\main\\resources\\GATE-files\\plugins", userDir)));
+            Gate.setPluginsHome(new File(String.format("%s\\src\\main\\resources\\gate\\plugins", userDir)));
         try {
             Gate.init();
         } catch (GateException e) {

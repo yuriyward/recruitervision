@@ -13,13 +13,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.Start;
 import vision.models.Filed;
 import vision.service.GateService;
-import vision.service.GateServiceImpl;
 import vision.service.ScreensManager;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -79,6 +76,7 @@ public class ParsedFilesController implements Initializable {
     @FXML
     void showExtracted() {
         gateService.initGate();
+        gateService.initPlugins();
     }
 
     @FXML

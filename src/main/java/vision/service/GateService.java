@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public interface GateService {
     void initGate();
-    void initAnnie();
+    void initPlugins();
     void createCorpus(ArrayList<Filed> fileds);
     void executeController() throws ExecutionException;
     void extractDataAndSave(File file);
