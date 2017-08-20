@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.models.Filed;
+import vision.repository.FiledRepository;
 import vision.service.GateService;
 import vision.service.ScreensManager;
 
@@ -28,8 +29,8 @@ public class ParsedFilesController implements Initializable {
     private final ScreensManager screensManager;
     final static Logger logger = LoggerFactory.getLogger(ParsedFilesController.class);
 
-    @Autowired
-    GateService gateService;
+    private final FiledRepository filedRepository;
+    private final GateService gateService;
 
     @FXML
     private TableView<Filed> millingTable;
@@ -55,12 +56,27 @@ public class ParsedFilesController implements Initializable {
     @FXML
     private TableColumn<Filed, String> fileStatus_extracted;
 
-    ObservableList<Filed> observableFiles = FXCollections.observableArrayList();
+    private ObservableList<Filed> observableFiles = FXCollections.observableArrayList();
 
 
     @Autowired
-    public ParsedFilesController(ScreensManager screensManager) {
+    public ParsedFilesController(ScreensManager screensManager, FiledRepository filedRepository, GateService gateService) {
         this.screensManager = screensManager;
+        this.filedRepository = filedRepository;
+        this.gateService = gateService;
+        initGate();
+        addSubscription();
+    }
+
+    private void initGate() {
+        gateService.initGate();
+        gateService.initPlugins();
+        gateService.initNewCorpus();
+    }
+
+    private void addSubscription() {
+        filedRepository.getOnAdd().subscribe(this::addFiledToTable);
+        filedRepository.getOnAdd().subscribe(this::addFileToCorpus);
     }
 
     @FXML
@@ -75,8 +91,8 @@ public class ParsedFilesController implements Initializable {
 
     @FXML
     void showExtracted() {
-        gateService.initGate();
-        gateService.initPlugins();
+        gateService.executeController();
+        gateService.extractData();
     }
 
     @FXML
@@ -129,11 +145,15 @@ public class ParsedFilesController implements Initializable {
         });
     }
 
-    public void addFiledToTable(Filed filed) {
+    private void addFiledToTable(Filed filed) {
         Platform.runLater(() -> {
             if (!observableFiles.contains(filed)) {
                 observableFiles.add(filed);
             }
         });
+    }
+
+    private void addFileToCorpus(Filed filed) {
+        Platform.runLater(() -> gateService.addFileToCorpus(filed));
     }
 }

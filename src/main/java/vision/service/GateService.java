@@ -1,9 +1,7 @@
 package vision.service;
 
-import gate.creole.ExecutionException;
 import vision.models.Filed;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +10,8 @@ import java.util.ArrayList;
 public interface GateService {
     void initGate();
     void initPlugins();
-    void createCorpus(ArrayList<Filed> fileds);
-    void executeController() throws ExecutionException;
-    void extractDataAndSave(File file);
+    void initNewCorpus();
+    void addFileToCorpus(Filed filed);
+    void executeController();
+    void extractData();
 }

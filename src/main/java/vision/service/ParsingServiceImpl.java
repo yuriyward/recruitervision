@@ -16,11 +16,13 @@ import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.sax.BodyContentHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
-import vision.controllers.ParsedFilesController;
 import vision.models.Filed;
+import vision.repository.FiledRepository;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,16 +35,17 @@ import java.util.List;
  */
 @Service
 public class ParsingServiceImpl implements ParsingService {
+    final static Logger logger = LoggerFactory.getLogger(ParsingServiceImpl.class);
+    private final FiledRepository filedRepository;
     private FileInputStream inputStream;
     private String parsedStatus = "OK";
     private String extractedStatus = "In queue";
-    private final ParsedFilesController parsedFilesController;
     private LanguageDetector languageDetector;
     private TextObjectFactory textObjectFactory;
 
     @Autowired
-    ParsingServiceImpl(ParsedFilesController parsedFilesController) {
-        this.parsedFilesController = parsedFilesController;
+    ParsingServiceImpl(FiledRepository filedRepository) {
+        this.filedRepository = filedRepository;
         try {
             initLanguageDetector();
         } catch (IOException e) {
@@ -56,7 +59,7 @@ public class ParsingServiceImpl implements ParsingService {
             if (files.size() > 0) {
                 for (File file : files) {
                     String text = parseToText(file);
-                    parsedFilesController.addFiledToTable(new Filed(file, identifyLanguage(text), text, parsedStatus, null, extractedStatus));
+                    filedRepository.addNewFiled(file, identifyLanguage(text), text, parsedStatus, null, extractedStatus);
                 }
             }
         }).start();
@@ -78,13 +81,18 @@ public class ParsingServiceImpl implements ParsingService {
             return handler.toString();
         } catch (IOException e) {
             parsedStatus = "IO error";
+            logger.info("IO error");
             e.printStackTrace();
         } catch (SAXException e) {
+            logger.info("SAX error");
             parsedStatus = "SAX error";
             e.printStackTrace();
         } catch (TikaException e) {
+            logger.info("Tika error");
             parsedStatus = "Tika error";
             e.printStackTrace();
+        } catch (Exception e){
+            parsedStatus = "Unknown error";
         }
         return null;
     }

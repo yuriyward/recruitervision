@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
 import vision.service.FileServiceImpl;
 import vision.service.ScreensManager;
-import vision.service.ParsingServiceImpl;
 
 import java.io.File;
 import java.net.URL;
@@ -26,8 +25,6 @@ import java.util.ResourceBundle;
 public class EndFileController implements Initializable {
     private final ScreensManager screensManager;
     private final FileServiceImpl fileService;
-    private final ParsingServiceImpl tikaService;
-    private final CvFilesWindowController cvFilesWindowController;
 
     @FXML
     private JFXTextField selectFolderFld;
@@ -36,11 +33,9 @@ public class EndFileController implements Initializable {
     private File selectedDirectory;
 
     @Autowired
-    public EndFileController(ScreensManager screensManager, FileServiceImpl fileService, ParsingServiceImpl tikaService, CvFilesWindowController cvFilesWindowController) {
+    public EndFileController(ScreensManager screensManager, FileServiceImpl fileService) {
         this.screensManager = screensManager;
         this.fileService = fileService;
-        this.tikaService = tikaService;
-        this.cvFilesWindowController = cvFilesWindowController;
     }
 
     @Override
@@ -75,7 +70,6 @@ public class EndFileController implements Initializable {
     @FXML
     void extractPDF(ActionEvent event) {
         if (folderExist()) {
-            tikaService.parseToText(cvFilesWindowController.getFirstFile());
             System.out.println("Parsed");
         }
     }

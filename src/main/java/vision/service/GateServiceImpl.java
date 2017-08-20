@@ -1,9 +1,6 @@
 package vision.service;
 
-import gate.Corpus;
-import gate.CorpusController;
-import gate.Factory;
-import gate.Gate;
+import gate.*;
 import gate.creole.ExecutionException;
 import gate.creole.ResourceInstantiationException;
 import gate.persist.PersistenceException;
@@ -18,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author Yuriy on 18.08.2017.
@@ -42,20 +40,23 @@ public class GateServiceImpl implements GateService {
     }
 
     @Override
-    public void createCorpus(ArrayList<Filed> fileds) {
+    public void initNewCorpus() {
         try {
             corpus = Factory.newCorpus("Transient Gate Corpus");
         } catch (ResourceInstantiationException e) {
             e.printStackTrace();
         }
-        for (Filed filed : fileds) {
-            try {
-                corpus.add(Factory.newDocument(filed.getFile().toURI().toURL()));
-            } catch (ResourceInstantiationException | MalformedURLException e) {
-                e.printStackTrace();
-            }
+        logger.info("New corpus inited");
+    }
+
+    @Override
+    public void addFileToCorpus(Filed filed) {
+        try {
+            corpus.add(Factory.newDocument(filed.getFile().toURI().toURL()));
+        } catch (ResourceInstantiationException | MalformedURLException e) {
+            e.printStackTrace();
         }
-        logger.info("Сorpus created");
+        logger.info("New file added to corpus");
     }
 
     @Override
@@ -74,12 +75,28 @@ public class GateServiceImpl implements GateService {
     }
 
     @Override
-    public void executeController() throws ExecutionException {
-        corpusController.execute();
+    public void executeController() {
+        try {
+            corpusController.setCorpus(corpus);
+            corpusController.execute();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        logger.info("Controller executed");
     }
 
     @Override
-    public void extractDataAndSave(File file) {
-
+    public void extractData() {
+        Iterator iterator = corpus.iterator();
+        while (iterator.hasNext()) {
+            Document document = (Document) iterator.next();
+            logger.info(document.getSourceUrl().getFile());
+            AnnotationSet annotations = document.getAnnotations();
+            AnnotationSet annotationSet = annotations.get("Address");
+            Annotation annotation = annotationSet.iterator().next();
+            String address = (String) annotation.getFeatures().get("kind");
+            logger.info(address);
+        }
+        logger.info("Data extracted");
     }
 }

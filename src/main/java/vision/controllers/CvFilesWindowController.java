@@ -17,8 +17,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
 import vision.service.FileService;
-import vision.service.ScreensManager;
 import vision.service.ParsingService;
+import vision.service.ScreensManager;
 
 import java.io.File;
 import java.net.URL;
@@ -50,7 +50,7 @@ public class CvFilesWindowController implements Initializable {
 
     @Getter
     ObservableList<File> observableFiles;
-    final FileChooser fileChooser = new FileChooser();
+    private final FileChooser fileChooser = new FileChooser();
 
     @Autowired
     public CvFilesWindowController(ScreensManager screensManager, FileService fileService, ParsingService parsingService) {
@@ -198,9 +198,4 @@ public class CvFilesWindowController implements Initializable {
     void backPageClick() {
         screensManager.showHomeWindow();
     }
-
-    public File getFirstFile() {
-        return observableFiles.get(0);
-    }
-
 }
