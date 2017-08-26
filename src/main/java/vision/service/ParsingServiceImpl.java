@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
-import vision.models.Filed;
 import vision.repository.FiledRepository;
 
 import java.io.File;
@@ -35,7 +34,7 @@ import java.util.List;
  */
 @Service
 public class ParsingServiceImpl implements ParsingService {
-    final static Logger logger = LoggerFactory.getLogger(ParsingServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(ParsingServiceImpl.class);
     private final FiledRepository filedRepository;
     private FileInputStream inputStream;
     private String parsedStatus = "OK";

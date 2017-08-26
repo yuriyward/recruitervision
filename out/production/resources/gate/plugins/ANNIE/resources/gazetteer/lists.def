@@ -113,3 +113,4 @@ company_lower.lst:organization:company
 companies_uk_lower.lst:organization:company
 music-artists.lst:person_full:music
 religious_adj.lst:religious_adj
+OWN-education-course.lst:cv:education-course

@@ -78,20 +78,12 @@ public class EndFileController implements Initializable {
         RequiredFieldValidator requiredFieldValidator = new RequiredFieldValidator();
         selectFolderFld.getValidators().add(requiredFieldValidator);
         requiredFieldValidator.setMessage("Please select destination folder");
-        selectFolderFld.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!newValue) {
-                    selectFolderFld.validate();
-                }
-            }
-        });
-        selectFolderFld.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        selectFolderFld.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
                 selectFolderFld.validate();
             }
         });
+        selectFolderFld.textProperty().addListener((observable, oldValue, newValue) -> selectFolderFld.validate());
     }
 
     private boolean folderExist() {

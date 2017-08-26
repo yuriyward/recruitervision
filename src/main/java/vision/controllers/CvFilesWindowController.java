@@ -68,7 +68,7 @@ public class CvFilesWindowController implements Initializable {
     }
 
     @FXML
-    void addCvFile() {
+    private void addCvFile() {
         if (defaultPath.isSelected()) {
             File file = new File("D:\\recruitervision\\handle_test");
             fileChooser.setInitialDirectory(file);
@@ -173,7 +173,7 @@ public class CvFilesWindowController implements Initializable {
     }
 
     @FXML
-    void removeCvFile() {
+    private void removeCvFile() {
         File file = fileTable.getSelectionModel().getSelectedItem();
         if (file != null) {
             observableFiles.remove(file);

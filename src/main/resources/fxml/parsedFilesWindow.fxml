@@ -56,6 +56,11 @@
                   <Font name="Roboto Medium" size="14.0" />
                </font>
             </JFXButton>
+            <JFXButton defaultButton="true" layoutX="384.0" layoutY="20.0" onAction="#extract" style="-fx-background-color: #337AB7;" text="Extract" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
    </children>

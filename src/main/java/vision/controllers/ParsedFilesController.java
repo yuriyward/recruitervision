@@ -90,13 +90,24 @@ public class ParsedFilesController implements Initializable {
     }
 
     @FXML
-    void showExtracted() {
+    void extract() {
         gateService.executeController();
         gateService.extractData();
     }
 
     @FXML
-    void showParsed() {
+    private void showExtracted() {
+        Filed filed = millingTable.getSelectionModel().getSelectedItem();
+        if (filed != null) {
+            logger.info("Extracted data for file " + filed.getFile().getName());
+            logger.info(filed.getExtractedData().toString());
+        } else {
+            screensManager.showMaterialDialog("File not selected", "Please select file for showing", "OK");
+        }
+    }
+
+    @FXML
+    private void showParsed() {
         Filed filed = millingTable.getSelectionModel().getSelectedItem();
         if (filed != null) {
             screensManager.showExploreDataWindow(filed);
@@ -146,6 +157,7 @@ public class ParsedFilesController implements Initializable {
     }
 
     private void addFiledToTable(Filed filed) {
+        logger.info("addFiledToTable");
         Platform.runLater(() -> {
             if (!observableFiles.contains(filed)) {
                 observableFiles.add(filed);

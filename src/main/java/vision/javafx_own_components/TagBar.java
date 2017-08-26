@@ -68,7 +68,7 @@ public class TagBar extends HBox {
     }
 
     private class Tag extends HBox {
-        public Tag(String tag) {
+        Tag(String tag) {
             getStyleClass().setAll("tag");
             Button removeButton = new Button("X");
             removeButton.setOnAction((evt) -> tags.remove(tag));

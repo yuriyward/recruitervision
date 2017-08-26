@@ -1,7 +1,6 @@
 package vision.service;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

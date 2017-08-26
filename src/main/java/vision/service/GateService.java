@@ -2,8 +2,6 @@ package vision.service;
 
 import vision.models.Filed;
 
-import java.util.ArrayList;
-
 /**
  * @author Yuriy on 18.08.2017.
  */

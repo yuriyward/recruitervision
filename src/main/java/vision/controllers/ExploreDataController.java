@@ -15,7 +15,7 @@ import vision.service.ScreensManager;
  */
 @FXMLController
 public class ExploreDataController {
-    final static Logger logger = LoggerFactory.getLogger(ExploreDataController.class);
+    private final static Logger logger = LoggerFactory.getLogger(ExploreDataController.class);
 
     private final ScreensManager screensManager;
     private Filed field;

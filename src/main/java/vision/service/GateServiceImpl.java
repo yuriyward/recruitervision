@@ -8,25 +8,31 @@ import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vision.models.CV;
 import vision.models.Filed;
+import vision.repository.FiledRepository;
+import vision.utils.CommonUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * @author Yuriy on 18.08.2017.
  */
 @Service
 public class GateServiceImpl implements GateService {
-    final static Logger logger = LoggerFactory.getLogger(GateServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(GateServiceImpl.class);
 
+    private final FiledRepository repository;
     private CorpusController corpusController;
     private Corpus corpus;
-    private final static String userDir = System.getProperty("user.dir");
+
+    @Autowired
+    public GateServiceImpl(FiledRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public void initPlugins() {
@@ -36,7 +42,7 @@ public class GateServiceImpl implements GateService {
         } catch (PersistenceException | IOException | ResourceInstantiationException e) {
             e.printStackTrace();
         }
-        logger.info("Annie inited");
+        logger.info("Annie and plugins inited");
     }
 
     @Override
@@ -52,8 +58,8 @@ public class GateServiceImpl implements GateService {
     @Override
     public void addFileToCorpus(Filed filed) {
         try {
-            corpus.add(Factory.newDocument(filed.getFile().toURI().toURL()));
-        } catch (ResourceInstantiationException | MalformedURLException e) {
+            corpus.add(Factory.newDocument(CommonUtils.getFileUrl(filed.getFile())));
+        } catch (ResourceInstantiationException e) {
             e.printStackTrace();
         }
         logger.info("New file added to corpus");
@@ -62,10 +68,10 @@ public class GateServiceImpl implements GateService {
     @Override
     public void initGate() {
         if (Gate.getGateHome() == null) {
-            Gate.setGateHome(new File(String.format("%s\\src\\main\\resources\\gate", userDir)));
+            Gate.setGateHome(CommonUtils.getFileByPath());
         }
         if (Gate.getPluginsHome() == null)
-            Gate.setPluginsHome(new File(String.format("%s\\src\\main\\resources\\gate\\plugins", userDir)));
+            Gate.setPluginsHome(CommonUtils.getFileByPath("plugins"));
         try {
             Gate.init();
         } catch (GateException e) {
@@ -87,15 +93,18 @@ public class GateServiceImpl implements GateService {
 
     @Override
     public void extractData() {
-        Iterator iterator = corpus.iterator();
-        while (iterator.hasNext()) {
-            Document document = (Document) iterator.next();
-            logger.info(document.getSourceUrl().getFile());
+        for (Document document : corpus) {
+            Filed filed = repository.getFiledByPath(document.getSourceUrl().getPath());
+            CV cv = new CV();
+
             AnnotationSet annotations = document.getAnnotations();
-            AnnotationSet annotationSet = annotations.get("Address");
+            AnnotationSet annotationSet = annotations.get("NameFinder");
             Annotation annotation = annotationSet.iterator().next();
-            String address = (String) annotation.getFeatures().get("kind");
-            logger.info(address);
+            cv.setCandidateName((String) annotation.getFeatures().get("firstName"));
+            cv.setCandidateSurname((String) annotation.getFeatures().get("surname"));
+
+            filed.setExtractedData(cv);
+            logger.info(cv.toString());
         }
         logger.info("Data extracted");
     }

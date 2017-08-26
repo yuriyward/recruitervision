@@ -11,7 +11,6 @@ import java.io.File;
 public class FileServiceImpl implements FileService {
     @Override
     public File saveAsHtml(String path) {
-        File file = new File(path + File.separator + "extractedTEXT.txt");
-        return file;
+        return new File(path + File.separator + "extractedTEXT.txt");
     }
 }
