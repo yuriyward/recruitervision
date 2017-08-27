@@ -1,28 +1,29 @@
-Phase: NameFinder
-Input: Sentence Person
-Options: control = once debug = true
-Rule: NameRule
+Phase: individualPhase
+Input: Sentence Person ProfileSection
+Options: control = once
+Rule: nameRule
 (
 (({Sentence})[10])
 )
 :profileSection
 -->
+:profileSection."_ProfileSection" = {},
 {
 	AnnotationSet firstTenSet = bindings.get("profileSection");
 	AnnotationSet personSet = inputAS.get("Person");
     //Try to find the name within the most probable location (first 10 lines of the document)
 	if(personSet != null && personSet.size() > 0){
 		//Get the perfect match that has kind->fullname;firstname&surname within 10 sentences
-		List<Annotation> persons = personSet.getContained(firstTenSet.firstNode().getOffset(),firstTenSet.lastNode().getOffset()).inDocumentOrder();
+		List<Annotation> persons = personSet.getContained(firstTenSet.firstNode().getOffset(), firstTenSet.lastNode().getOffset()).inDocumentOrder();
 		for(Annotation person : persons){
 			if(person.getFeatures().containsKey("kind") && person.getFeatures().get("kind").equals("fullName") &&
 			   person.getFeatures().containsKey("firstName") &&
 			   person.getFeatures().containsKey("gender") &&
 			   person.getFeatures().containsKey("surname")){
 				FeatureMap features = person.getFeatures();
-				features.put("rule","NameRule");
+				features.put("rule","nameRule");
 				features.put("kind","name");
-				outputAS.add(person.getStartNode(),person.getEndNode(),"NameFinder",features);
+				outputAS.add(person.getStartNode(),person.getEndNode(),"_Individual",features);
 				return;
 			}
 		}
@@ -30,9 +31,9 @@ Rule: NameRule
 		for(Annotation person : persons){
 			if(person.getFeatures().containsKey("kind") && person.getFeatures().get("kind").equals("fullName")){
 				FeatureMap features = person.getFeatures();
-				features.put("rule","NameRule");
+				features.put("rule","nameRule");
 				features.put("kind","name");
-				outputAS.add(person.getStartNode(),person.getEndNode(),"NameFinder",features);
+				outputAS.add(person.getStartNode(),person.getEndNode(),"_Individual",features);
 				return;
 			}
 		}
@@ -44,9 +45,9 @@ Rule: NameRule
 			   person.getFeatures().containsKey("gender") &&
 			   person.getFeatures().containsKey("surname")){
 				FeatureMap features = person.getFeatures();
-				features.put("rule","NameRule");
+				features.put("rule","nameRule");
 				features.put("kind","name");
-				outputAS.add(person.getStartNode(),person.getEndNode(),"NameFinder",features);
+				outputAS.add(person.getStartNode(),person.getEndNode(),"_Individual",features);
 				return;
 			}
 		}
@@ -54,17 +55,17 @@ Rule: NameRule
 		for(Annotation person : persons){
 			if(person.getFeatures().containsKey("kind") && person.getFeatures().get("kind").equals("fullName")){
 				FeatureMap features = person.getFeatures();
-				features.put("rule","NameRule");
+				features.put("rule","nameRule");
 				features.put("kind","name");
-				outputAS.add(person.getStartNode(),person.getEndNode(),"NameFinder",features);
+				outputAS.add(person.getStartNode(),person.getEndNode(),"_Individual",features);
 				return;
 			}
 		}
 		// if not just get a person. No gurantee as to what will come
 		Annotation person = personSet.iterator().next();
 		FeatureMap features = person.getFeatures();
-		features.put("rule","NameRule");
+		features.put("rule","nameRule");
 		features.put("kind","name");
-		outputAS.add(person.getStartNode(),person.getEndNode(),"NameFinder",features);
+		outputAS.add(person.getStartNode(),person.getEndNode(),"_Individual",features);
 	}
 }

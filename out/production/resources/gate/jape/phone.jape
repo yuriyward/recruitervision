@@ -1,0 +1,27 @@
+Phase: phonePhase
+Input: Address Token
+Options: control = appelt
+Rule: phoneRule
+(
+ (
+ ({Token.kind == symbol, Token.string == "+"})?
+ ({Token.kind == number})[3,4]
+ ) |
+ {Address.kind == phone, Address.ruleFinal == PhoneFinal}
+):phone
+-->
+{
+	AnnotationSet phone = bindings.get("phone");
+	AnnotationSet profileSection = inputAS.get("_ProfileSection");
+	if(phone != null && phone.size() > 0){
+		AnnotationSet phones = phone.getContained(profileSection.firstNode().getOffset(), profileSection.lastNode().getOffset());
+		if(phones != null && phones.size() > 0) {
+			if(phone.lastNode().getOffset() <= profileSection.lastNode().getOffset()) {
+				FeatureMap features = Factory.newFeatureMap();
+				features.put("rule","phoneRule");
+				features.put("kind","phone");
+				outputAS.add(phones.firstNode(),phones.lastNode(),"_Phone",features);
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+Phase: emailPhase
+Input: Address
+Options: control = appelt debug = true
+Rule: emailRule
+        (
+                {Address.kind == email, Address.ruleFinal == EmailFinal}
+        ):email
+        -->
+        {
+            AnnotationSet emailSet = bindings.get("email");
+            AnnotationSet profileSection = inputAS.get("_ProfileSection");
+            if(emailSet != null && emailSet.size() > 0) {
+                AnnotationSet emails = emailSet.getContained(profileSection.firstNode().getOffset(), profileSection.lastNode().getOffset());
+                if(emails != null && emails.size() >0) {
+                    FeatureMap features = Factory.newFeatureMap();
+					features.put("kind","email");
+					features.put("rule","emailRule");
+					outputAS.add(emails.firstNode(),emails.lastNode(),"_Email",features);
+				}
+            }
+        }

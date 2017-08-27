@@ -17,6 +17,10 @@ import vision.utils.CommonUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Yuriy on 18.08.2017.
@@ -96,12 +100,39 @@ public class GateServiceImpl implements GateService {
         for (Document document : corpus) {
             Filed filed = repository.getFiledByPath(document.getSourceUrl().getPath());
             CV cv = new CV();
-
             AnnotationSet annotations = document.getAnnotations();
-            AnnotationSet annotationSet = annotations.get("NameFinder");
+
+            AnnotationSet annotationSet =
+                    annotations.get("_Individual");
             Annotation annotation = annotationSet.iterator().next();
             cv.setCandidateName((String) annotation.getFeatures().get("firstName"));
+            cv.setCandidateMiddleName((String) annotation.getFeatures().get("middleName"));
             cv.setCandidateSurname((String) annotation.getFeatures().get("surname"));
+            cv.setGender((String) annotation.getFeatures().get("gender"));
+
+            annotationSet =
+                    annotations.get("_Email");
+            List<String> emailList = new ArrayList<>();
+            for (Annotation ann : annotationSet) {
+                emailList.add(Utils.stringFor(document,ann));
+            }
+            cv.setEmails(emailList);
+
+            annotationSet =
+                    annotations.get("_Address");
+            List<String> addressList = new ArrayList<>();
+            for (Annotation ann : annotationSet) {
+                addressList.add(Utils.stringFor(document,ann));
+            }
+            cv.setAddresses(addressList);
+
+            annotationSet =
+                    annotations.get("_Phone");
+            List<String> phonesList = new ArrayList<>();
+            for (Annotation ann : annotationSet) {
+                phonesList.add(Utils.stringFor(document,ann));
+            }
+            cv.setPhones(phonesList);
 
             filed.setExtractedData(cv);
             logger.info(cv.toString());

@@ -1,3 +1,6 @@
 MultiPhase: recruiterVision
 Phases:
-nameFinder
+individual
+email
+address
+phone

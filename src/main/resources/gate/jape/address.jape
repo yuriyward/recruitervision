@@ -1,0 +1,53 @@
+Phase: addressPhase
+Input: Lookup Token
+Options: control = appelt
+// NNP - proper noun - singular
+// NNPS - proper noun - plural
+// NN - noun - singular or mass 
+// NNS - noun - plural 
+// NP - proper noun - singular
+// NPS - proper noun - plural
+// CD - cardinal number
+// FW - foreign word
+Macro: ADDRESS_WORD
+(
+{Token.kind==word, Token.category==NNP, Token.orth==upperInitial} | {Token.kind==word, Token.category==NNPS, Token.orth==upperInitial} |
+{Token.kind==word, Token.category==NNP, Token.orth==allCaps} | {Token.kind==word, Token.category==NNPS, Token.orth==allCaps} |
+{Token.kind==word, Token.category==NN} | {Token.kind==word, Token.category==NNS} | 
+{Token.kind==word, Token.category==NP} | {Token.kind==word, Token.category==NPS} | 
+{Token.kind==word, Token.category==CD} | 
+{Token.kind==word, Token.category==FW}
+)
+Rule: addressRule
+(
+{Token.kind == number}
+({Token.string == ","})?
+(ADDRESS_WORD)[1,5]
+({Token.kind == punctuation})?
+({Token.kind == number})?
+(
+	({Token.string == ","})?
+	(ADDRESS_WORD)
+	({Token.string == ","})?
+)[0,6]
+({Token.kind==word,Token.orth==allCaps} | {Token.kind==word,Token.orth==allCaps} | {Lookup.majorType==state})
+({Token.string == "-"})?
+({Token.string == ","})?
+{Token.kind == number}
+):address
+-->
+{
+	AnnotationSet address = bindings.get("address");
+	AnnotationSet profileSection = inputAS.get("_ProfileSection");
+	if (address != null && address.size() >0) {
+		AnnotationSet addresses = address.getContained(profileSection.firstNode().getOffset(), profileSection.lastNode().getOffset());
+		if(addresses != null && addresses.size() > 0) {
+			if(address.lastNode().getOffset() <= profileSection.lastNode().getOffset()){
+				FeatureMap features = Factory.newFeatureMap();
+				features.put("rule","addressRule");
+				features.put("kind","address");
+				outputAS.add(addresses.firstNode(),addresses.lastNode(),"_Address",features);
+			}
+		}
+	}
+}
