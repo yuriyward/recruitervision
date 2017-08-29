@@ -20,4 +20,7 @@ public class CV {
     private List<String> emails;
     private List<String> addresses;
     private List<String> phones;
+    private String city;
+    private String country;
+    private List<String> candidateJobTitles;
 }

@@ -1,0 +1,21 @@
+Phase: jobTitlePhase
+Input: Lookup
+Options: control = appelt
+Rule: jobTitleRule
+(
+{Lookup.majorType == jobtitle}
+):job
+-->
+{
+	AnnotationSet jobSet = bindings.get("job");
+	AnnotationSet profileSection = inputAS.get("_ProfileSection");
+	if(jobSet != null && jobSet.size() > 0){
+		AnnotationSet jobs = jobSet.getContained(profileSection.firstNode().getOffset(), profileSection.lastNode().getOffset());
+		if(jobs != null && jobs.size() > 0){
+			FeatureMap features = Factory.newFeatureMap();
+			features.put("rule","jobTitleRule");
+			features.put("kind","job");
+			outputAS.add(jobs.firstNode(),jobs.lastNode(),"_JobTitle",features);
+		}
+	}
+}

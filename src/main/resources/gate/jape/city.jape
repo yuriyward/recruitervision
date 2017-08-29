@@ -1,0 +1,22 @@
+Phase: cityPhase
+Input: Location Lookup
+Options: control = appelt
+Rule: cityRule
+(
+    {Location.locType == city, Location.ruleFinal == LocFinal} |
+        {Lookup.majorType == location, Lookup.minorType == city}
+):city
+-->
+        {
+        AnnotationSet citySet = bindings.get("city");
+        AnnotationSet profileSection = inputAS.get("_ProfileSection");
+        if(citySet != null && citySet.size() > 0) {
+            AnnotationSet cities = citySet.getContained(profileSection.firstNode().getOffset(), profileSection.lastNode().getOffset());
+            if(cities != null && cities.size() > 0) {
+                FeatureMap features = Factory.newFeatureMap();
+                features.put("kind", "city");
+                features.put("rule", "cityRule");
+                outputAS.add(cities.firstNode(), cities.lastNode(),"_City",features);
+            }
+        }
+        }

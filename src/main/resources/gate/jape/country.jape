@@ -1,0 +1,21 @@
+Phase: countryPhase
+Input: Location
+Options: control = appelt
+Rule: countryRule
+        (
+        {Location.locType == country, Location.ruleFinal == LocFinal}
+        ):country
+        -->
+        {
+            AnnotationSet countrySet = bindings.get("country");
+            AnnotationSet profileSection = inputAS.get("_ProfileSection");
+            if(countrySet != null && countrySet.size() > 0) {
+                AnnotationSet cities = countrySet.getContained(profileSection.firstNode().getOffset(), profileSection.lastNode().getOffset());
+                if(cities != null && cities.size() > 0) {
+                    FeatureMap features = Factory.newFeatureMap();
+                    features.put("kind", "country");
+                    features.put("rule", "countryRule");
+                    outputAS.add(cities.firstNode(), cities.lastNode(),"_Country",features);
+                 }
+            }
+        }

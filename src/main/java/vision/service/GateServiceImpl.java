@@ -18,8 +18,6 @@ import vision.utils.CommonUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -114,7 +112,7 @@ public class GateServiceImpl implements GateService {
                     annotations.get("_Email");
             List<String> emailList = new ArrayList<>();
             for (Annotation ann : annotationSet) {
-                emailList.add(Utils.stringFor(document,ann));
+                emailList.add(Utils.stringFor(document, ann));
             }
             cv.setEmails(emailList);
 
@@ -122,7 +120,7 @@ public class GateServiceImpl implements GateService {
                     annotations.get("_Address");
             List<String> addressList = new ArrayList<>();
             for (Annotation ann : annotationSet) {
-                addressList.add(Utils.stringFor(document,ann));
+                addressList.add(Utils.stringFor(document, ann));
             }
             cv.setAddresses(addressList);
 
@@ -130,9 +128,33 @@ public class GateServiceImpl implements GateService {
                     annotations.get("_Phone");
             List<String> phonesList = new ArrayList<>();
             for (Annotation ann : annotationSet) {
-                phonesList.add(Utils.stringFor(document,ann));
+                phonesList.add(Utils.stringFor(document, ann));
             }
             cv.setPhones(phonesList);
+
+            annotationSet =
+                    annotations.get("_Country");
+            if (annotationSet.size() > 0) {
+                annotation = annotationSet.iterator().next();
+                cv.setCountry(Utils.stringFor(document, annotation));
+            }
+
+            annotationSet =
+                    annotations.get("_City");
+            if (annotationSet.size() > 0) {
+                annotation = annotationSet.iterator().next();
+                cv.setCity(Utils.stringFor(document, annotation));
+            }
+
+            annotationSet =
+                    annotations.get("_JobTitle");
+            List<String> jobTitles = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    jobTitles.add(Utils.stringFor(document, ann));
+                }
+            }
+            cv.setCandidateJobTitles(jobTitles);
 
             filed.setExtractedData(cv);
             logger.info(cv.toString());

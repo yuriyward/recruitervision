@@ -1,6 +1,6 @@
 Phase: emailPhase
 Input: Address
-Options: control = appelt debug = true
+Options: control = appelt
 Rule: emailRule
         (
                 {Address.kind == email, Address.ruleFinal == EmailFinal}
