@@ -1,0 +1,40 @@
+Phase: urlPhase
+Input: Token Address SpaceToken Lookup
+Options: control = appelt
+Rule: urlRule
+        (
+            (
+                (
+                    {Token.kind == word, Token.string =~ "http(?s)"}
+                    {Token.kind == punctuation, Token.string == ":"}
+                    {Token.kind == punctuation, Token.string == "/"}
+                    {Token.kind == punctuation, Token.string == "/"}
+                    ({Token})*
+                )
+                ({SpaceToken})
+            ) |
+            (
+                {Address.kind == url}
+            ) |
+            (
+                ({SpaceToken})
+                (
+                    {Token.kind == word}
+                    {Token.kind == punctuation, Token.string == "."}
+                    {Lookup.majorType == country_code}
+                    ({Token})*
+                )
+                ({SpaceToken})
+            )
+        ):url
+-->
+        {
+            AnnotationSet urlSet = bindings.get("url");
+            if(urlSet != null && urlSet.size() > 0) {
+                Annotation url = urlSet.iterator().next();
+                FeatureMap features = Factory.newFeatureMap();
+                features.put("rule","urlRule");
+                features.put("kind","url");
+                outputAS.add(urlSet.firstNode(), urlSet.lastNode(), "_URL", features);
+            }
+        }

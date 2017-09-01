@@ -114,6 +114,13 @@ companies_uk_lower.lst:organization:company
 music-artists.lst:person_full:music
 religious_adj.lst:religious_adj
 OWN_education-course.lst:cv:education-course
+OWN_skills.lst:cv:skills
+OWN_summary.lst:cv:summary
+OWN_experience.lst:cv:experience
+OWN_additional_info.lst:cv:additional_info
+OWN_awards.lst:cv:awards
+OWN_accomplishments.lst:cv:accomplishments
 OWN_country_polish.lst:location:country
 OWN_cities_polish.lst:location:city
 OWN_programmers_title.lst:jobtitle
+OWN_phone.lst:phone_prefix

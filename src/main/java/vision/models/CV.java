@@ -23,4 +23,5 @@ public class CV {
     private String city;
     private String country;
     private List<String> candidateJobTitles;
+    private List<String> URLs;
 }

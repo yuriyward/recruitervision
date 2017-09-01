@@ -99,14 +99,19 @@ public class GateServiceImpl implements GateService {
             Filed filed = repository.getFiledByPath(document.getSourceUrl().getPath());
             CV cv = new CV();
             AnnotationSet annotations = document.getAnnotations();
+            Annotation annotation;
 
             AnnotationSet annotationSet =
                     annotations.get("_Individual");
-            Annotation annotation = annotationSet.iterator().next();
-            cv.setCandidateName((String) annotation.getFeatures().get("firstName"));
-            cv.setCandidateMiddleName((String) annotation.getFeatures().get("middleName"));
-            cv.setCandidateSurname((String) annotation.getFeatures().get("surname"));
-            cv.setGender((String) annotation.getFeatures().get("gender"));
+            if (annotationSet != null && annotationSet.size() > 0) {
+                annotation
+                        = annotationSet.iterator().next();
+
+                cv.setCandidateName((String) annotation.getFeatures().get("firstName"));
+                cv.setCandidateMiddleName((String) annotation.getFeatures().get("middleName"));
+                cv.setCandidateSurname((String) annotation.getFeatures().get("surname"));
+                cv.setGender((String) annotation.getFeatures().get("gender"));
+            }
 
             annotationSet =
                     annotations.get("_Email");
@@ -155,6 +160,16 @@ public class GateServiceImpl implements GateService {
                 }
             }
             cv.setCandidateJobTitles(jobTitles);
+
+            annotationSet =
+                    annotations.get("_URL");
+            List<String> URLs = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    URLs.add(Utils.stringFor(document, ann));
+                }
+            }
+            cv.setURLs(URLs);
 
             filed.setExtractedData(cv);
             logger.info(cv.toString());

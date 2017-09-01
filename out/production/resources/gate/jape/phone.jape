@@ -3,11 +3,13 @@ Input: Address Token
 Options: control = appelt
 Rule: phoneRule
 (
- (
- ({Token.kind == symbol, Token.string == "+"})?
- ({Token.kind == number})[3,4]
- ) |
- {Address.kind == phone, Address.ruleFinal == PhoneFinal}
+		(
+			({Token.kind == symbol, Token.string == "+"})?
+			({Token.kind == number})[3,4]
+ 		) |
+		(
+			{Address.kind == phone, Address.ruleFinal == PhoneFinal}
+		)
 ):phone
 -->
 {
@@ -25,3 +27,34 @@ Rule: phoneRule
 		}
 	}
 }
+
+Phase: mobilePhase
+Input: Address Token Lookup
+Options: control = appelt
+Rule: mobileRule
+	(
+        (
+            {Lookup.majorType == phone_prefix}
+        )
+		(
+			{Token.kind == punctuation, Token.string == "-"} |
+			{Token.kind == punctuation, Token.string == ":"}
+		)?
+		(({Token.kind == number})[0,5]):mobile
+	)
+-->
+		{
+			AnnotationSet mobile = bindings.get("mobile");
+			AnnotationSet profileSection = inputAS.get("_ProfileSection");
+			if(mobile != null && mobile.size() > 0) {
+				AnnotationSet mobiles = mobile.getContained(profileSection.firstNode().getOffset(), profileSection.lastNode().getOffset());
+				if(mobiles != null && mobiles.size() > 0) {
+					if(mobile.lastNode().getOffset() <= profileSection.lastNode().getOffset()) {
+						FeatureMap features = Factory.newFeatureMap();
+						features.put("rule","phoneRule");
+						features.put("kind","phone");
+						outputAS.add(mobiles.firstNode(),mobiles.lastNode(),"_Phone",features);
+					}
+				}
+			}
+		}
