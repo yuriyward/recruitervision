@@ -1,0 +1,57 @@
+Imports:{
+            import static gate.Utils.*;
+        }
+Phase: sectionPhase
+Input: Lookup Token Sentence _SectionName _Experience
+Options: control = appelt
+Rule: sectionRule
+        (
+            {_SectionName} | {_Experience}
+        ):section
+-->
+        {
+            AnnotationSet sectionSet = bindings.get("section");
+            Annotation section = sectionSet.iterator().next();
+            if(section.getType() == "_SectionName") {
+                if(doc.getFeatures().containsKey("currentSectionType")) {
+                    System.out.println("ma klucz ci=urent section");
+                    Node endOffsetNode = (Node)doc.getFeatures().get("currentSectionEndNode");
+                    System.out.println(endOffsetNode);
+                    String currentSectionType = doc.getFeatures().get("currentSectionType").toString();
+                    System.out.println(currentSectionType);
+                    FeatureMap currentSectionFeatures = (FeatureMap) doc.getFeatures().get("currentSectionFeatures");
+                    outputAS.add(endOffsetNode, section.getStartNode(), currentSectionType, currentSectionFeatures);
+                }
+				doc.getFeatures().put("currentSectionEndNode", section.getEndNode());
+				doc.getFeatures().put("currentSectionType", section.getFeatures().get("minorType"));
+				FeatureMap features = Factory.newFeatureMap();
+				features.putAll(section.getFeatures());
+				features.put("sectionName", stringFor(doc, section));
+				doc.getFeatures().put("currentSectionFeatures", features);
+            } else if(section.getType() == "_Experience") {
+				if(doc.getFeatures().containsKey("currentSectionType")) {
+					Node endOffsetNode = (Node) doc.getFeatures().get("currentSectionEndNode");
+					String currentSectionType = doc.getFeatures().get("currentSectionType").toString();
+					FeatureMap currentSectionFeatures = (FeatureMap) doc.getFeatures().get("currentSectionFeatures");
+					outputAS.add(endOffsetNode, section.getStartNode(), currentSectionType, currentSectionFeatures);
+				}
+				doc.getFeatures().put("currentSectionEndNode", section.getEndNode());
+				doc.getFeatures().put("currentSectionType","_ExperienceText");
+				FeatureMap features = Factory.newFeatureMap();
+				features.putAll(section.getFeatures());
+				features.put("sectionName","_ExperienceMaker");
+				doc.getFeatures().put("currentSectionFeatures", features);
+			}
+			long lastSectionOffset = Long.parseLong(doc.getFeatures().get("_PreSectionOffset").toString(), 10);
+			if(sectionSet.firstNode().getOffset() == lastSectionOffset) {
+				String currentSectionType = doc.getFeatures().get("currentSectionType").toString();
+				FeatureMap currentSectionFeatures = (FeatureMap)doc.getFeatures().get("currentSectionFeatures");
+				try {
+					outputAS.add(sectionSet.lastNode().getOffset(), doc.getContent().size()-1,
+								 currentSectionType, currentSectionFeatures);
+				} catch(InvalidOffsetException ex) {
+					System.out.println("InvalidOffsetException");
+					System.out.println(ex);
+				}
+			}
+        }

@@ -1,0 +1,163 @@
+Imports:{
+            import static gate.Utils.*;
+        }
+Phase: experiencePhase
+Input: Lookup Token Date
+Options: control = appelt
+
+MACRO: TAKE_SOME_TOKENS
+(
+	({Token})[0,7]
+)
+
+MACRO: DATE_RULE
+(
+	{Date.rule == DateName} | {Date.rule == DateNumSlashDot} | {Date.rule == DateSlash} |
+	{Date.rule == DateNumDash} | {Date.rule == DateNameSpan1} | {Date.rule == DateNameSpan2} |
+	{Date.rule == DateNameRev} | {Date.rule == DateNumDashRev} | {Date.rule == TempYear2} |
+	{Date.rule == YearSpan3} | {Date.rule == YearSpan2}
+)
+// CC - coordinating conjunction: ‘and’, ‘but’, ‘nor’, ‘or’, ‘yet’, plus, minus, less, times (multiplication), over (division). Also ‘for’ (because) and ‘so’ (i.e., ‘so that’).
+MACRO: EXPERIENCE_RULE
+(
+	(
+		(
+			{Lookup.majorType == jobtitle}
+		)
+		(
+			TAKE_SOME_TOKENS
+			(
+				{Lookup.majorType == organization}
+			)
+		)?
+		TAKE_SOME_TOKENS
+		DATE_RULE
+		(
+			({Token.kind == punctuation} | {Token.category == CC})
+			DATE_RULE
+		)?
+	) |
+	(
+		{Lookup.majorType==jobtitle}
+		TAKE_SOME_TOKENS
+		DATE_RULE
+		(
+			({Token.kind==punctuation} | {Token.category==CC})
+			DATE_RULE
+		)?
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == organization}
+		)?		
+	) |
+	(
+		{Lookup.majorType==organization}
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType==jobtitle}
+		)?
+		TAKE_SOME_TOKENS
+		DATE_RULE
+		(
+			({Token.kind == punctuation} | {Token.category == CC})
+			DATE_RULE
+		)?
+	) |
+	(
+		{Lookup.majorType == organization}
+		TAKE_SOME_TOKENS
+		DATE_RULE
+		(
+			({Token.kind == punctuation} | {Token.category == CC})
+			DATE_RULE
+		)?
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == jobtitle}
+		)?
+	) |
+	(
+		DATE_RULE
+		(
+			({Token.kind == punctuation} | {Token.category == CC})
+			DATE_RULE
+		)?
+		TAKE_SOME_TOKENS
+		{Lookup.majorType == organization}
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == organization}
+		)?
+	) |
+	(
+		DATE_RULE
+		(
+			({Token.kind == punctuation} | {Token.category == CC})
+			DATE_RULE
+		)?
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == organization}
+		)?
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == jobtitle}
+		)
+	) |
+	(
+		DATE_RULE
+		(
+			({Token.kind == punctuation} | {Token.category == CC})
+			DATE_RULE
+		)?
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == jobtitle}
+		)
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == organization}
+		)?
+	) |
+	(
+		DATE_RULE
+		(
+			({Token.kind == punctuation} | {Token.category == CC})
+			DATE_RULE
+		)?
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == jobtitle}
+		)?
+		(
+			TAKE_SOME_TOKENS
+			{Lookup.majorType == organization}
+		)
+	)
+)
+
+Rule: experienceRule
+(
+	EXPERIENCE_RULE
+):experience
+-->
+{
+	AnnotationSet experienceSet = bindings.get("experience");
+	FeatureMap features = Factory.newFeatureMap();
+	boolean startDate = true;
+	for(Annotation ann : experienceSet.inDocumentOrder()) {
+		if(ann.getType() == "Lookup") {
+			features.put(ann.getFeatures().get("majorType"),stringFor(doc,ann));
+		} else if(ann.getType() == "Date") {
+			String period = "";
+			if(startDate) {
+				period = "start_date";
+				startDate = false;
+			} else {
+				period = "end_date";
+			}
+			features.put(period, stringFor(doc,ann));
+		}
+	}
+	outputAS.add(experienceSet.firstNode(), experienceSet.lastNode(), "_Experience", features);
+}

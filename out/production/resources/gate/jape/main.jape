@@ -6,5 +6,9 @@ address
 phone
 country
 city
-job_title
+jobTitle
 url
+sectionName
+experience
+preSection
+section

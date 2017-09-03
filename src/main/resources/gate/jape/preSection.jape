@@ -1,0 +1,12 @@
+Phase: preSectionPhase
+Input: _SectionName _Experience
+Options: control = appelt
+Rule: preSectionRule
+        (
+            {_SectionName} | {_Experience}
+        ):preSection
+-->
+        {
+            long offset = bindings.get("preSection").firstNode().getOffset();
+            doc.getFeatures().put("_PreSectionOffset", offset);
+        }

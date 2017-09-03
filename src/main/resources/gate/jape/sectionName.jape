@@ -1,0 +1,76 @@
+Phase: sectionNamePhase
+Input: Lookup Token Sentence SpaceToken
+Options: control = all
+        // JJ -  adjective: Hyphenated compounds that are used as modifiers; happy-go-lucky.
+        // JJR - adjective - comparative: Adjectives with the comparative ending ‘-er’ and a comparative meaning. Sometimes ‘more’ and ‘less’.
+        // JJS - adjective - superlative: Adjectives with the superlative ending ‘-est’ (and ‘worst’). Sometimes ‘most’and ‘least’.
+        // NN - noun - singular or mass
+        // NNP - proper noun - singular: All words in names usually are capitalized but titles might not be.
+        // NP - proper noun - singular
+        // NNS -  noun - plural
+        // CC - coordinating conjunction: ‘and’, ‘but’, ‘nor’, ‘or’, ‘yet’, plus, minus, less, times (multiplication), over (division). Also ‘for’ (because) and ‘so’ (i.e., ‘so that’).
+MACRO: SECTION_ID
+        (
+            (
+                (
+                    (
+                        {Token.category == JJ, Token.orth == upperInitial} | {Token.category == JJR, Token.orth == upperInitial} | {Token.category == JJS, Token.orth == upperInitial}
+                    )?
+                    {Lookup.majorType == cv}
+                )
+                ({SpaceToken})
+            ) |
+            (
+                (
+                    (
+                        {Token.category == JJ, Token.orth == allCaps} | {Token.category == JJR, Token.orth == allCaps} | {Token.category == JJS, Token.orth == allCaps}
+                    )?
+                    {Lookup.majorType == cv}
+                )
+                ({SpaceToken})
+            )
+        )
+Rule: sectionNameRule
+        (
+            (
+                (
+                    (
+                        {Token.category == NN, Token.orth == allCaps} | {Token.category == NNP, Token.orth == allCaps} | {Token.category == NP, Token.orth == allCaps} |
+                        {Token.category == NNS, Token.orth == allCaps}
+                    )
+                    (
+                        {Token.kind == punctuation} | {Token.category == CC}
+                    )?
+                )?
+                SECTION_ID
+            ) |
+            (
+                (
+                    (
+                        {Token.category == NN, Token.orth == upperInitial} | {Token.category == NNP, Token.orth == upperInitial} | {Token.category == NP, Token.orth == upperInitial} |
+                        {Token.category == NNS, Token.orth == upperInitial}
+                    )
+                    (
+                        {Token.kind == punctuation} | {Token.category == CC}
+                    )?
+                )?
+                SECTION_ID
+            )
+        ):section
+-->
+        {
+            AnnotationSet sections = bindings.get("section");
+            AnnotationSet sentences = inputAS.get("Sentence");
+            for(Annotation sentence : sentences) {
+                if(sections != null && sections.size() > 0) {
+                    if(sentence.getStartNode().getOffset() == sections.firstNode().getOffset()) {
+                        AnnotationSet lookups = sections.get("Lookup");
+                        FeatureMap features = Factory.newFeatureMap();
+                        for(Annotation lookup : lookups) {
+                            features.putAll(lookup.getFeatures());
+                        }
+                        outputAS.add(sections.firstNode(), sections.lastNode(), "_SectionName", features);
+                    }
+                }
+            }
+        }
