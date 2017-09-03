@@ -116,26 +116,32 @@ public class GateServiceImpl implements GateService {
             annotationSet =
                     annotations.get("_Email");
             List<String> emailList = new ArrayList<>();
-            for (Annotation ann : annotationSet) {
-                emailList.add(Utils.stringFor(document, ann));
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    emailList.add(Utils.stringFor(document, ann));
+                }
+                cv.setEmails(emailList);
             }
-            cv.setEmails(emailList);
 
             annotationSet =
                     annotations.get("_Address");
             List<String> addressList = new ArrayList<>();
-            for (Annotation ann : annotationSet) {
-                addressList.add(Utils.stringFor(document, ann));
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    addressList.add(Utils.stringFor(document, ann));
+                }
+                cv.setAddresses(addressList);
             }
-            cv.setAddresses(addressList);
 
             annotationSet =
                     annotations.get("_Phone");
             List<String> phonesList = new ArrayList<>();
-            for (Annotation ann : annotationSet) {
-                phonesList.add(Utils.stringFor(document, ann));
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    phonesList.add(Utils.stringFor(document, ann));
+                }
+                cv.setPhones(phonesList);
             }
-            cv.setPhones(phonesList);
 
             annotationSet =
                     annotations.get("_Country");
@@ -158,8 +164,8 @@ public class GateServiceImpl implements GateService {
                 for (Annotation ann : annotationSet) {
                     jobTitles.add(Utils.stringFor(document, ann));
                 }
+                cv.setCandidateJobTitles(jobTitles);
             }
-            cv.setCandidateJobTitles(jobTitles);
 
             annotationSet =
                     annotations.get("_URL");
@@ -168,8 +174,142 @@ public class GateServiceImpl implements GateService {
                 for (Annotation ann : annotationSet) {
                     URLs.add(Utils.stringFor(document, ann));
                 }
+                cv.setURLs(URLs);
             }
-            cv.setURLs(URLs);
+
+            annotationSet =
+                    annotations.get("_SectionName");
+            List<String> sectionNames = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    sectionNames.add(Utils.stringFor(document, ann));
+                }
+                cv.setSectionNames(sectionNames);
+            }
+
+            annotationSet =
+                    annotations.get("_Summary");
+            if (annotationSet.size() > 0) {
+                annotation = annotationSet.iterator().next();
+                cv.setSummarySection(Utils.stringFor(document, annotation));
+            }
+
+            annotationSet =
+                    annotations.get("_Skills");
+            List<String> skillsSectionList = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    skillsSectionList.add(Utils.stringFor(document, ann));
+                }
+                cv.setSkillsSection(skillsSectionList);
+            }
+
+            annotationSet =
+                    annotations.get("_Experience");
+            List<String> experinceNames = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    experinceNames.add(Utils.stringFor(document, ann));
+                }
+                cv.setExperienceMain(experinceNames);
+            }
+
+            annotationSet =
+                    annotations.get("_ExperienceText");
+            List<String> experienceText = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    experienceText.add(Utils.stringFor(document, ann));
+                }
+                cv.setExperienceText(experienceText);
+            }
+
+            annotationSet =
+                    annotations.get("_Education");
+            List<String> educationSectionList = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    educationSectionList.add(Utils.stringFor(document, ann));
+                }
+                cv.setEducationSection(educationSectionList);
+            }
+
+            annotationSet =
+                    annotations.get("_Languages");
+            if (annotationSet.size() > 0) {
+                annotation = annotationSet.iterator().next();
+                cv.setLanguagesSection(Utils.stringFor(document, annotation));
+            }
+
+            annotationSet =
+                    annotations.get("_Interests");
+            List<String> interestsList = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    interestsList.add(Utils.stringFor(document, ann));
+                }
+                cv.setInterests(interestsList);
+            }
+
+            annotationSet =
+                    annotations.get("_AdditionalInfo");
+            List<String> additionalInfoList = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    additionalInfoList.add(Utils.stringFor(document, ann));
+                }
+                cv.setAdditionalInfo(additionalInfoList);
+            }
+
+            annotationSet =
+                    annotations.get("_Credibility");
+            List<String> credibility = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    credibility.add(Utils.stringFor(document, ann));
+                }
+                cv.setCredibility(credibility);
+            }
+
+            annotationSet =
+                    annotations.get("_Awards");
+            List<String> awards = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    awards.add(Utils.stringFor(document, ann));
+                }
+                cv.setAwards(awards);
+            }
+
+            annotationSet =
+                    annotations.get("_Accomplishments");
+            List<String> accomplishments = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    accomplishments.add(Utils.stringFor(document, ann));
+                }
+                cv.setAccomplishments(accomplishments);
+            }
+
+            annotationSet =
+                    annotations.get("_ProgrammingLanguage");
+            List<String> programmingLanguages = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    programmingLanguages.add(Utils.stringFor(document, ann));
+                }
+                cv.setProgrammingLanguages(programmingLanguages);
+            }
+
+            annotationSet =
+                    annotations.get("_ProgrammingSkill");
+            List<String> programmingSkills = new ArrayList<>();
+            if (annotationSet.size() > 0) {
+                for (Annotation ann : annotationSet) {
+                    programmingSkills.add(Utils.stringFor(document, ann));
+                }
+                cv.setProgrammingSkills(programmingSkills);
+            }
 
             filed.setExtractedData(cv);
             logger.info(cv.toString());

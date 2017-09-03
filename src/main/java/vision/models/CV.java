@@ -24,4 +24,20 @@ public class CV {
     private String country;
     private List<String> candidateJobTitles;
     private List<String> URLs;
+    private List<String> sectionNames;
+    private String summarySection;
+    private List<String> skillsSection;
+    private List<String> educationSection;
+    private List<String> experienceMain;
+    private List<String> experienceText;
+    private String languagesSection;
+    private List<String> interests;
+    private List<String> additionalInfo;
+    private List<String> credibility;
+    private List<String> awards;
+    private List<String> accomplishments;
+    private List<String> programmingLanguages;
+    private List<String> programmingSkills;
+
+
 }

@@ -2,7 +2,6 @@ package vision.controllers;
 
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class DataForExtractionController implements Initializable {
     @FXML
     private JFXCheckBox allEducational;
     @FXML
-    private JFXCheckBox allSummury;
+    private JFXCheckBox allSummary;
     @FXML
     private JFXCheckBox allInterests;
 
@@ -67,7 +66,7 @@ public class DataForExtractionController implements Initializable {
     private JFXCheckBox dateEducational;
 
     @FXML
-    private JFXCheckBox summury;
+    private JFXCheckBox summary;
 
     @FXML
     private JFXCheckBox interests;
@@ -78,32 +77,32 @@ public class DataForExtractionController implements Initializable {
     }
 
     @FXML
-    void backPageClick(ActionEvent event) {
+    void backPageClick() {
         screensManager.showCvFilesWindow();
     }
 
     @FXML
-    void checkAllClick(ActionEvent event) {
+    void checkAllClick() {
         allBasic.setSelected(true);
         allWork.setSelected(true);
         allSkills.setSelected(true);
         allEducational.setSelected(true);
-        allSummury.setSelected(true);
+        allSummary.setSelected(true);
         allInterests.setSelected(true);
     }
 
     @FXML
-    void nextPageClick(ActionEvent event) {
+    void nextPageClick() {
         screensManager.showAdvancedSelectionWindow();
     }
 
     @FXML
-    void uncheckAllClick(ActionEvent event) {
+    void uncheckAllClick() {
         allBasic.setSelected(false);
         allWork.setSelected(false);
         allSkills.setSelected(false);
         allEducational.setSelected(false);
-        allSummury.setSelected(false);
+        allSummary.setSelected(false);
         allInterests.setSelected(false);
     }
 
@@ -113,7 +112,7 @@ public class DataForExtractionController implements Initializable {
         AssociatedCheckBoxes workChecks = new AssociatedCheckBoxes(allWork, getWorkBoxes());
         AssociatedCheckBoxes skillsChecks = new AssociatedCheckBoxes(allSkills, getSkillsBoxes());
         AssociatedCheckBoxes educetionalBoxes = new AssociatedCheckBoxes(allEducational, getEducationalBoxes());
-        AssociatedCheckBoxes summuryBoxes = new AssociatedCheckBoxes(allSummury, getSummuryBoxes());
+        AssociatedCheckBoxes summuryBoxes = new AssociatedCheckBoxes(allSummary, getSummuryBoxes());
         AssociatedCheckBoxes interestsBoxes = new AssociatedCheckBoxes(allInterests, getInterestsBoxes());
 
     }
@@ -154,7 +153,7 @@ public class DataForExtractionController implements Initializable {
 
     private List<JFXCheckBox> getSummuryBoxes() {
         List<JFXCheckBox> summuryBoxes = new ArrayList<>();
-        summuryBoxes.add(summury);
+        summuryBoxes.add(summary);
         return summuryBoxes;
     }
 

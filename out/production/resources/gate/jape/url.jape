@@ -31,7 +31,6 @@ Rule: urlRule
         {
             AnnotationSet urlSet = bindings.get("url");
             if(urlSet != null && urlSet.size() > 0) {
-                Annotation url = urlSet.iterator().next();
                 FeatureMap features = Factory.newFeatureMap();
                 features.put("rule","urlRule");
                 features.put("kind","url");

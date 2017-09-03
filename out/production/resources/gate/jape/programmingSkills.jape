@@ -1,0 +1,22 @@
+Phase: programmingSkillsPhase
+Input: Lookup
+Options: control = appelt
+Rule: programmingSkillsRule
+        (
+            {Lookup.majorType == programmingSkills} | {Lookup.majorType == programmingLanguage}
+        ):programmingSkills
+-->
+        {
+            AnnotationSet progSkillSet = bindings.get("programmingSkills");
+            AnnotationSet skillsSection = inputAS.get("_Skills");
+            if(progSkillSet != null && progSkillSet.size() > 0) {
+                AnnotationSet progSkills = progSkillSet.getContained(skillsSection.firstNode().getOffset(), skillsSection.lastNode().getOffset());
+                if(progSkills != null && progSkills.size() >0) {
+                    FeatureMap features = Factory.newFeatureMap();
+                    features.put("rule","programmingSkillsRule");
+                    features.put("kind","programmingSkills");
+                    outputAS.add(progSkills.firstNode(), progSkills.lastNode(), "_ProgrammingSkill", features);
+                }
+
+            }
+        }
