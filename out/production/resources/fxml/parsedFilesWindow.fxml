@@ -15,12 +15,12 @@
         <columns>
           <TableColumn fx:id="fileName" prefWidth="300.0" text="File name" />
           <TableColumn fx:id="fileLocation" prefWidth="300.0" text="File location" />
-            <TableColumn fx:id="fileExtension" minWidth="-1.0" text="Extension" />
-            <TableColumn fx:id="language" minWidth="-1.0" text="Language" />
+            <TableColumn fx:id="fileExtension" maxWidth="2000.0" minWidth="-1.0" prefWidth="-1.0" text="Extension" />
+            <TableColumn fx:id="language" maxWidth="2000.0" minWidth="-1.0" prefWidth="-1.0" text="Language" />
             <TableColumn fx:id="fileStatus" prefWidth="215.0" text="Status">
                <columns>
-                  <TableColumn fx:id="fileStatus_parsed" minWidth="-1.0" prefWidth="70.0" text="Parsed" />
-                  <TableColumn fx:id="fileStatus_extracted" minWidth="-1.0" prefWidth="70.0" text="Extracted" />
+                  <TableColumn fx:id="fileStatus_parsed" maxWidth="1800.0" minWidth="-1.0" prefWidth="-1.0" text="Parsed" />
+                  <TableColumn fx:id="fileStatus_extracted" maxWidth="1800.0" minWidth="-1.0" prefWidth="-1.0" text="Extracted" />
                </columns>
             </TableColumn>
         </columns>

@@ -14,6 +14,7 @@ import vision.models.CV;
 import vision.models.Filed;
 import vision.repository.FiledRepository;
 import vision.utils.CommonUtils;
+import vision.utils.Props;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,14 +27,23 @@ import java.util.List;
 @Service
 public class GateServiceImpl implements GateService {
     private final static Logger logger = LoggerFactory.getLogger(GateServiceImpl.class);
-
-    private final FiledRepository repository;
+    private final FiledRepository filedRepository;
+    private final FileService fileService;
+    private final Props props;
     private CorpusController corpusController;
     private Corpus corpus;
 
     @Autowired
-    public GateServiceImpl(FiledRepository repository) {
-        this.repository = repository;
+    public GateServiceImpl(FiledRepository filedRepository, FileService fileService, Props props) {
+        this.filedRepository = filedRepository;
+        this.fileService = fileService;
+        this.props = props;
+        addSubscription();
+    }
+
+    private void addSubscription() {
+        filedRepository.getOnRemove().subscribe(this::deleteFileFromCorpus);
+        filedRepository.getOnClear().subscribe(filed -> clearCorpus());
     }
 
     @Override
@@ -50,7 +60,7 @@ public class GateServiceImpl implements GateService {
     @Override
     public void initNewCorpus() {
         try {
-            corpus = Factory.newCorpus("Transient Gate Corpus");
+            corpus = Factory.newCorpus("Gate CV Corpus");
         } catch (ResourceInstantiationException e) {
             e.printStackTrace();
         }
@@ -60,11 +70,35 @@ public class GateServiceImpl implements GateService {
     @Override
     public void addFileToCorpus(Filed filed) {
         try {
-            corpus.add(Factory.newDocument(CommonUtils.getFileUrl(filed.getFile())));
+            Document document;
+            if (props.isPARSE_FILE_BY_TIKA()) {
+                document = Factory.newDocument(filed.getParsed());
+                document.setSourceUrl(CommonUtils.getFileUrl(filed.getFile()));
+            } else {
+                document = Factory.newDocument(CommonUtils.getFileUrl(filed.getFile()));
+            }
+            corpus.add(document);
+            filed.setFileNameGate(corpus.get(corpus.size() - 1).getName());
         } catch (ResourceInstantiationException e) {
             e.printStackTrace();
         }
-        logger.info("New file added to corpus");
+        logger.info("File added to corpus. File gate name: " + filed.getFileNameGate());
+    }
+
+    @Override
+    public void deleteFileFromCorpus(Filed filed) {
+        corpus.remove(getDocumentFromCorpus(filed.getFileNameGate()));
+        logger.info("File removed from corpus");
+    }
+
+    private Document getDocumentFromCorpus(String name) {
+        for (Document document : corpus) {
+            logger.info(document.getName());
+            if (document.getName().equals(name)) {
+                return document;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -96,224 +130,242 @@ public class GateServiceImpl implements GateService {
     @Override
     public void extractData() {
         for (Document document : corpus) {
-            Filed filed = repository.getFiledByPath(document.getSourceUrl().getPath());
-            CV cv = new CV();
-            AnnotationSet annotations = document.getAnnotations();
-            Annotation annotation;
+            Filed filed = filedRepository.getFiledByPath(document.getSourceUrl().getPath());
+            if (!filed.getExtractedStatus().equals("OK")) {
+                try {
+                    CV cv = new CV();
+                    AnnotationSet annotations = document.getAnnotations();
+                    Annotation annotation;
 
-            AnnotationSet annotationSet =
-                    annotations.get("_Individual");
-            if (annotationSet != null && annotationSet.size() > 0) {
-                annotation
-                        = annotationSet.iterator().next();
+                    AnnotationSet annotationSet =
+                            annotations.get("_Individual");
+                    if (annotationSet != null && annotationSet.size() > 0) {
+                        annotation
+                                = annotationSet.iterator().next();
 
-                cv.setCandidateName((String) annotation.getFeatures().get("firstName"));
-                cv.setCandidateMiddleName((String) annotation.getFeatures().get("middleName"));
-                cv.setCandidateSurname((String) annotation.getFeatures().get("surname"));
-                cv.setGender((String) annotation.getFeatures().get("gender"));
-            }
+                        cv.setCandidateName((String) annotation.getFeatures().get("firstName"));
+                        cv.setCandidateMiddleName((String) annotation.getFeatures().get("middleName"));
+                        cv.setCandidateSurname((String) annotation.getFeatures().get("surname"));
+                        cv.setGender((String) annotation.getFeatures().get("gender"));
+                    }
 
-            annotationSet =
-                    annotations.get("_Email");
-            List<String> emailList = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    emailList.add(Utils.stringFor(document, ann));
+                    annotationSet =
+                            annotations.get("_Email");
+                    List<String> emailList = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            emailList.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setEmails(emailList);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Address");
+                    List<String> addressList = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            addressList.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setAddresses(addressList);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Phone");
+                    List<String> phonesList = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            phonesList.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setPhones(phonesList);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Country");
+                    if (annotationSet.size() > 0) {
+                        annotation = annotationSet.iterator().next();
+                        cv.setCountry(Utils.stringFor(document, annotation));
+                    }
+
+                    annotationSet =
+                            annotations.get("_City");
+                    if (annotationSet.size() > 0) {
+                        annotation = annotationSet.iterator().next();
+                        cv.setCity(Utils.stringFor(document, annotation));
+                    }
+
+                    annotationSet =
+                            annotations.get("_JobTitle");
+                    List<String> jobTitles = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            jobTitles.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setCandidateJobTitles(jobTitles);
+                    }
+
+                    annotationSet =
+                            annotations.get("_URL");
+                    List<String> URLs = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            URLs.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setURLs(URLs);
+                    }
+
+                    annotationSet =
+                            annotations.get("_SectionName");
+                    List<String> sectionNames = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            sectionNames.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setSectionNames(sectionNames);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Summary");
+                    if (annotationSet.size() > 0) {
+                        annotation = annotationSet.iterator().next();
+                        cv.setSummarySection(Utils.stringFor(document, annotation));
+                    }
+
+                    annotationSet =
+                            annotations.get("_Skills");
+                    List<String> skillsSectionList = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            skillsSectionList.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setSkillsSection(skillsSectionList);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Experience");
+                    List<String> experinceNames = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            experinceNames.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setExperienceMain(experinceNames);
+                    }
+
+                    annotationSet =
+                            annotations.get("_ExperienceText");
+                    List<String> experienceText = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            experienceText.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setExperienceText(experienceText);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Education");
+                    List<String> educationSectionList = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            educationSectionList.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setEducationSection(educationSectionList);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Languages");
+                    if (annotationSet.size() > 0) {
+                        annotation = annotationSet.iterator().next();
+                        System.out.println(annotation.toString());
+                        cv.setLanguagesSection(Utils.stringFor(document, annotation));
+                    }
+
+                    annotationSet =
+                            annotations.get("_Interests");
+                    List<String> interestsList = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            interestsList.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setInterests(interestsList);
+                    }
+
+                    annotationSet =
+                            annotations.get("_AdditionalInfo");
+                    List<String> additionalInfoList = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            additionalInfoList.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setAdditionalInfo(additionalInfoList);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Credibility");
+                    List<String> credibility = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            String text;
+                            text = Utils.stringFor(document, ann);
+                            credibility.add(text);
+                        }
+                        cv.setCredibility(credibility);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Awards");
+                    List<String> awards = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            awards.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setAwards(awards);
+                    }
+
+                    annotationSet =
+                            annotations.get("_Accomplishments");
+                    List<String> accomplishments = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            accomplishments.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setAccomplishments(accomplishments);
+                    }
+
+                    annotationSet =
+                            annotations.get("_ProgrammingLanguage");
+                    List<String> programmingLanguages = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            programmingLanguages.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setProgrammingLanguages(programmingLanguages);
+                    }
+
+                    annotationSet =
+                            annotations.get("_ProgrammingSkill");
+                    List<String> programmingSkills = new ArrayList<>();
+                    if (annotationSet.size() > 0) {
+                        for (Annotation ann : annotationSet) {
+                            programmingSkills.add(Utils.stringFor(document, ann));
+                        }
+                        cv.setProgrammingSkills(programmingSkills);
+                    }
+
+                    filed.setExtractedData(cv);
+                    filed.setExtractedStatus("OK");
+                    filedRepository.refreshFiledRepository();
+                    logger.info(cv.toString());
+                } catch (Exception ex) {
+                    logger.info("Error during extracting data " + ex);
+                    filed.setExtractedStatus("Error");
                 }
-                cv.setEmails(emailList);
             }
-
-            annotationSet =
-                    annotations.get("_Address");
-            List<String> addressList = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    addressList.add(Utils.stringFor(document, ann));
-                }
-                cv.setAddresses(addressList);
-            }
-
-            annotationSet =
-                    annotations.get("_Phone");
-            List<String> phonesList = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    phonesList.add(Utils.stringFor(document, ann));
-                }
-                cv.setPhones(phonesList);
-            }
-
-            annotationSet =
-                    annotations.get("_Country");
-            if (annotationSet.size() > 0) {
-                annotation = annotationSet.iterator().next();
-                cv.setCountry(Utils.stringFor(document, annotation));
-            }
-
-            annotationSet =
-                    annotations.get("_City");
-            if (annotationSet.size() > 0) {
-                annotation = annotationSet.iterator().next();
-                cv.setCity(Utils.stringFor(document, annotation));
-            }
-
-            annotationSet =
-                    annotations.get("_JobTitle");
-            List<String> jobTitles = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    jobTitles.add(Utils.stringFor(document, ann));
-                }
-                cv.setCandidateJobTitles(jobTitles);
-            }
-
-            annotationSet =
-                    annotations.get("_URL");
-            List<String> URLs = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    URLs.add(Utils.stringFor(document, ann));
-                }
-                cv.setURLs(URLs);
-            }
-
-            annotationSet =
-                    annotations.get("_SectionName");
-            List<String> sectionNames = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    sectionNames.add(Utils.stringFor(document, ann));
-                }
-                cv.setSectionNames(sectionNames);
-            }
-
-            annotationSet =
-                    annotations.get("_Summary");
-            if (annotationSet.size() > 0) {
-                annotation = annotationSet.iterator().next();
-                cv.setSummarySection(Utils.stringFor(document, annotation));
-            }
-
-            annotationSet =
-                    annotations.get("_Skills");
-            List<String> skillsSectionList = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    skillsSectionList.add(Utils.stringFor(document, ann));
-                }
-                cv.setSkillsSection(skillsSectionList);
-            }
-
-            annotationSet =
-                    annotations.get("_Experience");
-            List<String> experinceNames = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    experinceNames.add(Utils.stringFor(document, ann));
-                }
-                cv.setExperienceMain(experinceNames);
-            }
-
-            annotationSet =
-                    annotations.get("_ExperienceText");
-            List<String> experienceText = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    experienceText.add(Utils.stringFor(document, ann));
-                }
-                cv.setExperienceText(experienceText);
-            }
-
-            annotationSet =
-                    annotations.get("_Education");
-            List<String> educationSectionList = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    educationSectionList.add(Utils.stringFor(document, ann));
-                }
-                cv.setEducationSection(educationSectionList);
-            }
-
-            annotationSet =
-                    annotations.get("_Languages");
-            if (annotationSet.size() > 0) {
-                annotation = annotationSet.iterator().next();
-                cv.setLanguagesSection(Utils.stringFor(document, annotation));
-            }
-
-            annotationSet =
-                    annotations.get("_Interests");
-            List<String> interestsList = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    interestsList.add(Utils.stringFor(document, ann));
-                }
-                cv.setInterests(interestsList);
-            }
-
-            annotationSet =
-                    annotations.get("_AdditionalInfo");
-            List<String> additionalInfoList = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    additionalInfoList.add(Utils.stringFor(document, ann));
-                }
-                cv.setAdditionalInfo(additionalInfoList);
-            }
-
-            annotationSet =
-                    annotations.get("_Credibility");
-            List<String> credibility = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    credibility.add(Utils.stringFor(document, ann));
-                }
-                cv.setCredibility(credibility);
-            }
-
-            annotationSet =
-                    annotations.get("_Awards");
-            List<String> awards = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    awards.add(Utils.stringFor(document, ann));
-                }
-                cv.setAwards(awards);
-            }
-
-            annotationSet =
-                    annotations.get("_Accomplishments");
-            List<String> accomplishments = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    accomplishments.add(Utils.stringFor(document, ann));
-                }
-                cv.setAccomplishments(accomplishments);
-            }
-
-            annotationSet =
-                    annotations.get("_ProgrammingLanguage");
-            List<String> programmingLanguages = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    programmingLanguages.add(Utils.stringFor(document, ann));
-                }
-                cv.setProgrammingLanguages(programmingLanguages);
-            }
-
-            annotationSet =
-                    annotations.get("_ProgrammingSkill");
-            List<String> programmingSkills = new ArrayList<>();
-            if (annotationSet.size() > 0) {
-                for (Annotation ann : annotationSet) {
-                    programmingSkills.add(Utils.stringFor(document, ann));
-                }
-                cv.setProgrammingSkills(programmingSkills);
-            }
-
-            filed.setExtractedData(cv);
-            logger.info(cv.toString());
         }
         logger.info("Data extracted");
+    }
+
+    @Override
+    public void clearCorpus() {
+        corpus.clear();
+        logger.info("Corpus cleared");
     }
 }

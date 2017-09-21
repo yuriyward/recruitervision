@@ -10,12 +10,19 @@ Rule: programmingLanguageRule
              AnnotationSet progLangSet = bindings.get("programmingLanguages");
              AnnotationSet skillsSection = inputAS.get("_Skills");
              if(progLangSet != null && progLangSet.size() > 0) {
-                AnnotationSet progLangs = progLangSet.getContained(skillsSection.firstNode().getOffset(), skillsSection.lastNode().getOffset());
-                if(progLangs != null && progLangs.size() >0) {
+                if(skillsSection != null && skillsSection.size() > 0) {
+                    AnnotationSet progLangs = progLangSet.getContained(skillsSection.firstNode().getOffset(), skillsSection.lastNode().getOffset());
+                    if(progLangs != null && progLangs.size() >0) {
+                        FeatureMap features = Factory.newFeatureMap();
+                        features.put("rule","programmingLanguageRule");
+                        features.put("kind","programmingLanguage");
+                        outputAS.add(progLangs.firstNode(), progLangs.lastNode(), "_ProgrammingLanguage", features);
+                    }
+                } else {
                     FeatureMap features = Factory.newFeatureMap();
                     features.put("rule","programmingLanguageRule");
                     features.put("kind","programmingLanguage");
-                    outputAS.add(progLangs.firstNode(), progLangs.lastNode(), "_ProgrammingLanguage", features);
+                    outputAS.add(progLangSet.firstNode(), progLangSet.lastNode(), "_ProgrammingLanguage", features);
                 }
             }
         }

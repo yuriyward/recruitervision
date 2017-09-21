@@ -15,6 +15,7 @@ import java.io.File;
 public class Filed {
     private File file;
     private String filePath;
+    private String fileNameGate;
     private String language;
     private String parsed;
     private String parsedStatus;
@@ -29,7 +30,6 @@ public class Filed {
         if (getFilePath().equals(filed.getFilePath())) return true;
 
         return super.equals(o) && getFilePath().equals(filed.getFilePath());
-
     }
 
     @Override

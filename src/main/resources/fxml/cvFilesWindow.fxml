@@ -18,7 +18,7 @@
         <columns>
           <TableColumn fx:id="fileNameColumn" minWidth="150.0" prefWidth="363.0" text="File name" />
             <TableColumn fx:id="fileLocationColumn" minWidth="150.0" prefWidth="279.0" text="File location" />
-          <TableColumn fx:id="fileExtensionColumn" maxWidth="1.7976931348623157E308" minWidth="65.0" prefWidth="-1.0" text="Extension" />
+          <TableColumn fx:id="fileExtensionColumn" maxWidth="80.0" minWidth="65.0" prefWidth="-1.0" text="Extension" />
         </columns>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -27,14 +27,19 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Pane layoutX="741.0" layoutY="131.0" prefHeight="83.0" prefWidth="225.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="131.0">
+      <Pane layoutX="741.0" layoutY="131.0" prefHeight="122.0" prefWidth="225.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="131.0">
          <children>
             <JFXButton defaultButton="true" layoutX="13.0" layoutY="14.0" onAction="#addCvFile" prefWidth="200.0" style="-fx-background-color: #337AB7;" text="Add CV Files" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
             </JFXButton>
-            <JFXCheckBox fx:id="defaultPath" layoutX="13.0" layoutY="52.0" selected="true" text="Default path" />
+            <JFXCheckBox fx:id="defaultPath" layoutX="13.0" layoutY="52.0" onAction="#defaultPathClk" selected="true" text="Default path" />
+            <JFXButton fx:id="dafaultSelector" defaultButton="true" layoutX="13.0" layoutY="78.0" onAction="#setDefaultSelector" prefWidth="200.0" style="-fx-background-color: #F39C12;" text="Select dafault path..." textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
       <JFXToolbar layoutX="284.0" layoutY="668.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
@@ -53,7 +58,7 @@
             </JFXButton>
          </left>
       </JFXToolbar>
-      <Pane layoutX="741.0" layoutY="235.0" prefHeight="106.0" prefWidth="225.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+      <Pane layoutX="741.0" layoutY="322.0" prefHeight="106.0" prefWidth="225.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
          <children>
             <JFXButton layoutX="13.0" layoutY="14.0" onAction="#removeCvFile" prefWidth="200.0" style="-fx-background-color: #DD4B39;" text="Remove CV file from list" textFill="WHITE">
                <font>

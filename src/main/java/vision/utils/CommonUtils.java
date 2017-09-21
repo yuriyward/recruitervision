@@ -8,9 +8,11 @@ import java.net.URL;
  * @author Yuriy on 20.08.2017.
  */
 public class CommonUtils {
-    private final static String USER_DIR = System.getProperty("user.dir");
+    public final static String USER_DIR = System.getProperty("user.dir");
     private final static String GATE_HOME = "\\src\\main\\resources\\gate";
-    private final static String DELIMITER = "\\";
+    final static String RESOURCE_DIR = USER_DIR + "\\src\\main\\resources";
+    public final static String DELIMITER = "\\";
+    public final static String TMP_FILES_PATH = String.join(CommonUtils.DELIMITER, CommonUtils.USER_DIR, "tmpFiles");
 
     public static File getFileByPath() {
         return new File(String.join(DELIMITER, USER_DIR, GATE_HOME));

@@ -1,5 +1,6 @@
 package vision.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.beans.binding.Bindings;
@@ -11,14 +12,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import lombok.Getter;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
-import vision.service.FileService;
+import vision.repository.FiledRepository;
 import vision.service.ParsingService;
 import vision.service.ScreensManager;
+import vision.utils.CommonUtils;
+import vision.utils.Props;
 
 import java.io.File;
 import java.net.URL;
@@ -32,8 +36,11 @@ import java.util.ResourceBundle;
 @FXMLController
 public class CvFilesWindowController implements Initializable {
     private final ScreensManager screensManager;
-    private final FileService fileService;
     private final ParsingService parsingService;
+    private final FiledRepository filedRepository;
+    private final Props props;
+
+    private DirectoryChooser directoryChooser;
 
     @FXML
     private JFXCheckBox defaultPath;
@@ -53,10 +60,11 @@ public class CvFilesWindowController implements Initializable {
     private final FileChooser fileChooser = new FileChooser();
 
     @Autowired
-    public CvFilesWindowController(ScreensManager screensManager, FileService fileService, ParsingService parsingService) {
+    public CvFilesWindowController(ScreensManager screensManager, ParsingService parsingService, FiledRepository filedRepository, Props props) {
         this.screensManager = screensManager;
-        this.fileService = fileService;
         this.parsingService = parsingService;
+        this.filedRepository = filedRepository;
+        this.props = props;
     }
 
     @Override
@@ -65,12 +73,14 @@ public class CvFilesWindowController implements Initializable {
         initTable();
         initRightClick();
         initDragDrop();
+        initDefaultChk();
     }
 
     @FXML
     private void addCvFile() {
-        if (defaultPath.isSelected()) {
-            File file = new File("D:\\recruitervision\\handle_test");
+        fileChooser.setInitialDirectory(new File(CommonUtils.USER_DIR));
+        if (Boolean.valueOf(props.getDEFAULT_PATH_CHK())) {
+            File file = new File(props.getDEFAULT_PATH());
             fileChooser.setInitialDirectory(file);
         }
         List<File> files = fileChooser.showOpenMultipleDialog(Start.getStage());
@@ -167,6 +177,7 @@ public class CvFilesWindowController implements Initializable {
         for (File file : files) {
             if (!observableFiles.contains(file)) {
                 observableFiles.add(file);
+                parsingService.parseFile(file);
             }
         }
         fileTable.setItems(observableFiles);
@@ -177,6 +188,7 @@ public class CvFilesWindowController implements Initializable {
         File file = fileTable.getSelectionModel().getSelectedItem();
         if (file != null) {
             observableFiles.remove(file);
+            filedRepository.removeFiled(file.getPath());
         } else {
             screensManager.showMaterialDialog("File not selected",
                     "Please select file for removing", "OK");
@@ -186,11 +198,29 @@ public class CvFilesWindowController implements Initializable {
     @FXML
     void removeAllCvFiles() {
         observableFiles.clear();
+        filedRepository.clearFiledRepository();
+    }
+
+    @FXML
+    void setDefaultSelector() {
+        File selectedDirectory = directoryChooser.showDialog(Start.getStage());
+        if (selectedDirectory != null)
+            props.saveToPropertiesFile("DEFAULT_PATH", selectedDirectory.getPath());
+    }
+
+    private void initDefaultChk() {
+        directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select default folder for selecting CVs...");
+        defaultPath.setSelected(Boolean.parseBoolean(props.getDEFAULT_PATH_CHK()));
+    }
+
+    @FXML
+    void defaultPathClk() {
+        props.saveToPropertiesFile("DEFAULT_PATH_CHK", String.valueOf(defaultPath.isSelected()));
     }
 
     @FXML
     void nextPageClick() {
-        parsingService.parseAllFiles(observableFiles);
         screensManager.showDataForExtractionWindow();
     }
 

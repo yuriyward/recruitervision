@@ -1,150 +1,151 @@
-A# .NET
+.NET
+@Formula
 A# (Axiom)
-A-0 System
+A# .NET
 A+
 A++
+A-0 System
 ABAP
 ABC
 ABC ALGOL
 ABSET
 ABSYS
 ACC
-Accent
-Ace DASL
 ACT-III
-Action!
-ActionScript
-Ada
-Adenine
-Agda
-Agilent VEE
-Agora
 AIMMS
-Alef
 ALF
 ALGOL 58
 ALGOL 60
 ALGOL 68
 ALGOL W
+AMOS
+AMPL
+APL
+APT
+ARexx
+ATS
+AWK
+Accent
+Ace DASL
+Action!
+ActionScript
+Active Server Pages
+Ada
+Adenine
+Agda
+Agilent VEE
+Agora
+Alef
 Alice
 Alma-0
 AmbientTalk
 Amiga E
-AMOS
-AMPL
 Apex
-APL
 App Inventor for Android's visual block language
 AppleScript
-APT
 Arc
-ARexx
 Argus
 AspectJ
-Assembly language
 Assembler
-ATS
+Assembly language
 Ateji PX
 AutoHotkey
-Autocoder
 AutoIt
 AutoLISP / Visual LISP
+Autocoder
 Averest
-AWK
 Axum
-Active Server Pages
-Babbage
-Bash
 BASIC
 BCPL
-BeanShell
-Batch
-Bertrand
 BETA
-Bistro
 BLISS
+BPEL
+BREW
+Babbage
+Bash
+Batch
+BeanShell
+Bertrand
+Bistro
 Blockly
 BlooP
 Boo
 Boomerang
 Bourne shell
-BREW
-BPEL
 Business Basic
+Céu
 C
-C--
-C++
+C Shell
 C#
+C++
+C--
+C/AL
+CDuce
+CFEngine
+CFML
+CHILL
+CHIP-8
+CHR
+CICS
+CIL
+CL
+CL
+CLIPS
+CLIST
+CLU
+CMS EXEC
+CMS-2
+COBOL
+CODE
+COMAL
+COMIT
+COMPASS
+COMTRAN
+COWSEL
+CPL
+CPL
+CSP
 CSS
 CSS3
 CSS5
-C/AL
+CUDA
 Caché ObjectScript
-C Shell
 Caml
 Cayenne
-CDuce
 Cecil
 Cesil
-Céu
 Ceylon
-CFEngine
-CFML
 Cg
 Ch
 Chapel
 Charity
 Charm
-CHILL
-CHIP-8
-chomski
 ChucK
-CICS
 Cilk
 Citrine 
-CL
 Claire
 Clarion
 Clean
 Clipper
-CLIPS
-CLIST
 Clojure
-CLU
-CMS-2
-COBOL
 CobolScript
 Cobra
-CODE
 CoffeeScript
 ColdFusion
-COMAL
 Combined Programming Language
-CPL
-COMIT
 Common Intermediate Language
-CIL
 Common Lisp
-CL
-COMPASS
 Component Pascal
 Constraint Handling Rules
-CHR
-COMTRAN
 Converge
 Cool
 Coq
+CorVision
 Coral 66
 Corn
-CorVision
-COWSEL
-CPL
 Cryptol
 Crystal
-csh
 Csound
-CSP
-CUDA
 Curl
 Curry
 Cybil
@@ -152,114 +153,112 @@ Cyclone
 Cython
 D
 DASL
-Datapoint's Advanced Systems Language
 DASL
-Distributed Application Specification Language
+DATATRIEVE
+DCL
+DIBOL
+DRAKON
+DYNAMO
 Dart
 DataFlex
 Datalog
-DATATRIEVE
-dBase
-dc
-DCL
+Datapoint's Advanced Systems Language
 Deesel
 Delphi
 DinkC
-DIBOL
+Distributed Application Specification Language
 Dog
 Draco
-DRAKON
 Dylan
-DYNAMO
+EASYTRIEVE PLUS
+ECMAScript
+EGL
+ELAN
+EPL
+ESPOL
+EXEC
+EXEC 2
 EarSketch
 Ease
 Easy PL/I
 Easy Programming Language
-EASYTRIEVE PLUS
-ECMAScript
 Edinburgh IMP
-EGL
 Eiffel
-ELAN
 Elixir
 Elm
 Emacs Lisp
 Emerald
+Emojicode
 Epigram
-EPL
 Erlang
-es
 Escher
-ESPOL
 Esterel
 Etoys
 Euclid
 Euler
 Euphoria
 EusLisp Robot Programming Language
-CMS EXEC
-EXEC
-EXEC 2
 Executable UML
-Emojicode
 F
 F#
 F*
-Factor
-Falcon
-Fantom
+F-Script
 FAUST
 FFP
-Fjölnir
 FL
-Flavors
-Flex
-FlooP
 FLOW-MATIC
 FOCAL
 FOCUS
 FOIL
 FORMAC
-@Formula
+FP
+Factor
+Falcon
+Fantom
+Fjölnir
+Flavors
+Flex
+FlooP
 Forth
 Fortran
 Fortress
 FoxBase
 FoxPro
-FP
 Franz Lisp
 Frege
-F-Script
+Gödel
 G
-Game Maker Language
-GameMonkey Script
+G-code
 GAMS
 GAP
-G-code
-GDScript
-Genie
 GDL
-GJ
+GDScript
 GEORGE
+GJ
 GLSL
-GNU E
 GMGo
-Go!
+GNU E
 GOAL
-Gödel
-Golo
 GOM
+GOTRAN
+GPSS
+GRASS
+Game Maker Language
+GameMonkey Script
+Genie
+Go!
+Golo
 Good Old Mad
 Google Apps Script
 Gosu
-GOTRAN
-GPSS
 GraphTalk
-GRASS
 Groovy
-Hack
 HAGGIS
 HAL/S
+HLSL
+HTML
+HTML5
+Hack
 Halide
 Hamilton C shell
 Harbour
@@ -268,12 +267,9 @@ Haskell
 Haxe
 Hermes
 High Level Assembly
-HLSL
-HTML
-HTML5
 Hop
-Hopscotch
 Hope
+Hopscotch
 Hugo
 Hume
 HyperTalk
@@ -282,198 +278,195 @@ IBM HAScript
 IBM Informix-4GL
 IBM RPG
 ICI
-Icon
-Id
 IDL
-Idris
 IMP
-Inform
 INTERLISP
-Io
-Ioke
 IPL
 IPTSCRAE
 ISLISP
 ISPF
 ISWIM
+Icon
+Id
+Idris
+Inform
+Io
+Ioke
 J
 J#
 J++
 JADE
 JAL
+JASS
+JCL
+JEAN
+JOSS
+JOVIAL
+JScript
+JScript .NET
 Janus
 Janus (concurrent constraint programming language)
 Janus (time-reversible computing programming language)
-JASS
 Java
+JavaFX Script
 JavaScript
 Javascript
-JCL
-JEAN
 Join Java
-JOSS
 Joule
-JOVIAL
 Joy
-JScript
-JScript .NET
-.NET
-JavaFX Script
 Julia
 Jython
 K
-Kaleidoscope
-Karel
-Karel++
 KEE
-Kixtart
-Klerer-May System
 KIF
-Kojo
-Kotlin
 KRC
 KRL
 KRL (KUKA Robot Language)
 KRYPTON
-ksh
+Kaleidoscope
+Karel
+Karel++
+Kixtart
+Klerer-May System
 Kodu
+Kojo
+Kotlin
 L
+LANSA
+LC-3
+LIL
+LINC
+LIS
+LISA
+LPC
+LSE
+LSL
+LYaPAS
+LaTeX
 LabVIEW
 Ladder
 Lagoona
-LANSA
 Lasso
-LaTeX
 Lava
-LC-3
 Leda
 Legoscript
-LIL
 LilyPond
 Limbo
 Limnor
-LINC
 Lingo
-LIS
-LISA
 Lisaac
 Lisp
 Lite-C
 Lithe
 Little b
+LiveCode
+LiveScript
 Logo
 Logtalk
 LotusScript
-LPC
-LSE
-LSL
-LiveCode
-LiveScript
 Lua
 Lucid
 Lustre
-LYaPAS
 Lynx
+M#
 M2001
 M4
-M#
-Machine code
 MAD
 MAD (Michigan Algorithm Decoder)
 MAD/I
-Magik
-Magma
-Maude system
-Maple
 MAPPER
 MARK-IV
-Mary
 MASM Microsoft Assembly x86
 MATH-MATIC
-Mathematica
 MATLAB
-Maxima
+MDL
+MIIS
+MIMIC
+MIVA Script
+ML
+MOO
+MPD
+MPL
+MSIL
+MSL
+MUMPS
+Machine code
 Macsyma
+Magik
+Magma
+Maple
+Mary
+Mathcad
+Mathematica
+Maude system
 Max
 Max (Max Msp – Graphical Programming Environment)
 MaxScript
 MaxScript internal language 3D Studio Max
+Maxima
 Maya (MEL)
-MDL
 Mercury
 Mesa
-Metafont
 MetaQuotes
 MetaQuotes Language (MQL4/MQL5)
-Microcode
+Metafont
 MicroScript
-MIIS
+Microcode
 Milk
-MIMIC
 Mirah
 Miranda
-MIVA Script
-ML
 Model 204
 Modelica
 Modula
 Modula-2
 Modula-3
 Mohol
-MOO
 Mortran
 Mouse
-MPD
-Mathcad
-MSIL
-MSL
-MUMPS
 MuPAD
-MPL
 Mystic Programming Language (MPL)
 NASM
+NESL
+NEWP
+NGL
+NITIN
+NPL
+NQC
+NSIS
+NWScript
+NXC
+NXT-G
 Napier88
 Neko
 Nemerle
-nesC
-NESL
 Net.Data
 NetLogo
 NetRexx
 NewLISP
-NEWP
 Newspeak
 NewtonScript
-NGL
 Nial
 Nice
 Nickle
-NITIN
 Nim
 Node.js
-NPL
-Not eXactly C
-NXC
 Not Quite C
-NQC
-NSIS
+Not eXactly C
 Nu
-NWScript
-NXT-G
-XML
+OBJ2
+OCaml
+OPL
+OPS5
+ORCA/Modula-2
 Oak
 Oberon
-OBJ2
 Object Lisp
-ObjectLOGO
-Object REXX
 Object Pascal
+Object REXX
+ObjectLOGO
 Objective-C
 Objective-J
 Obliq
-OCaml
-occam
-occam-π
 Octave
 OmniMark
 Onyx
@@ -481,38 +474,23 @@ Opa
 Opal
 OpenCL
 OpenEdge ABL
-OPL
 OpenVera
-OPS5
 OptimJ
 Orc
-ORCA/Modula-2
 Oriel
 Orwell
 Oxygene
 Oz
 P′′
 P#
-ParaSail
 PARI/GP
-Pascal – ISO 7185
 PCASTL
 PCF
-PEARL
-PeopleCode
-Perl
 PDL
-Perl 6
-Pharo
+PEARL
 PHP
-Pico
-Picolisp
-Pict
-Pike
 PIKT
 PILOT
-Pipelines
-Pizza
 PL-11
 PL/0
 PL/B
@@ -523,81 +501,112 @@ PL/P
 PL/SQL
 PL360
 PLANC
-Plankalkül
-Planner
 PLEX
 PLEXIL
-Plus
 POP-11
 POP-2
-PostScript
-PortablE
-Powerhouse
-PowerBuilder
-PowerBuilder – 4GL GUI application generator from Sybase
-PowerShell
 PPL
-Processing
-Processing.js
-Prograph
 PROIV
-Prolog
 PROMAL
-Promela
 PROSE
 PROSE modeling language
 PROTEL
-ProvideX
+ParaSail
+Pascal – ISO 7185
+PeopleCode
+Perl
+Perl 6
+Pharo
+Pico
+Picolisp
+Pict
+Pike
+Pipelines
+Pizza
+Plankalkül
+Planner
+Plus
+PortablE
+PostScript
+PowerBuilder
+PowerBuilder – 4GL GUI application generator from Sybase
+PowerShell
+Powerhouse
 Pro*C
+Processing
+Processing.js
+Prograph
+Prolog
+Promela
+ProvideX
 Pure
 Pure Data
 Python
 Q 
 Q (equational programming language)
 Q (programming language from Kx Systems)
+QPL
 Qalb
 QtScript
 QuakeC
-QPL
 R
 R++
-Racket
 RAPID
-Rapira
-Ratfiv
-Ratfor
-rc
 REBOL
-Red
-Redcode
 REFAL
-Reia
 REXX
-Ring
-Rlab
 ROOP
 RPG
 RPL
 RSL
 RTL/2
+Racket
+Rapira
+Ratfiv
+Ratfor
+Red
+Redcode
+Reia
+Ring
+Rlab
 Ruby
 RuneScript
 Rust
 S
-S2
-S3
 S-Lang
 S-PLUS
+S/SL
+S2
+S3
 SA-C
-SabreTalk
 SAIL
 SALSA
 SAM76
 SAS
 SASL
+SBL
+SETL
+SIGNAL
+SIMPOL
+SIMSCRIPT
+SISAL
+SLIP
+SMALL
+SML
+SNOBOL(SPITBOL)
+SOL
+SP/k
+SPARK
+SPIN
+SPITBOL
+SPS
+SQL
+SQR
+SR
+SYMPL
+SabreTalk
 Sather
 Sawzall
-SBL
 Scala
 Scheme
 Scilab
@@ -608,136 +617,127 @@ Seed7
 Self
 SenseTalk
 SequenceL
-SETL
-SIMPOL
-SIGNAL
 SiMPLE
-SIMSCRIPT
 Simula
 Simulink
 Singularity
-SISAL
-SLIP
-SMALL
-Smalltalk
 Small Basic
-SML
-Strongtalk
+Smalltalk
 Snap!
-SNOBOL(SPITBOL)
-SPITBOL
 Snowball
-SOL
 Solidity
-SPARK
 Speedcode
-SPIN
-SP/k
-SPS
-SQL
-SQR
 Squeak
 Squirrel
-SR
-S/SL
 Stackless Python
 Starlogo
-Strand
 Stata
 Stateflow
+Strand
+Strongtalk
 Subtext
 SuperCollider
 SuperTalk
 Swift
 Swift (Apple programming language)
 Swift (parallel scripting language)
-SYMPL
 SyncCharts
 SystemVerilog
 T
+T-SQL
 TACL
 TACPOL
 TADS
 TAL
-Tcl
-Tea
 TECO
 TELCOMP
-TeX
 TEX
 TIE
-Timber
 TMG
-Tom
 TOM
-Toi
-Topspeed
 TPU
-Trac
-TTM
-T-SQL
-Transcript
 TTCN
-Turing
+TTM
 TUTOR
 TXL
+Tcl
+TeX
+Tea
+Timber
+Toi
+Tom
+Topspeed
+Trac
+Transcript
+Turing
 TypeScript
 Typescript
-Ubercode
 UCSD Pascal
+UNITY
+Ubercode
 Umple
 Unicon
 Uniface
-UNITY
 Unix shell
 UnrealScript
+VHDL
+VSXu
 Vala
 Verilog
-VHDL
 Visual Basic
 Visual Basic .NET
 Visual DataFlex
 Visual DialogScript
 Visual Fortran
 Visual FoxPro
-Visual J++
 Visual J#
+Visual J++
 Visual Objects
 Visual Prolog
-VSXu
-vvvv
 WATFIV, WATFOR
 WebDNA
 WebQL
 Whiley
-Windows PowerShell
 Winbatch
+Windows PowerShell
 Wolfram
 Wolfram Language
 Wyvern
+X++
 X10
 XBL
 XC 
-XMOS
-xHarbour
 XL
-XSL
-Xojo
+XML
+XMOS
 XOTcl
 XPL
 XPL0
+XPath
 XQuery
 XSB
-XSharp
+XSL
 XSLT
-XPath
+XSharp
+Xojo
 Xtend
-X++
-Yorick
 YQL
 Yoix
+Yorick
 Z notation
-Zeno
 ZOPL
-Zsh
 ZPL
+Zeno
+Zsh
+chomski
+csh
+dBase
+dc
+es
+ksh
+nesC
+occam
+occam-π
+rc
+vvvv
+xHarbour

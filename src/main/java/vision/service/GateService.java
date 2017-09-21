@@ -10,6 +10,8 @@ public interface GateService {
     void initPlugins();
     void initNewCorpus();
     void addFileToCorpus(Filed filed);
+    void deleteFileFromCorpus(Filed filed);
     void executeController();
     void extractData();
+    void clearCorpus();
 }

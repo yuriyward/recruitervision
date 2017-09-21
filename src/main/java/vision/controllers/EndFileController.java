@@ -3,9 +3,6 @@ package vision.controllers;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.DirectoryChooser;
@@ -53,22 +50,22 @@ public class EndFileController implements Initializable {
     }
 
     @FXML
-    void backPageClick(ActionEvent event) {
+    void backPageClick() {
         screensManager.showAdvancedSelectionWindow();
     }
 
     @FXML
-    void nextPageClick(ActionEvent event) {
+    void nextPageClick() {
         screensManager.showParesedFiles();
     }
 
     @FXML
-    void extractDOC(ActionEvent event) {
+    void extractDOC() {
 
     }
 
     @FXML
-    void extractPDF(ActionEvent event) {
+    void extractPDF() {
         if (folderExist()) {
             System.out.println("Parsed");
         }

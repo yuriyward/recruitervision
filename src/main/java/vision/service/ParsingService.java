@@ -10,6 +10,8 @@ import java.io.File;
 public interface ParsingService {
     void parseAllFiles(ObservableList<File> files);
 
+    void parseFile(File file);
+
     String parseToText(File file);
 
     String identifyLanguage(String text);

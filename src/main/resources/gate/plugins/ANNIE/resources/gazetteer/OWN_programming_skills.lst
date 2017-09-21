@@ -1,227 +1,340 @@
-Qt
-Oracle
-Oracle
-MS
-MS SQL
-Spring
-JavaFX
-Hibernate
-Rest
-REST
-REST API
-Rest API
-Android
-WPF
-LINQ
-JavaRX
-Netty
-Logback
-Log4j
-Logback/Log4j
-MongoDB
-Jira
-Confluence
-Docker
-UML
-Maven
-Gradle
-Git
-GIT
-SVN
-Bitbucket
-GitHub
-Github
-jUnit
-junit
-JUnit
-Mock
-Mocking
-SCRUM
-Agile
-Waterfall
-UNIX
-Linux
-Windows
-IntelliJ IDEA
-GitKraken
-Source Tree
-React
-Regular Expressions
-ASP.NET
-ASP
-NUnit
-Drools
-SQL Server 2005 database
 AJAX
-JQuery
-MVC
-Lambdas 
-lambdas 
-streams
-Streams
-JMX 
-JAXB
-xjc
-XJC
-xerces
-Xerces
-JPA 
-JSF
-Playframework
-Play framework
-Play Framwork 
-Struts
-Spring MVC
-Dependency Injection 
-SOAP 
-JAX-WS
+ASP
+ASP.NET
 AWS
-Ant
-Version Control
-JSTL
-WebSphere
-Tomcat
-JBoss
-JSON
-SWT
 AWT
-Swing
-OOP
-OOPS
-Multi Threading
-Multi threading
-Exception Handling
-Exception handling
-Lucene
-Hadoop
-Cloud computing
-NOSQL
+Agile
+Amazon AWS
+Analytical
+Analytics
+Android
+Angular
+Ansible
+Ant
+Apache 
+Application Development
+Applications
+Architecture
+Attention to Detail
+Authentication
+Authentication/Authorization
+Authorization
+BIG DATA
+Babel
+BeansTalk
+Big Data
 Big Data
 Big data
-BIG DATA
-Push
-Servlets
-J2EE 
-Socket
-JNI
-OOAD principles
-JMS
-Websocket
-Restful
-HTTP/FTP
-Encryption
-Authentication
-Authorization
-Authentication/Authorization
-SSO
-TLS
-Transations
-Eclipse 
-Node.js
-Mockito
-Hamcrest
-Flyway
-migrate4j
-Kotlin
-Groovy
-Spring Core
-Salesforce
-Salesforce.com
-functional programming
-Functional Programming
-FUNCTIONAL PROGRAMMING
-Caching
-Angular
-Excel
-cvs
-CVS
-GO 
-Ember
-Node
-Chrome
-Express 
+Bitbucket
 Bootstrap 
+Browserify
+Business Analytics
+Business Intelligence
+Business Process Modeling
+CHAP 
+CORS 
+CVS
+Caching
+Cassandra
+Chai.js
+Chef 
+Chrome
+Cloud Computing
+Cloud computing
+Code
+Coding
+Communication
+Composer 
+Computer
+Configuration
+Confluence
+Content Management
+Content Strategy
+Critical Thinking
+Cucumber 
+Customer Support
+Data Analysis
+Data Analytics
+Data Intelligence
+Data Mining
+Data Science
+Data Storage
+Data Strategy
+Database
+Database Administration
+Dependency Injection 
+Design
+Desktop Support
+Developer
+Development
+Django
+Docker
+Documentation
+Drools
+ES6
+Eclipse 
+ElasticSearch
+Ember
 Ember.JS
 Ember.js
-React.js
-React.JS
-Wordpress 
-Woocommerce
-Sass
-PostCSS
-Gulp
+Emerging Technologies
+Encryption
+Excel
+Exception Handling
+Exception handling
+Express 
+Express.js 
+FUNCTIONAL PROGRAMMING
+File Systems
+Flask
+Flexibility
+Flyway
+Functional Programming
+GIT
+GO 
+Git
+GitHub
+GitKraken
+Github
+Gradle
+Groovy
 Grunt
-Webpack
-Django
-Ruby on Rails
-Laravel & Symfony
-iOS
+Gulp
+HAProxy 
+HATEOAS 
+HTTP/FTP
+Hadoop
+Hamcrest
+Hardware
+Help Desk
+Hibernate
+Huffman algorithm
 IOS
+IPv4 
+IT Manager
+IT Optimization
+IT Security
+IT Soft Skills
+IT Solutions
+IT Support
+Implementation
+Information Systems
+Installation
+Integrated Technologies
+IntelliJ IDEA
+Internet
+J2EE 
+JAX-WS
+JAXB
+JBoss
+JMS
+JMX 
+JNI
+JPA 
+JQuery
+JSF
+JSON
+JSTL
+JUnit
+Jasmin.js
+JavaFX
+JavaRX
+Jira
+Kotlin
+LESS
+LINQ
+Lambdas 
+Languages
+Laravel & Symfony
+Leadership
+Linux
+Linux
+Log4j
+Logback
+Logback/Log4j
+Logging
+Logical Thinking
+Lucene
+MS
+MS SQL
+MVC
+Management
+Maven
+Messaging
+Methodology
+Metrics
+Microsoft Office
+Microsoft SQL Server
+Mobile Applications
+Mocha 
+Mock
+Mocking
+Mockito
+MongoDB
+Motivation
+Multi Threading
+Multi threading
+MySQL
+NOSQL
+NPM
+NUnit
+Netty
+Network Operations
+Networking
+Networks
+Nginx 
+Node
+Node.js
+OOAD principles
+OOP
+OOPS
+Operating Systems
+Operations
+Oracle
+Oracle
+Organization
+Phantom.JS
+Phantom.js
+PhantomJS 
+Play Framwork 
+Play framework
+Playframework
+PostCSS
+PostgreSQL
+PowerPoint
+Presentation
+Problem Solving
+Product Development
+Product Management
+Product Support
+Product Training
+Programming
+Project Management
+Protractor
+Puppet 
+Push
+Qt
+RDS
+REST
+REST API
+RSpec
+Rake 
+React
+React Native
+React.JS
+React.js
 Redis 
 Redux
-Web Workers
-Apache 
-Nginx 
-cronjobs 
-Composer 
-NPM
-Yarn
-Babel
-ES6
-LESS
-SCSS
-SaSS
-VueJS
-Browserify
-Rollup
-Logging
-React Native
-Express.js 
-Chai.js
-Jasmin.js
-Mocha 
-PhantomJS 
-Phantom.js
-Phantom.JS
-Cucumber 
-RSpec
-Cassandra
-ElasticSearch
-PostgreSQL
-Protractor
-Rake 
-IPv4 
-TCP 
-UDP 
-Switching and routing
-SSL 
-Shell scripting	
-Amazon AWS
-S3
-RDS
-BeansTalk
-SNS
-SES
-Puppet 
-Chef 
-Ansible
-HAProxy 
-CORS 
-Huffman algorithm
+Regular Expressions
 RelaxNg
-XSD 
+Repairs
+Reporting
+Rest
+Rest API
+Restful
+Rollup
+Ruby on Rails
+S3
+SCRUM
+SCSS
+SES
+SNS
+SOAP 
+SQL Server 2005 database
 SSH 
+SSL 
+SSO
+SVN
+SWT
+SaSS
+Salesforce
+Salesforce.com
+Sass
+Search Engine Optimization (SEO)
+Security
+Self Motivated
+Self Starting
+Servers
+Servlets
+Shell scripting	
+Socket
+Software
+Software Development
+Software Engineering
+Software Quality Assurance (QA)
+Source Tree
+Spring
+Spring Core
+Spring MVC
+SqlAlchemy
+Storage
+Streams
+Struts
+Support
+Swing
+Switching and routing
+Systems Software
+TCP 
+TLS
+Team Building
+Team Oriented
+Teamwork
+Tech Skills Listed by Job
+Tech Skills Listed by Job
+Tech Support
+Technical
+Technical Services
+Technical Support
+Technical Writing
+Technical Writing
+Technology
+Testing
+Testing
+Time Management
+Tomcat
+Tools
+Training
+Transations
+Troubleshooting
+UDP 
+UI / UX
+UML
+UNIX
 URI
 URL
 URLs
-CHAP 
+User Experience Design
+Version Control
+Virtualization
+VueJS
+WPF
 WSSE 
-HATEOAS 
-Flask
-SqlAlchemy
-mocking
-MySQL
-PowerPoint
+Waterfall
+Web
+Web Design
+Web Development
+Web Workers
+WebSphere
+Webpack
+Websocket
+Windows
+Woocommerce
 Word
-Microsoft SQL Server
-Testing
+Wordpress 
+Work Independently
+XJC
+XSD 
+Xerces
+Yarn
+cronjobs 
+cvs
+functional programming
+iOS
+jUnit
+junit
+lambdas 
+migrate4j
+mocking
+streams
+xerces
+xjc

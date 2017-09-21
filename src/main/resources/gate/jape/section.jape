@@ -14,11 +14,8 @@ Rule: sectionRule
             Annotation section = sectionSet.iterator().next();
             if(section.getType() == "_SectionName") {
                 if(doc.getFeatures().containsKey("currentSectionType")) {
-                    System.out.println("ma klucz ci=urent section");
                     Node endOffsetNode = (Node)doc.getFeatures().get("currentSectionEndNode");
-                    System.out.println(endOffsetNode);
                     String currentSectionType = doc.getFeatures().get("currentSectionType").toString();
-                    System.out.println(currentSectionType);
                     FeatureMap currentSectionFeatures = (FeatureMap) doc.getFeatures().get("currentSectionFeatures");
                     outputAS.add(endOffsetNode, section.getStartNode(), currentSectionType, currentSectionFeatures);
                 }

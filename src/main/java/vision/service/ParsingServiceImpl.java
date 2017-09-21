@@ -10,6 +10,7 @@ import com.optimaize.langdetect.profiles.LanguageProfileReader;
 import com.optimaize.langdetect.text.CommonTextObjectFactories;
 import com.optimaize.langdetect.text.TextObject;
 import com.optimaize.langdetect.text.TextObjectFactory;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -22,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 import vision.repository.FiledRepository;
+import vision.utils.CommonUtils;
+import vision.utils.Props;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,21 +38,24 @@ import java.util.List;
 @Service
 public class ParsingServiceImpl implements ParsingService {
     private final static Logger logger = LoggerFactory.getLogger(ParsingServiceImpl.class);
-    private final FiledRepository filedRepository;
     private FileInputStream inputStream;
     private String parsedStatus = "OK";
-    private String extractedStatus = "In queue";
     private LanguageDetector languageDetector;
     private TextObjectFactory textObjectFactory;
+    private final FileService fileService;
+    private final FiledRepository filedRepository;
+    private final Props props;
 
     @Autowired
-    ParsingServiceImpl(FiledRepository filedRepository) {
+    ParsingServiceImpl(FileService fileService, FiledRepository filedRepository, Props props) {
         this.filedRepository = filedRepository;
+        this.props = props;
         try {
             initLanguageDetector();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.fileService = fileService;
     }
 
     @Override
@@ -57,11 +63,34 @@ public class ParsingServiceImpl implements ParsingService {
         new Thread(() -> {
             if (files.size() > 0) {
                 for (File file : files) {
-                    String text = parseToText(file);
-                    filedRepository.addNewFiled(file, identifyLanguage(text), text, parsedStatus, null, extractedStatus);
+                    parse(file);
                 }
             }
         }).start();
+    }
+
+    @Override
+    public void parseFile(File file) {
+        Platform.runLater(() -> parse(file));
+    }
+
+    private void parse(File file) {
+        if (props.isPARSE_FILE_BY_TIKA()) {
+            String text = parseToText(file);
+            if (parsedStatus.equals("OK")) {
+                String language = identifyLanguage(text);
+                File tmpFile = fileService.saveParsedText(CommonUtils.TMP_FILES_PATH, file, text);
+                fileService.saveParsedFileToFileRepository(tmpFile, text, language, parsedStatus);
+                fileService.removeFileFromUserDirectory(tmpFile);
+            } else {
+                filedRepository.addNewFiled(file, "Input error", null,
+                        null, parsedStatus, null, "Input error");
+            }
+        } else {
+            String text = parseToText(file);
+            String language = identifyLanguage(text);
+            filedRepository.addNewFiled(file, language, null, null, parsedStatus, null, "Waiting...");
+        }
     }
 
     @Override
@@ -90,7 +119,7 @@ public class ParsingServiceImpl implements ParsingService {
             logger.info("Tika error");
             parsedStatus = "Tika error";
             e.printStackTrace();
-        } catch (Exception e){
+        } catch (Exception e) {
             parsedStatus = "Unknown error";
         }
         return null;

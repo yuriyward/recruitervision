@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 @FXMLController
 public class ParsedFilesController implements Initializable {
     private final ScreensManager screensManager;
-    final static Logger logger = LoggerFactory.getLogger(ParsedFilesController.class);
+    private final static Logger logger = LoggerFactory.getLogger(ParsedFilesController.class);
 
     private final FiledRepository filedRepository;
     private final GateService gateService;
@@ -77,6 +77,9 @@ public class ParsedFilesController implements Initializable {
     private void addSubscription() {
         filedRepository.getOnAdd().subscribe(this::addFiledToTable);
         filedRepository.getOnAdd().subscribe(this::addFileToCorpus);
+        filedRepository.getOnRemove().subscribe(this::removeFileFromTable);
+        filedRepository.getOnClear().subscribe(filed -> clearTable());
+        filedRepository.getOnRefresh().subscribe(o -> refreshTable());
     }
 
     @FXML
@@ -157,15 +160,29 @@ public class ParsedFilesController implements Initializable {
     }
 
     private void addFiledToTable(Filed filed) {
-        logger.info("addFiledToTable");
         Platform.runLater(() -> {
             if (!observableFiles.contains(filed)) {
                 observableFiles.add(filed);
             }
         });
+        logger.info("File added to Parsed files table");
     }
 
     private void addFileToCorpus(Filed filed) {
-        Platform.runLater(() -> gateService.addFileToCorpus(filed));
+        if (filed.getParsedStatus().equals("OK"))
+            Platform.runLater(() -> gateService.addFileToCorpus(filed));
     }
+
+    private void removeFileFromTable(Filed filed) {
+        if (filed != null) {
+            observableFiles.remove(filed);
+        }
+        logger.info("File removed from Parsed files table");
+    }
+
+    private void clearTable() {
+        observableFiles.clear();
+    }
+
+    private void refreshTable() { Platform.runLater(() -> millingTable.refresh());}
 }
