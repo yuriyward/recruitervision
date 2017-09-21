@@ -57,7 +57,7 @@ public class FiledRepository {
         Filed filed = new Filed(file, file.getPath(), fileNameGate, language, parsed, parsedStatus, extracted, extractedStatus);
         filedList.add(filed);
         onAdd.onNext(filed);
-        logger.info("File added to FiledRepository [parameters] " + file.getName());
+        logger.info("File added to FiledRepository [" + file.getName() + "]");
     }
 
     public void addNewFiled(Filed filed) {
@@ -81,7 +81,7 @@ public class FiledRepository {
                 onRemove.onNext(filed);
             }
         }
-        logger.info("File removed from FiledRepository [filePath] " + filePath);
+        logger.info("File removed from FiledRepository [" + filePath + "]");
     }
 
     public void clearFiledRepository() {

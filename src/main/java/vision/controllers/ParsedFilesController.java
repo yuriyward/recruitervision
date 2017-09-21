@@ -163,9 +163,9 @@ public class ParsedFilesController implements Initializable {
         Platform.runLater(() -> {
             if (!observableFiles.contains(filed)) {
                 observableFiles.add(filed);
+                logger.info("File added to Parsed files table [" + filed.getFile().getName() + "]");
             }
         });
-        logger.info("File added to Parsed files table");
     }
 
     private void addFileToCorpus(Filed filed) {
@@ -176,13 +176,15 @@ public class ParsedFilesController implements Initializable {
     private void removeFileFromTable(Filed filed) {
         if (filed != null) {
             observableFiles.remove(filed);
+            logger.info("File removed from Parsed files table [" + filed.getFile().getName() + "]");
         }
-        logger.info("File removed from Parsed files table");
     }
 
     private void clearTable() {
         observableFiles.clear();
     }
 
-    private void refreshTable() { Platform.runLater(() -> millingTable.refresh());}
+    private void refreshTable() {
+        Platform.runLater(() -> millingTable.refresh());
+    }
 }

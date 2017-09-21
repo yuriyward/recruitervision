@@ -82,13 +82,13 @@ public class GateServiceImpl implements GateService {
         } catch (ResourceInstantiationException e) {
             e.printStackTrace();
         }
-        logger.info("File added to corpus. File gate name: " + filed.getFileNameGate());
+        logger.info("File added to corpus [" + filed.getFileNameGate() + "]");
     }
 
     @Override
     public void deleteFileFromCorpus(Filed filed) {
         corpus.remove(getDocumentFromCorpus(filed.getFileNameGate()));
-        logger.info("File removed from corpus");
+        logger.info("File removed from corpus [" + filed.getFileNameGate() + "]");
     }
 
     private Document getDocumentFromCorpus(String name) {
@@ -353,6 +353,7 @@ public class GateServiceImpl implements GateService {
                     filed.setExtractedData(cv);
                     filed.setExtractedStatus("OK");
                     filedRepository.refreshFiledRepository();
+                    logger.info("File name [" + filed.getFile().getName() + "]");
                     logger.info(cv.toString());
                 } catch (Exception ex) {
                     logger.info("Error during extracting data " + ex);
@@ -360,7 +361,7 @@ public class GateServiceImpl implements GateService {
                 }
             }
         }
-        logger.info("Data extracted");
+        logger.info("Data from all files extracted");
     }
 
     @Override
