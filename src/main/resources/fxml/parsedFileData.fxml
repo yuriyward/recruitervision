@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="500.0" minWidth="980.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ParsedFileDataController">
+   <children>
+      <JFXTabPane layoutX="190.0" layoutY="365.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab text="Base data">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="-107.0" layoutY="-9.0" prefHeight="50.0" prefWidth="280.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Name" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="candidateName" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="123.0" layoutY="-12.0" prefHeight="50.0" prefWidth="300.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Middle name" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="candidateMiddleName" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="550.0" layoutY="-9.0" prefHeight="50.0" prefWidth="350.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="625.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Surname" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="candidateSurname" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="-49.0" layoutY="53.0" prefHeight="50.0" prefWidth="200.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="70.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Gender" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="gender" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="14.0" layoutY="254.0" prefHeight="50.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="255.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Address" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="addresses" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="-284.0" layoutY="108.0" prefHeight="50.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="130.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Emails" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="emailsTxtFld" editable="false" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="9.0" />
+                              <JFXCheckBox layoutX="870.0" layoutY="17.0" onAction="#emailsChkBox" text="Text" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="17.0" />
+                              <VBox fx:id="emailsVBox" layoutX="-222.0" layoutY="-4.0" prefHeight="44.0" prefWidth="850.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="9.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="-39.0" layoutY="174.0" prefHeight="50.0" prefWidth="250.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="315.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="City" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="city" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="205.0" layoutY="195.0" prefHeight="50.0" prefWidth="300.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="315.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Country" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="country" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="50.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="195.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Phones" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="phonesTxtFld" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="9.0" />
+                              <JFXCheckBox layoutX="870.0" layoutY="17.0" onAction="#phonesChkBox" text="Text" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="17.0" />
+                              <VBox fx:id="phonesVBox" layoutX="-222.0" layoutY="-4.0" prefHeight="44.0" prefWidth="850.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="9.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="50.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="435.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="URLs" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="urlTxtFLd" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="13.0" />
+                              <JFXCheckBox layoutX="870.0" layoutY="17.0" onAction="#urlChkBox" text="Text" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="17.0" />
+                              <VBox fx:id="urlVBox" layoutX="-222.0" layoutY="-4.0" prefHeight="44.0" prefWidth="850.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="50.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="375.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="11.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Job titles" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="13.0" />
+                              <JFXTextField fx:id="jobTitlesTxtFld" layoutX="58.0" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="13.0" />
+                              <JFXCheckBox layoutX="870.0" layoutY="17.0" onAction="#jobTitlesChkBox" text="Text" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="17.0" />
+                              <VBox fx:id="jobTitlesVBox" layoutX="-222.0" layoutY="-4.0" prefHeight="44.0" prefWidth="850.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="13.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Summary">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="147.0" layoutY="226.0" prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="summaryTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Experience">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="270.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <Label layoutX="523.0" layoutY="2.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Experience titles" AnchorPane.leftAnchor="523.0" AnchorPane.topAnchor="2.0" />
+                              <JFXTextArea fx:id="exprerienceTitlesTxt" layoutX="53.0" layoutY="31.0" prefHeight="50.0" prefWidth="464.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="15.0" layoutY="124.0" prefHeight="300.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="300.0">
+                           <children>
+                              <Label layoutX="544.0" layoutY="2.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Experience" AnchorPane.leftAnchor="544.0" AnchorPane.topAnchor="2.0" />
+                              <JFXTextArea fx:id="experienceTxt" layoutX="53.0" layoutY="31.0" prefHeight="250.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Skills">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="285.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <Label layoutX="566.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Skills" AnchorPane.leftAnchor="566.0" AnchorPane.topAnchor="0.0" />
+                              <JFXTextArea fx:id="skillsTxt" layoutX="53.0" layoutY="31.0" prefHeight="230.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="15.0" layoutY="228.0" prefHeight="200.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="310.0">
+                           <children>
+                              <Label layoutX="492.0" layoutY="2.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Programming languages" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="2.0" />
+                              <JFXTextArea fx:id="programmingLanguagesTxt" layoutX="53.0" layoutY="31.0" prefHeight="150.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="520.0">
+                           <children>
+                              <Label layoutX="512.0" layoutY="2.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Programming skills" AnchorPane.leftAnchor="512.0" AnchorPane.topAnchor="2.0" />
+                              <JFXTextArea fx:id="programmingSkillsTxt" layoutX="53.0" layoutY="31.0" prefHeight="150.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Education">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="63.0" layoutY="47.0" prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="educationTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Languages">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="languagesTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Interests">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="interestsTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Additional info">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="additionalInfoTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Credibility">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="credibilityTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Awards">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="awardsTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Accomplishments">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="245.0" prefWidth="410.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <JFXTextArea fx:id="accomplishmentsTxt" layoutX="53.0" layoutY="31.0" prefHeight="200.0" prefWidth="464.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>

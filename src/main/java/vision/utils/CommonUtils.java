@@ -1,6 +1,7 @@
 package vision.utils;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -30,4 +31,21 @@ public class CommonUtils {
         }
         return null;
     }
+
+    public static String getIfNullEmptyString(String text) {
+        if (text != null) {
+            return text;
+        } else {
+            return "";
+        }
+    }
+
+    public static String getIfNullEmptyString(Iterable<String> arr) {
+        if (arr != null && arr.iterator().hasNext()) {
+            return String.join(", ", arr);
+        } else {
+            return "";
+        }
+    }
+
 }

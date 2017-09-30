@@ -84,12 +84,12 @@ public class ParsedFilesController implements Initializable {
 
     @FXML
     void backPageClick() {
-        screensManager.showEndFileWindow();
+        screensManager.showCvFilesWindow();
     }
 
     @FXML
     void nextPageClick() {
-
+        screensManager.showDataForExtractionWindow();
     }
 
     @FXML
@@ -102,8 +102,7 @@ public class ParsedFilesController implements Initializable {
     private void showExtracted() {
         Filed filed = millingTable.getSelectionModel().getSelectedItem();
         if (filed != null) {
-            logger.info("Extracted data for file " + filed.getFile().getName());
-            logger.info(filed.getExtractedData().toString());
+            screensManager.showParsedFileData(filed);
         } else {
             screensManager.showMaterialDialog("File not selected", "Please select file for showing", "OK");
         }

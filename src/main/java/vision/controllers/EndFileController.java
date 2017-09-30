@@ -56,7 +56,7 @@ public class EndFileController implements Initializable {
 
     @FXML
     void nextPageClick() {
-        screensManager.showParesedFiles();
+        screensManager.showHomeWindow();
     }
 
     @FXML

@@ -13,11 +13,11 @@
                <children>
                   <JFXButton fx:id="homeBtn" buttonType="RAISED" minHeight="70.0" minWidth="180.0" onAction="#homeBtnAct" prefHeight="150.0" prefWidth="219.0" text="Home" />
                   <JFXButton fx:id="filesBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#filesBtnAct" prefHeight="60.0" prefWidth="219.0" text="CV Files" />
+                  <JFXButton fx:id="showParsedDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#showParsedData" prefHeight="60.0" prefWidth="219.0" text="Persed data" />
                   <JFXButton fx:id="informationBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#informationBtnAct" prefHeight="60.0" prefWidth="219.0" text="Selection" />
                   <JFXButton fx:id="advancedSelectionId" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#advancedSelectionBtn" prefHeight="60.0" prefWidth="219.0" text="Advanced selection" />
                   <JFXButton fx:id="endFileBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#endFileBtnAct" prefHeight="60.0" prefWidth="219.0" text="End file" />
                   <JFXButton fx:id="processingId" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#processingBtn" prefHeight="60.0" prefWidth="219.0" text="Processing" />
-                  <JFXButton fx:id="showParsedDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#showParsedData" prefHeight="60.0" prefWidth="219.0" text="Persed&amp;Extracted data" />
                   <JFXButton buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="238.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text=" " />
                </children>
             </VBox>

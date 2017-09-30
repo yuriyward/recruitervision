@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import vision.Start;
 import vision.controllers.ExploreDataController;
 import vision.controllers.MainWindowController;
+import vision.controllers.ParsedFileDataController;
 import vision.javafx_own_components.MaterialDialog;
 import vision.models.Filed;
 import vision.view.*;
@@ -41,6 +42,8 @@ public class ScreensManager {
     ExploreDataView exploreDataView;
     @Autowired
     ExploreDataController exploreDataController;
+    @Autowired
+    ParsedFileDataController parsedFileDataController;
     @Autowired
     ApplicationContext applicationContext;
 
@@ -88,6 +91,15 @@ public class ScreensManager {
     public void showExploreDataWindow(Filed filed) {
         exploreDataController.setFiled(filed);
         Start.showView(ExploreDataView.class, Modality.APPLICATION_MODAL);
+    }
+
+    public void showParsedFileData(Filed filed) {
+        if (filed.getExtractedData() == null) {
+            showMaterialDialog("Not extracted yet", "Extract firstly", "OK");
+        } else {
+            parsedFileDataController.setFieldData(filed);
+            Start.showView(ParsedFileDataView.class, Modality.APPLICATION_MODAL);
+        }
     }
 
     public void showMaterialDialog(String header, String content, String buttonLabel) {

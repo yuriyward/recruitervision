@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -17,13 +18,13 @@ public class CV {
     private String candidateMiddleName;
     private String candidateSurname;
     private String gender;
-    private List<String> emails;
+    private HashSet<String> emails;
     private List<String> addresses;
-    private List<String> phones;
+    private HashSet<String> phones;
     private String city;
     private String country;
     private List<String> candidateJobTitles;
-    private List<String> URLs;
+    private HashSet<String> URLs;
     private List<String> sectionNames;
     private String summarySection;
     private List<String> skillsSection;
@@ -36,8 +37,8 @@ public class CV {
     private List<String> credibility;
     private List<String> awards;
     private List<String> accomplishments;
-    private List<String> programmingLanguages;
-    private List<String> programmingSkills;
+    private HashSet<String> programmingLanguages;
+    private HashSet<String> programmingSkills;
 
 
 }

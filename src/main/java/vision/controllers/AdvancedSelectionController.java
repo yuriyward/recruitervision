@@ -63,6 +63,7 @@ public class AdvancedSelectionController implements Initializable {
         TagBar skillsBar = new TagBar();
         TagBar summuryBar = new TagBar();
         TagBar interestsBar = new TagBar();
+
         base.getChildren().addAll(baseBar);
         work.getChildren().addAll(workBar);
         educational.getChildren().addAll(educationalBar);

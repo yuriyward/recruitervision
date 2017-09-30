@@ -77,11 +77,6 @@ public class DataForExtractionController implements Initializable {
     }
 
     @FXML
-    void backPageClick() {
-        screensManager.showCvFilesWindow();
-    }
-
-    @FXML
     void checkAllClick() {
         allBasic.setSelected(true);
         allWork.setSelected(true);
@@ -89,6 +84,11 @@ public class DataForExtractionController implements Initializable {
         allEducational.setSelected(true);
         allSummary.setSelected(true);
         allInterests.setSelected(true);
+    }
+
+    @FXML
+    void backPageClick() {
+        screensManager.showParesedFiles();
     }
 
     @FXML

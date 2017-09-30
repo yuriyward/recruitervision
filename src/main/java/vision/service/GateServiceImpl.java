@@ -19,6 +19,7 @@ import vision.utils.Props;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -93,7 +94,6 @@ public class GateServiceImpl implements GateService {
 
     private Document getDocumentFromCorpus(String name) {
         for (Document document : corpus) {
-            logger.info(document.getName());
             if (document.getName().equals(name)) {
                 return document;
             }
@@ -151,7 +151,7 @@ public class GateServiceImpl implements GateService {
 
                     annotationSet =
                             annotations.get("_Email");
-                    List<String> emailList = new ArrayList<>();
+                    HashSet<String> emailList = new HashSet<>();
                     if (annotationSet.size() > 0) {
                         for (Annotation ann : annotationSet) {
                             emailList.add(Utils.stringFor(document, ann));
@@ -171,7 +171,7 @@ public class GateServiceImpl implements GateService {
 
                     annotationSet =
                             annotations.get("_Phone");
-                    List<String> phonesList = new ArrayList<>();
+                    HashSet<String> phonesList = new HashSet<>();
                     if (annotationSet.size() > 0) {
                         for (Annotation ann : annotationSet) {
                             phonesList.add(Utils.stringFor(document, ann));
@@ -205,7 +205,7 @@ public class GateServiceImpl implements GateService {
 
                     annotationSet =
                             annotations.get("_URL");
-                    List<String> URLs = new ArrayList<>();
+                    HashSet<String> URLs = new HashSet<>();
                     if (annotationSet.size() > 0) {
                         for (Annotation ann : annotationSet) {
                             URLs.add(Utils.stringFor(document, ann));
@@ -332,7 +332,7 @@ public class GateServiceImpl implements GateService {
 
                     annotationSet =
                             annotations.get("_ProgrammingLanguage");
-                    List<String> programmingLanguages = new ArrayList<>();
+                    HashSet<String> programmingLanguages = new HashSet<>();
                     if (annotationSet.size() > 0) {
                         for (Annotation ann : annotationSet) {
                             programmingLanguages.add(Utils.stringFor(document, ann));
@@ -342,7 +342,7 @@ public class GateServiceImpl implements GateService {
 
                     annotationSet =
                             annotations.get("_ProgrammingSkill");
-                    List<String> programmingSkills = new ArrayList<>();
+                    HashSet<String> programmingSkills = new HashSet<>();
                     if (annotationSet.size() > 0) {
                         for (Annotation ann : annotationSet) {
                             programmingSkills.add(Utils.stringFor(document, ann));

@@ -221,7 +221,7 @@ public class CvFilesWindowController implements Initializable {
 
     @FXML
     void nextPageClick() {
-        screensManager.showDataForExtractionWindow();
+        screensManager.showParesedFiles();
     }
 
     @FXML
