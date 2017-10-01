@@ -22,6 +22,8 @@ public class HomeWindowController implements Initializable {
 
     @FXML
     private JFXCheckBox PARSE_FILE_BY_TIKA;
+    @FXML
+    private JFXCheckBox AUTO_EXECUTION;
 
     @Autowired
     public HomeWindowController(ScreensManager screensManager, Props props) {
@@ -39,6 +41,11 @@ public class HomeWindowController implements Initializable {
         props.saveToPropertiesFile("PARSE_FILE_BY_TIKA", String.valueOf(PARSE_FILE_BY_TIKA.isSelected()));
     }
 
+    @FXML
+    void autoExecution() {
+        props.saveToPropertiesFile("AUTO_EXECUTION", String.valueOf(AUTO_EXECUTION.isSelected()));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         selectDefaults();
@@ -46,5 +53,6 @@ public class HomeWindowController implements Initializable {
 
     private void selectDefaults() {
         PARSE_FILE_BY_TIKA.setSelected(props.isPARSE_FILE_BY_TIKA());
+        AUTO_EXECUTION.setSelected(props.isAUTO_EXECUTION());
     }
 }

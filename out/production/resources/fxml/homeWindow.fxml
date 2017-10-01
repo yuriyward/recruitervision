@@ -31,6 +31,7 @@
          <children>
             <JFXCheckBox fx:id="PARSE_FILE_BY_TIKA" layoutX="14.0" layoutY="39.0" onAction="#parseFileByTikaChk" text="Extract data from files by advanced toolkit (Tika)" />
             <Label layoutX="114.0" layoutY="2.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Application properties" />
+            <JFXCheckBox fx:id="AUTO_EXECUTION" layoutX="14.0" layoutY="66.0" onAction="#autoExecution" text="Auto execute and extract data from CVs" />
          </children>
       </Pane>
    </children>

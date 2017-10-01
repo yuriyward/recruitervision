@@ -16,6 +16,8 @@ public class Props {
     private boolean PARSE_FILE_BY_TIKA;
     @Getter
     private String DEFAULT_PATH_CHK;
+    @Getter
+    private boolean AUTO_EXECUTION;
     @Getter @Setter
     private String DEFAULT_PATH;
     private static final String FILENAME = CommonUtils.RESOURCE_DIR + "\\config.properties";
@@ -34,6 +36,7 @@ public class Props {
             PARSE_FILE_BY_TIKA = Boolean.valueOf(prop.getProperty("PARSE_FILE_BY_TIKA"));
             DEFAULT_PATH = prop.getProperty("DEFAULT_PATH");
             DEFAULT_PATH_CHK = prop.getProperty("DEFAULT_PATH_CHK");
+            AUTO_EXECUTION = Boolean.valueOf(prop.getProperty("AUTO_EXECUTION"));
         } catch (IOException e) {
             e.printStackTrace();
         }
