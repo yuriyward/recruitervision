@@ -84,6 +84,8 @@ public class GateServiceImpl implements GateService {
             e.printStackTrace();
         }
         logger.info("File added to corpus [" + filed.getFileNameGate() + "]");
+        executeController();
+        extractData();
     }
 
     @Override
@@ -129,7 +131,9 @@ public class GateServiceImpl implements GateService {
 
     @Override
     public void extractData() {
-        for (Document document : corpus) {
+        long startTime = System.nanoTime();
+        while (corpus.iterator().hasNext()) {
+            Document document = corpus.iterator().next();
             Filed filed = filedRepository.getFiledByPath(document.getSourceUrl().getPath());
             if (!filed.getExtractedStatus().equals("OK")) {
                 try {
@@ -274,7 +278,6 @@ public class GateServiceImpl implements GateService {
                             annotations.get("_Languages");
                     if (annotationSet.size() > 0) {
                         annotation = annotationSet.iterator().next();
-                        System.out.println(annotation.toString());
                         cv.setLanguagesSection(Utils.stringFor(document, annotation));
                     }
 
@@ -352,16 +355,21 @@ public class GateServiceImpl implements GateService {
 
                     filed.setExtractedData(cv);
                     filed.setExtractedStatus("OK");
-                    filedRepository.refreshFiledRepository();
+                    logger.info("File removed from corpus [" + corpus.remove(document) + "]");
                     logger.info("File name [" + filed.getFile().getName() + "]");
-                    logger.info(cv.toString());
                 } catch (Exception ex) {
                     logger.info("Error during extracting data " + ex);
                     filed.setExtractedStatus("Error");
                 }
+            } else {
+                logger.info("File already extracted");
+                logger.info("File removed from corpus [" + corpus.remove(document) + "]");
+                return;
             }
         }
-        logger.info("Data from all files extracted");
+        long endTime = System.nanoTime();
+        logger.info("Execution time: " + (endTime - startTime) + " [ns]");
+        logger.info("Data extracted");
     }
 
     @Override

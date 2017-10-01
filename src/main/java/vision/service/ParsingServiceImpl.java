@@ -60,13 +60,11 @@ public class ParsingServiceImpl implements ParsingService {
 
     @Override
     public void parseAllFiles(ObservableList<File> files) {
-        new Thread(() -> {
             if (files.size() > 0) {
                 for (File file : files) {
-                    parse(file);
+                    new Thread(() -> parse(file)).start();
                 }
             }
-        }).start();
     }
 
     @Override
@@ -82,6 +80,7 @@ public class ParsingServiceImpl implements ParsingService {
                 File tmpFile = fileService.saveParsedText(CommonUtils.TMP_FILES_PATH, file, text);
                 fileService.saveParsedFileToFileRepository(tmpFile, text, language, parsedStatus);
                 fileService.removeFileFromUserDirectory(tmpFile);
+                filedRepository.addNewFiled(file, language, null, text,parsedStatus,null,"Waiting...");
             } else {
                 filedRepository.addNewFiled(file, "Input error", null,
                         null, parsedStatus, null, "Input error");
@@ -89,7 +88,7 @@ public class ParsingServiceImpl implements ParsingService {
         } else {
             String text = parseToText(file);
             String language = identifyLanguage(text);
-            filedRepository.addNewFiled(file, language, null, null, parsedStatus, null, "Waiting...");
+            filedRepository.addNewFiled(file, language, null, text, parsedStatus, null, "Waiting...");
         }
     }
 

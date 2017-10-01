@@ -30,7 +30,6 @@ public class ExploreDataController {
 
     public void setFiled(Filed filed) {
         this.field = filed;
-        logger.info(filed.getParsed());
         Platform.runLater(() -> editorId.setHtmlText(filed.getParsed()));
     }
 }

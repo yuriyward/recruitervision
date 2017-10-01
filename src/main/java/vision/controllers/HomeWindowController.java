@@ -37,7 +37,6 @@ public class HomeWindowController implements Initializable {
     @FXML
     void parseFileByTikaChk() {
         props.saveToPropertiesFile("PARSE_FILE_BY_TIKA", String.valueOf(PARSE_FILE_BY_TIKA.isSelected()));
-        System.out.println(props.isPARSE_FILE_BY_TIKA());
     }
 
     @Override
