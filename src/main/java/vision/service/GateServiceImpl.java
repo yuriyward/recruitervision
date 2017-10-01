@@ -373,7 +373,9 @@ public class GateServiceImpl implements GateService {
 
                 filed.setExtractedData(cv);
                 filed.setExtractedStatus("OK");
-                filedRepository.refreshFiledRepository();
+                if (!props.isAUTO_EXECUTION()) {
+                    filedRepository.refreshFiledRepository();
+                }
                 logger.info("File name [" + filed.getFile().getName() + "]");
             } catch (Exception ex) {
                 logger.info("Error during extracting data " + ex);
@@ -381,7 +383,6 @@ public class GateServiceImpl implements GateService {
             }
         } else {
             logger.info("File already extracted");
-            return;
         }
     }
 

@@ -6,9 +6,12 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +55,9 @@ public class ParsedFilesController implements Initializable {
 
     @FXML
     private TableColumn<Filed, String> fileStatus_parsed;
+
+    @FXML
+    private TextField searcheableField;
 
     @FXML
     private TableColumn<Filed, String> fileStatus_extracted;
@@ -133,8 +139,30 @@ public class ParsedFilesController implements Initializable {
         fileStatus_parsed.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getParsedStatus()));
         fileStatus_extracted.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getExtractedStatus()));
 
+        // Searchable
+        FilteredList<Filed> filteredData = new FilteredList<>(observableFiles, f -> true);
+        searcheableField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(filed -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (FilenameUtils.getBaseName(filed.getFile().getPath()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (filed.getFile().getPath().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (filed.getLanguage().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+        SortedList<Filed> sortedList = new SortedList<>(filteredData);
+        sortedList.comparatorProperty().bind(millingTable.comparatorProperty());
+
         millingTable.getColumns().setAll(fileName, fileLocation, fileExtension, language, fileStatus);
-        millingTable.setItems(observableFiles);
+        millingTable.setItems(sortedList);
     }
 
     private void initRightClick() {
@@ -147,6 +175,12 @@ public class ParsedFilesController implements Initializable {
 
             MenuItem showParsed = new MenuItem("Show parsed");
             showParsed.setOnAction(event -> showParsed());
+
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    screensManager.showParsedFileData(row.getItem());
+                }
+            });
 
             rowMenu.getItems().addAll(showParsed, showExtracted);
             row.contextMenuProperty()

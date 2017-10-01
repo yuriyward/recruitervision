@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -11,7 +12,7 @@
 
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ParsedFilesController">
    <children>
-      <TableView fx:id="millingTable" layoutX="41.0" layoutY="54.0" stylesheets="@../css/table-style.css" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <TableView fx:id="millingTable" layoutX="41.0" layoutY="54.0" stylesheets="@../css/table-style.css" AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
           <TableColumn fx:id="fileName" prefWidth="300.0" text="File name" />
           <TableColumn fx:id="fileLocation" prefWidth="300.0" text="File location" />
@@ -44,7 +45,7 @@
             </JFXButton>
          </left>
       </JFXToolbar>
-      <Pane layoutX="169.0" layoutY="462.0" prefHeight="70.0" prefWidth="540.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+      <Pane layoutX="20.0" layoutY="583.0" prefHeight="70.0" prefWidth="540.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0">
          <children>
             <JFXButton defaultButton="true" layoutX="26.0" layoutY="20.0" onAction="#showParsed" style="-fx-background-color: #337AB7;" text="Show parsed data" textFill="WHITE">
                <font>
@@ -63,5 +64,6 @@
             </JFXButton>
          </children>
       </Pane>
+      <TextField fx:id="searcheableField" layoutX="27.0" layoutY="534.0" promptText="Search in the table..." AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
    </children>
 </AnchorPane>
