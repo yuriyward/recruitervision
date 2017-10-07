@@ -136,11 +136,11 @@ public class GateServiceImpl implements GateService {
         for (Document document : corpus) {
             fillCVdata(document);
         }
-        filedRepository.refreshFiledRepository();
         long endTime = System.nanoTime();
         Start.getScene().setCursor(Cursor.DEFAULT);
         logger.info("Execution time: " + (endTime - startTime) + " [ns]");
         logger.info("Data extracted");
+        filedRepository.refreshFiledRepository();
     }
 
     private void fillCVdata(Document document) {

@@ -143,23 +143,21 @@ public class ParsedFilesController implements Initializable {
 
         // Searchable
         FilteredList<Filed> filteredData = new FilteredList<>(observableFiles, f -> true);
-        searcheableField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(filed -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
+        searcheableField.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(filed -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
 
-                if (FilenameUtils.getBaseName(filed.getFile().getPath()).toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (filed.getFile().getPath().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (filed.getLanguage().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
+            if (FilenameUtils.getBaseName(filed.getFile().getPath()).toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (filed.getFile().getPath().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (filed.getLanguage().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            }
+            return false;
+        }));
         SortedList<Filed> sortedList = new SortedList<>(filteredData);
         sortedList.comparatorProperty().bind(millingTable.comparatorProperty());
 
@@ -205,7 +203,7 @@ public class ParsedFilesController implements Initializable {
 
     private void addFileToCorpus(Filed filed) {
         if (filed.getParsedStatus().equals("OK"))
-            Platform.runLater(() -> gateService.addFileToCorpus(filed));
+            gateService.addFileToCorpus(filed);
     }
 
     private void removeFileFromTable(Filed filed) {
@@ -220,6 +218,6 @@ public class ParsedFilesController implements Initializable {
     }
 
     private void refreshTable() {
-        Platform.runLater(() -> millingTable.refresh());
+        millingTable.refresh();
     }
 }

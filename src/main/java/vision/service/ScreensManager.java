@@ -50,6 +50,7 @@ public class ScreensManager {
     @Autowired
     public void setMainWindowController(MainWindowController mainWindowController) {
         this.mainWindowController = mainWindowController;
+        parsedFilesView.getView();
     }
 
     public void showCvFilesWindow() {

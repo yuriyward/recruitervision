@@ -71,6 +71,7 @@ public class ParsingServiceImpl implements ParsingService {
                 }
                 Start.getScene().setCursor(Cursor.DEFAULT);
                 if (props.isAUTO_EXECUTION()) {
+                    logger.info("Auto execution started");
                     gateService.executeController();
                     gateService.extractData();
                 }
