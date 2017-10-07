@@ -3,9 +3,7 @@ package vision.service;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vision.repository.FiledRepository;
 import vision.utils.CommonUtils;
 
 import java.io.File;
@@ -20,13 +18,7 @@ import java.nio.file.Paths;
 @Service
 public class FileServiceImpl implements FileService {
     private final static String EXTENSION = ".txt";
-    private final FiledRepository filedRepository;
     private final static Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
-
-    @Autowired
-    public FileServiceImpl(FiledRepository filedRepository) {
-        this.filedRepository = filedRepository;
-    }
 
     @Override
     public File saveParsedText(String path, File file, String text) {
@@ -59,9 +51,4 @@ public class FileServiceImpl implements FileService {
         }
     }
 
-    @Override
-    public void saveParsedFileToFileRepository(File file, String text, String language, String parsedStatus) {
-        String extractedStatus = "In queue";
-        filedRepository.addNewFiled(file, language, null, text, parsedStatus, null, extractedStatus);
-    }
 }

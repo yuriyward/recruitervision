@@ -11,7 +11,7 @@ import com.optimaize.langdetect.text.CommonTextObjectFactories;
 import com.optimaize.langdetect.text.TextObject;
 import com.optimaize.langdetect.text.TextObjectFactory;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
+import javafx.scene.Cursor;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
+import vision.Start;
 import vision.repository.FiledRepository;
 import vision.utils.CommonUtils;
 import vision.utils.Props;
@@ -44,10 +45,11 @@ public class ParsingServiceImpl implements ParsingService {
     private TextObjectFactory textObjectFactory;
     private final FileService fileService;
     private final FiledRepository filedRepository;
+    private final GateService gateService;
     private final Props props;
 
     @Autowired
-    ParsingServiceImpl(FileService fileService, FiledRepository filedRepository, Props props) {
+    ParsingServiceImpl(FileService fileService, FiledRepository filedRepository, Props props, GateService gateService) {
         this.filedRepository = filedRepository;
         this.props = props;
         try {
@@ -56,15 +58,24 @@ public class ParsingServiceImpl implements ParsingService {
             e.printStackTrace();
         }
         this.fileService = fileService;
+        this.gateService = gateService;
     }
 
     @Override
-    public void parseAllFiles(ObservableList<File> files) {
+    public void parseAllFiles(List<File> files) {
+        new Thread(() -> {
             if (files.size() > 0) {
+                Start.getScene().setCursor(Cursor.WAIT);
                 for (File file : files) {
-                    new Thread(() -> parse(file)).start();
+                    parse(file);
+                }
+                Start.getScene().setCursor(Cursor.DEFAULT);
+                if (props.isAUTO_EXECUTION()) {
+                    gateService.executeController();
+                    gateService.extractData();
                 }
             }
+        }).start();
     }
 
     @Override
@@ -78,9 +89,8 @@ public class ParsingServiceImpl implements ParsingService {
             if (parsedStatus.equals("OK")) {
                 String language = identifyLanguage(text);
                 File tmpFile = fileService.saveParsedText(CommonUtils.TMP_FILES_PATH, file, text);
-                fileService.saveParsedFileToFileRepository(tmpFile, text, language, parsedStatus);
+                filedRepository.addNewFiled(tmpFile, language, null, text, parsedStatus, null, "Waiting...");
                 fileService.removeFileFromUserDirectory(tmpFile);
-                filedRepository.addNewFiled(file, language, null, text,parsedStatus,null,"Waiting...");
             } else {
                 filedRepository.addNewFiled(file, "Input error", null,
                         null, parsedStatus, null, "Input error");

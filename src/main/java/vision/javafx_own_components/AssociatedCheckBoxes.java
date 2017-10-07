@@ -56,7 +56,7 @@ public class AssociatedCheckBoxes {
         );
     }
 
-    private void scheduleSelectAllStateChangeProcessing() {
+    public void scheduleSelectAllStateChangeProcessing() {
         if (selectAllStateChangeProcessor == null) {
             selectAllStateChangeProcessor = this::processSelectAllStateChange;
             Platform.runLater(selectAllStateChangeProcessor);

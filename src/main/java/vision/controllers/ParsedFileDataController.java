@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
-import vision.Start;
 import vision.javafx_own_components.TagBar;
 import vision.models.CV;
 import vision.models.Filed;
@@ -151,7 +150,6 @@ public class ParsedFileDataController implements Initializable {
     }
 
     private void fillComponents() {
-        //
         // Base data
         candidateName.setText(CommonUtils.getIfNullEmptyString(cv.getCandidateName()));
         candidateMiddleName.setText(CommonUtils.getIfNullEmptyString(cv.getCandidateMiddleName()));
@@ -176,7 +174,6 @@ public class ParsedFileDataController implements Initializable {
         // URLs
         urlTxtFLd.setText(CommonUtils.getIfNullEmptyString(cv.getURLs()));
         urlTxtFLd.setVisible(false);
-        //
         // Summary
         summaryTxt.setText(CommonUtils.getIfNullEmptyString(cv.getSummarySection()));
         // Experience

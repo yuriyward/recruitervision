@@ -9,6 +9,4 @@ public interface FileService {
     File saveParsedText(String path, File file, String text);
 
     void removeFileFromUserDirectory(File file);
-
-    void saveParsedFileToFileRepository(File file, String text, String language, String parsedStatus);
 }

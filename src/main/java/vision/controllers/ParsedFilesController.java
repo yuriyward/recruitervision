@@ -11,7 +11,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,8 +99,11 @@ public class ParsedFilesController implements Initializable {
 
     @FXML
     void extract() {
-        gateService.executeController();
-        gateService.extractData();
+        logger.info("Manually extraction");
+        new Thread(() -> {
+            gateService.executeController();
+            gateService.extractData();
+        }).start();
     }
 
     @FXML

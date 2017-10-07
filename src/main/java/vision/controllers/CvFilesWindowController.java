@@ -1,6 +1,5 @@
 package vision.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.beans.binding.Bindings;
@@ -174,12 +173,14 @@ public class CvFilesWindowController implements Initializable {
     }
 
     private void addFilesToTable(List<File> files) {
+        List<File> fileList = new ArrayList<>();
         for (File file : files) {
             if (!observableFiles.contains(file)) {
-                observableFiles.add(file);
-                parsingService.parseFile(file);
+                fileList.add(file);
             }
         }
+        observableFiles.addAll(fileList);
+        parsingService.parseAllFiles(fileList);
         fileTable.setItems(observableFiles);
     }
 

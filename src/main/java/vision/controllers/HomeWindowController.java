@@ -2,7 +2,6 @@ package vision.controllers;
 
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,14 +1,13 @@
 package vision.service;
 
-import javafx.collections.ObservableList;
-
 import java.io.File;
+import java.util.List;
 
 /**
  * @author Yuriy on 01.08.2017.
  */
 public interface ParsingService {
-    void parseAllFiles(ObservableList<File> files);
+    void parseAllFiles(List<File> files);
 
     void parseFile(File file);
 

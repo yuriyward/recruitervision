@@ -114,7 +114,6 @@ public class DataForExtractionController implements Initializable {
         AssociatedCheckBoxes educetionalBoxes = new AssociatedCheckBoxes(allEducational, getEducationalBoxes());
         AssociatedCheckBoxes summuryBoxes = new AssociatedCheckBoxes(allSummary, getSummuryBoxes());
         AssociatedCheckBoxes interestsBoxes = new AssociatedCheckBoxes(allInterests, getInterestsBoxes());
-
     }
 
     private List<JFXCheckBox> getBasicBoxes() {

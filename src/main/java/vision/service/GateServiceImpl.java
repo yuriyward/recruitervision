@@ -6,10 +6,12 @@ import gate.creole.ResourceInstantiationException;
 import gate.persist.PersistenceException;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
+import javafx.scene.Cursor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vision.Start;
 import vision.models.CV;
 import vision.models.Filed;
 import vision.repository.FiledRepository;
@@ -84,11 +86,6 @@ public class GateServiceImpl implements GateService {
             e.printStackTrace();
         }
         logger.info("File added to corpus [" + filed.getFileNameGate() + "]");
-        // Auto execution & extracting
-        if (props.isAUTO_EXECUTION()) {
-            executeController();
-            extractData();
-        }
     }
 
     @Override
@@ -124,6 +121,7 @@ public class GateServiceImpl implements GateService {
     @Override
     public void executeController() {
         try {
+            Start.getScene().setCursor(Cursor.WAIT);
             corpusController.setCorpus(corpus);
             corpusController.execute();
         } catch (ExecutionException e) {
@@ -135,18 +133,12 @@ public class GateServiceImpl implements GateService {
     @Override
     public void extractData() {
         long startTime = System.nanoTime();
-        if (props.isAUTO_EXECUTION()) {
-            while (corpus.iterator().hasNext()) {
-                Document document = corpus.iterator().next();
-                fillCVdata(document);
-                logger.info("File removed from corpus [" + corpus.remove(document) + "]");
-            }
-        } else {
-            for (Document document : corpus) {
-                fillCVdata(document);
-            }
+        for (Document document : corpus) {
+            fillCVdata(document);
         }
+        filedRepository.refreshFiledRepository();
         long endTime = System.nanoTime();
+        Start.getScene().setCursor(Cursor.DEFAULT);
         logger.info("Execution time: " + (endTime - startTime) + " [ns]");
         logger.info("Data extracted");
     }
@@ -373,10 +365,7 @@ public class GateServiceImpl implements GateService {
 
                 filed.setExtractedData(cv);
                 filed.setExtractedStatus("OK");
-                if (!props.isAUTO_EXECUTION()) {
-                    filedRepository.refreshFiledRepository();
-                }
-                logger.info("File name [" + filed.getFile().getName() + "]");
+                logger.info("File [" + filed.getFile().getName() + "] extracted");
             } catch (Exception ex) {
                 logger.info("Error during extracting data " + ex);
                 filed.setExtractedStatus("Error");
