@@ -25,7 +25,7 @@ public class AdvancedSelectionController implements Initializable {
     private VBox work;
 
     @FXML
-    private VBox educational;
+    private VBox education;
 
     @FXML
     private VBox skills;
@@ -35,6 +35,15 @@ public class AdvancedSelectionController implements Initializable {
 
     @FXML
     private VBox interests;
+
+    @FXML
+    private VBox accomplishments;
+
+    @FXML
+    private VBox languages;
+
+    @FXML
+    private VBox additionalInfo;
 
     @Autowired
     public AdvancedSelectionController(ScreensManager screensManager) {
@@ -59,16 +68,22 @@ public class AdvancedSelectionController implements Initializable {
     private void loadTagBars() {
         TagBar baseBar = new TagBar();
         TagBar workBar = new TagBar();
-        TagBar educationalBar = new TagBar();
+        TagBar educationBar = new TagBar();
         TagBar skillsBar = new TagBar();
-        TagBar summuryBar = new TagBar();
+        TagBar summaryBar = new TagBar();
         TagBar interestsBar = new TagBar();
+        TagBar accomplishmentsBar = new TagBar();
+        TagBar languagesBar = new TagBar();
+        TagBar additionalInfoBar = new TagBar();
 
         base.getChildren().addAll(baseBar);
         work.getChildren().addAll(workBar);
-        educational.getChildren().addAll(educationalBar);
+        education.getChildren().addAll(educationBar);
         skills.getChildren().addAll(skillsBar);
-        summury.getChildren().addAll(summuryBar);
+        summury.getChildren().addAll(summaryBar);
         interests.getChildren().addAll(interestsBar);
+        accomplishments.getChildren().addAll(accomplishmentsBar);
+        languages.getChildren().addAll(languagesBar);
+        additionalInfo.getChildren().addAll(additionalInfoBar);
     }
 }

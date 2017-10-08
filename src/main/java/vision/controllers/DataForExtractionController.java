@@ -2,14 +2,18 @@ package vision.controllers;
 
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.javafx_own_components.AssociatedCheckBoxes;
 import vision.service.ScreensManager;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -21,55 +25,71 @@ public class DataForExtractionController implements Initializable {
     private final ScreensManager screensManager;
 
     @FXML
-    private JFXCheckBox allBasic;
-    @FXML
-    private JFXCheckBox allWork;
-    @FXML
-    private JFXCheckBox allSkills;
-    @FXML
-    private JFXCheckBox allEducational;
-    @FXML
-    private JFXCheckBox allSummary;
-    @FXML
-    private JFXCheckBox allInterests;
-
-    @FXML
     private JFXCheckBox nameSurname;
     @FXML
     private JFXCheckBox email;
     @FXML
-    private JFXCheckBox phone;
+    private JFXCheckBox jobTitles;
     @FXML
-    private JFXCheckBox birthdate;
+    private JFXCheckBox cityCountry;
     @FXML
-    private JFXCheckBox city;
+    private JFXCheckBox urls;
+    @FXML
+    private JFXCheckBox gender;
+    @FXML
+    private JFXCheckBox phones;
+    @FXML
+    private JFXCheckBox allBasic;
 
     @FXML
-    private JFXCheckBox work;
+    private JFXCheckBox experiencesTitles;
     @FXML
-    private JFXCheckBox post;
+    private JFXCheckBox experoence;
     @FXML
-    private JFXCheckBox date;
-    @FXML
-    private JFXCheckBox information;
+    private JFXCheckBox allWork;
 
     @FXML
     private JFXCheckBox skills;
     @FXML
-    private JFXCheckBox knowledge;
+    private JFXCheckBox programmingLanguages;
+    @FXML
+    private JFXCheckBox programmingSkills;
+    @FXML
+    private JFXCheckBox allSkills;
 
     @FXML
-    private JFXCheckBox place;
+    private JFXCheckBox education;
     @FXML
-    private JFXCheckBox field;
-    @FXML
-    private JFXCheckBox dateEducational;
+    private JFXCheckBox allEducational;
 
     @FXML
     private JFXCheckBox summary;
+    @FXML
+    private JFXCheckBox allSummary;
+
+    @FXML
+    private JFXCheckBox languages;
+    @FXML
+    private JFXCheckBox allLanguages;
+
+    @FXML
+    private JFXCheckBox accomplishments;
+    @FXML
+    private JFXCheckBox awards;
+    @FXML
+    private JFXCheckBox credibility;
+    @FXML
+    private JFXCheckBox allAccomplishments;
 
     @FXML
     private JFXCheckBox interests;
+    @FXML
+    private JFXCheckBox allInterests;
+
+    @FXML
+    private JFXCheckBox additionalInfo;
+    @FXML
+    private JFXCheckBox allAdditionalInfo;
 
     @Autowired
     public DataForExtractionController(ScreensManager screensManager) {
@@ -78,12 +98,15 @@ public class DataForExtractionController implements Initializable {
 
     @FXML
     void checkAllClick() {
-        allBasic.setSelected(true);
-        allWork.setSelected(true);
-        allSkills.setSelected(true);
-        allEducational.setSelected(true);
-        allSummary.setSelected(true);
-        allInterests.setSelected(true);
+        if (!allBasic.isSelected()) allBasic.setSelected(true);
+        if (!allWork.isSelected()) allWork.setSelected(true);
+        if (!allSkills.isSelected()) allSkills.setSelected(true);
+        if (!allEducational.isSelected()) allEducational.setSelected(true);
+        if (!allSummary.isSelected()) allSummary.setSelected(true);
+        if (!allInterests.isSelected()) allInterests.setSelected(true);
+        if (!allLanguages.isSelected()) allLanguages.setSelected(true);
+        if (!allAccomplishments.isSelected()) allAccomplishments.setSelected(true);
+        if (!allAdditionalInfo.isSelected()) allAdditionalInfo.setSelected(true);
     }
 
     @FXML
@@ -98,69 +121,34 @@ public class DataForExtractionController implements Initializable {
 
     @FXML
     void uncheckAllClick() {
-        allBasic.setSelected(false);
-        allWork.setSelected(false);
-        allSkills.setSelected(false);
-        allEducational.setSelected(false);
-        allSummary.setSelected(false);
-        allInterests.setSelected(false);
+        if (allBasic.isSelected()) allBasic.setSelected(false);
+        if (allWork.isSelected()) allWork.setSelected(false);
+        if (allSkills.isSelected()) allSkills.setSelected(false);
+        if (allEducational.isSelected()) allEducational.setSelected(false);
+        if (allSummary.isSelected()) allSummary.setSelected(false);
+        if (allInterests.isSelected()) allInterests.setSelected(false);
+        if (allLanguages.isSelected()) allLanguages.setSelected(false);
+        if (allAccomplishments.isSelected()) allAccomplishments.setSelected(false);
+        if (allAdditionalInfo.isSelected()) allAdditionalInfo.setSelected(false);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AssociatedCheckBoxes basicChecks = new AssociatedCheckBoxes(allBasic, getBasicBoxes());
-        AssociatedCheckBoxes workChecks = new AssociatedCheckBoxes(allWork, getWorkBoxes());
-        AssociatedCheckBoxes skillsChecks = new AssociatedCheckBoxes(allSkills, getSkillsBoxes());
-        AssociatedCheckBoxes educetionalBoxes = new AssociatedCheckBoxes(allEducational, getEducationalBoxes());
-        AssociatedCheckBoxes summuryBoxes = new AssociatedCheckBoxes(allSummary, getSummuryBoxes());
-        AssociatedCheckBoxes interestsBoxes = new AssociatedCheckBoxes(allInterests, getInterestsBoxes());
+        new AssociatedCheckBoxes(allBasic, createChkBoxList(nameSurname, email, jobTitles, cityCountry, urls, gender, phones));
+        new AssociatedCheckBoxes(allWork, createChkBoxList(experiencesTitles, experoence));
+        new AssociatedCheckBoxes(allSkills, createChkBoxList(skills, programmingLanguages, programmingSkills));
+        new AssociatedCheckBoxes(allEducational, createChkBoxList(education));
+        new AssociatedCheckBoxes(allSummary, createChkBoxList(summary));
+        new AssociatedCheckBoxes(allInterests, createChkBoxList(interests));
+        new AssociatedCheckBoxes(allLanguages, createChkBoxList(languages));
+        new AssociatedCheckBoxes(allAccomplishments, createChkBoxList(accomplishments, awards, credibility));
+        new AssociatedCheckBoxes(allAdditionalInfo, createChkBoxList(additionalInfo));
     }
 
-    private List<JFXCheckBox> getBasicBoxes() {
-        List<JFXCheckBox> basicBoxes = new ArrayList<>();
-        basicBoxes.add(nameSurname);
-        basicBoxes.add(email);
-        basicBoxes.add(phone);
-        basicBoxes.add(birthdate);
-        basicBoxes.add(city);
-        return basicBoxes;
-    }
-
-    private List<JFXCheckBox> getWorkBoxes() {
-        List<JFXCheckBox> workBoxes = new ArrayList<>();
-        workBoxes.add(work);
-        workBoxes.add(post);
-        workBoxes.add(date);
-        workBoxes.add(information);
-        return workBoxes;
-    }
-
-    private List<JFXCheckBox> getSkillsBoxes() {
-        List<JFXCheckBox> skillsBoxes = new ArrayList<>();
-        skillsBoxes.add(skills);
-        skillsBoxes.add(knowledge);
-        return skillsBoxes;
-    }
-
-    private List<JFXCheckBox> getEducationalBoxes() {
-        List<JFXCheckBox> educationalBoxes = new ArrayList<>();
-        educationalBoxes.add(place);
-        educationalBoxes.add(field);
-        educationalBoxes.add(dateEducational);
-        return educationalBoxes;
-    }
-
-    private List<JFXCheckBox> getSummuryBoxes() {
-        List<JFXCheckBox> summuryBoxes = new ArrayList<>();
-        summuryBoxes.add(summary);
-        return summuryBoxes;
-    }
-
-
-    private List<JFXCheckBox> getInterestsBoxes() {
-        List<JFXCheckBox> interestsBoxes = new ArrayList<>();
-        interestsBoxes.add(interests);
-        return interestsBoxes;
+    private List<JFXCheckBox> createChkBoxList(JFXCheckBox... jfxCheckBoxs) {
+        List<JFXCheckBox> boxes = new ArrayList<>();
+        boxes.addAll(Arrays.asList(jfxCheckBoxs));
+        return boxes;
     }
 
 }

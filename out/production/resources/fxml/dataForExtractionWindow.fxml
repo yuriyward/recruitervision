@@ -14,7 +14,7 @@
 
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.DataForExtractionController">
    <children>
-      <Pane layoutX="51.0" layoutY="37.0" prefHeight="194.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="80.0">
+      <Pane layoutX="51.0" layoutY="37.0" prefHeight="185.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="80.0">
          <children>
             <Label layoutX="148.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Base data" />
             <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
@@ -24,126 +24,97 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXCheckBox fx:id="nameSurname" selected="true" style="-fx-font-size: 16;" text="Name and surname" />
-                  <JFXCheckBox fx:id="email" selected="true" style="-fx-font-size: 16;" text="Email" GridPane.rowIndex="1" />
-                  <JFXCheckBox fx:id="phone" selected="true" style="-fx-font-size: 16;" text="Phone number" GridPane.rowIndex="2" />
-                  <JFXCheckBox fx:id="birthdate" selected="true" style="-fx-font-size: 16;" text="Birthdate" GridPane.columnIndex="1" />
-                  <JFXCheckBox fx:id="city" selected="true" style="-fx-font-size: 16;" text="City" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="nameSurname" selected="true" style="-fx-font-size: 16;" text="Name, middle name and surname" />
+                  <JFXCheckBox fx:id="email" selected="true" style="-fx-font-size: 16;" text="Email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="jobTitles" selected="true" style="-fx-font-size: 16;" text="Job titles" GridPane.rowIndex="3" />
+                  <JFXCheckBox fx:id="cityCountry" selected="true" style="-fx-font-size: 16;" text="City and country" GridPane.rowIndex="2" />
+                  <JFXCheckBox fx:id="urls" selected="true" style="-fx-font-size: 16;" text="URLs" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXCheckBox fx:id="gender" selected="true" style="-fx-font-size: 16;" text="Gender" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="phones" selected="true" style="-fx-font-size: 16;" text="Phones" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <JFXCheckBox fx:id="allBasic" layoutX="307.0" layoutY="6.0" selected="true" text="All" />
          </children>
       </Pane>
-      <Pane layoutX="474.0" layoutY="41.0" prefHeight="194.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="80.0">
+      <AnchorPane layoutX="504.0" layoutY="180.0" prefHeight="85.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="180.0">
          <children>
-            <Label layoutX="121.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Work experience" />
-            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+            <Label layoutX="121.0" layoutY="10.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Work experience" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="40.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXCheckBox fx:id="work" selected="true" style="-fx-font-size: 16;" text="Work place" />
-                  <JFXCheckBox fx:id="post" selected="true" style="-fx-font-size: 16;" text="The post" GridPane.rowIndex="1" />
-                  <JFXCheckBox fx:id="date" selected="true" style="-fx-font-size: 16;" text="Date" GridPane.columnIndex="1" />
-                  <JFXCheckBox fx:id="information" selected="true" style="-fx-font-size: 16;" text="Information" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="experiencesTitles" selected="true" style="-fx-font-size: 16;" text="Titles" />
+                  <JFXCheckBox fx:id="experoence" selected="true" style="-fx-font-size: 16;" text="Content" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <JFXCheckBox fx:id="allWork" layoutX="307.0" layoutY="6.0" selected="true" text="All" />
+            <JFXCheckBox fx:id="allWork" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
          </children>
-      </Pane>
-      <Pane layoutX="93.0" layoutY="351.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="300.0">
+      </AnchorPane>
+      <AnchorPane layoutX="100.0" layoutY="280.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="275.0">
          <children>
-            <Label layoutX="120.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Skills &amp; expertise" />
-            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+            <Label layoutX="166.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Skills" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="100.0" prefWidth="335.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="25.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXCheckBox fx:id="skills" selected="true" style="-fx-font-size: 16;" text="Skills information" />
-                  <JFXCheckBox fx:id="knowledge" selected="true" style="-fx-font-size: 16;" text="The exteent of knowledge" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="skills" selected="true" style="-fx-font-size: 16;" text="Content" />
+                  <JFXCheckBox fx:id="programmingLanguages" selected="true" style="-fx-font-size: 16;" text="Programming languages" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="programmingSkills" selected="true" style="-fx-font-size: 16;" text="Programming skills" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <JFXCheckBox fx:id="allSkills" layoutX="307.0" layoutY="6.0" selected="true" text="All" />
+            <JFXCheckBox fx:id="allSkills" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
          </children>
-      </Pane>
-      <Pane layoutX="490.0" layoutY="350.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="300.0">
+      </AnchorPane>
+      <AnchorPane layoutX="505.0" layoutY="440.0" prefHeight="85.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="435.0">
          <children>
-            <Label layoutX="100.0" layoutY="14.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Educational &amp; training" />
-            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+            <Label layoutX="148.0" layoutY="10.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Education" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="25.0" prefWidth="276.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXCheckBox fx:id="place" selected="true" style="-fx-font-size: 16;" text="Educational place" />
-                  <JFXCheckBox fx:id="field" selected="true" style="-fx-font-size: 16;" text="Field of study" GridPane.rowIndex="1" />
-                  <JFXCheckBox fx:id="dateEducational" selected="true" style="-fx-font-size: 16;" text="Date" GridPane.columnIndex="1" />
+                  <JFXCheckBox fx:id="education" selected="true" style="-fx-font-size: 16;" text="Content" />
                </children>
             </GridPane>
-            <JFXCheckBox fx:id="allEducational" layoutX="307.0" layoutY="6.0" selected="true" text="All" />
+            <JFXCheckBox fx:id="allEducational" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
          </children>
-      </Pane>
-      <Pane layoutX="100.0" layoutY="523.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.topAnchor="475.0">
+      </AnchorPane>
+      <AnchorPane layoutX="504.0" layoutY="71.0" prefHeight="85.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="80.0">
          <children>
-            <Label layoutX="149.0" layoutY="15.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Summary" />
-            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
+            <Label layoutX="149.0" layoutY="10.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Summary" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="25.0" prefWidth="276.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXCheckBox fx:id="summary" selected="true" style="-fx-font-size: 16;" text="Summary information" />
+                  <JFXCheckBox fx:id="summary" selected="true" style="-fx-font-size: 16;" text="Content" />
                </children>
             </GridPane>
-            <JFXCheckBox fx:id="allSummary" layoutX="307.0" layoutY="6.0" selected="true" text="All" />
+            <JFXCheckBox fx:id="allSummary" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
          </children>
-      </Pane>
-      <Pane layoutX="510.0" layoutY="525.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="475.0">
-         <children>
-            <Label layoutX="127.0" layoutY="15.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Additional data" />
-            <GridPane layoutX="17.0" layoutY="41.0" prefHeight="130.0" prefWidth="335.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <JFXCheckBox fx:id="interests" selected="true" style="-fx-font-size: 16;" text="Interests information" />
-               </children>
-            </GridPane>
-            <JFXCheckBox fx:id="allInterests" layoutX="307.0" layoutY="6.0" selected="true" text="All" />
-         </children>
-      </Pane>
+      </AnchorPane>
       <JFXButton defaultButton="true" layoutX="45.0" layoutY="27.0" onAction="#checkAllClick" prefWidth="150.0" style="-fx-background-color: #337AB7;" text="Check All" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="Roboto Medium" size="14.0" />
@@ -170,5 +141,77 @@
             </JFXButton>
          </right>
       </JFXToolbar>
+      <AnchorPane layoutX="100.0" layoutY="440.0" prefHeight="85.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="435.0">
+         <children>
+            <Label layoutX="145.0" layoutY="10.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Languages" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="25.0" prefWidth="276.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="languages" selected="true" style="-fx-font-size: 16;" text="Content" />
+               </children>
+            </GridPane>
+            <JFXCheckBox fx:id="allLanguages" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="505.0" layoutY="280.0" prefHeight="150.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="275.0">
+         <children>
+            <Label layoutX="119.0" layoutY="10.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Accomplishments" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="100.0" prefWidth="335.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints prefHeight="25.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="accomplishments" selected="true" style="-fx-font-size: 16;" text="Accomplishments" />
+                  <JFXCheckBox fx:id="awards" selected="true" style="-fx-font-size: 16;" text="Awards" GridPane.rowIndex="1" />
+                  <JFXCheckBox fx:id="credibility" selected="true" style="-fx-font-size: 16;" text="Credibility" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <JFXCheckBox fx:id="allAccomplishments" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="505.0" layoutY="553.0" prefHeight="85.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="530.0">
+         <children>
+            <Label layoutX="148.0" layoutY="10.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Interests" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="25.0" prefWidth="276.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="interests" selected="true" style="-fx-font-size: 16;" text="Content" />
+               </children>
+            </GridPane>
+            <JFXCheckBox fx:id="allInterests" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="100.0" layoutY="553.0" prefHeight="85.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="530.0">
+         <children>
+            <Label layoutX="128.0" layoutY="10.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Additional info" AnchorPane.topAnchor="10.0" />
+            <GridPane prefHeight="25.0" prefWidth="276.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <JFXCheckBox fx:id="additionalInfo" selected="true" style="-fx-font-size: 16;" text="Content" />
+               </children>
+            </GridPane>
+            <JFXCheckBox fx:id="allAdditionalInfo" selected="true" text="All" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
