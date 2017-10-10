@@ -31,15 +31,13 @@ import java.util.List;
 public class GateServiceImpl implements GateService {
     private final static Logger logger = LoggerFactory.getLogger(GateServiceImpl.class);
     private final FiledRepository filedRepository;
-    private final FileService fileService;
     private final Props props;
     private CorpusController corpusController;
     private Corpus corpus;
 
     @Autowired
-    public GateServiceImpl(FiledRepository filedRepository, FileService fileService, Props props) {
+    public GateServiceImpl(FiledRepository filedRepository, Props props) {
         this.filedRepository = filedRepository;
-        this.fileService = fileService;
         this.props = props;
         addSubscription();
     }

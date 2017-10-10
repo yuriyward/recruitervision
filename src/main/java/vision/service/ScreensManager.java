@@ -109,6 +109,12 @@ public class ScreensManager {
         materialDialog.showDialog();
     }
 
+    public void showMaterialDialogForCandidatesList(String directory) {
+        mainWindowController.getStackPane().setVisible(true);
+        MaterialDialog materialDialog = new MaterialDialog(directory, mainWindowController.getStackPane());
+        materialDialog.showDialogWithDirectory();
+    }
+
     private void handleSelection(JFXButton selectedBtn) {
         selectedBtn.setStyle("-fx-background-color: #6aae31;-fx-font-size: 16;-fx-font-weight:bold;-fx-text-fill:white");
         mainWindowController.unmarkNotSelectedButtons(selectedBtn);

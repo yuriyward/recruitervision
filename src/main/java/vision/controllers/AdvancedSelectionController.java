@@ -1,11 +1,13 @@
 package vision.controllers;
 
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.beans.InvalidationListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.javafx_own_components.TagBar;
+import vision.repository.SelectionRepository;
 import vision.service.ScreensManager;
 
 import java.net.URL;
@@ -85,5 +87,15 @@ public class AdvancedSelectionController implements Initializable {
         accomplishments.getChildren().addAll(accomplishmentsBar);
         languages.getChildren().addAll(languagesBar);
         additionalInfo.getChildren().addAll(additionalInfoBar);
+
+        baseBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedBase = baseBar.getTags());
+        workBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedWork = workBar.getTags());
+        educationBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedEducation = educationBar.getTags());
+        skillsBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedSkills = skillsBar.getTags());
+        summaryBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedSummary = summaryBar.getTags());
+        interestsBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedInterests = interestsBar.getTags());
+        accomplishmentsBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedAccomplishments = accomplishmentsBar.getTags());
+        languagesBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedLanguages = languagesBar.getTags());
+        additionalInfoBar.getTags().addListener((InvalidationListener) c -> SelectionRepository.advancedAdditionalInfo = additionalInfoBar.getTags());
     }
 }

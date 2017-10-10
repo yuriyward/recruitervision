@@ -23,7 +23,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public File saveParsedText(String path, File file, String text) {
         String filename = FilenameUtils.getBaseName(file.getName()) + EXTENSION;
-        createDirectory();
+        createDirectory(CommonUtils.TMP_FILES_PATH);
         String tmpFile = String.join(CommonUtils.DELIMITER, path, filename);
         try {
             FileWriter fileWriter = new FileWriter(tmpFile);
@@ -43,9 +43,9 @@ public class FileServiceImpl implements FileService {
         }
     }
 
-    private void createDirectory() {
-        if (!Files.isDirectory(Paths.get(CommonUtils.TMP_FILES_PATH))) {
-            if (new File(CommonUtils.TMP_FILES_PATH).mkdir()) {
+    private void createDirectory(String path) {
+        if (!Files.isDirectory(Paths.get(path))) {
+            if (new File(path).mkdir()) {
                 logger.info("New user directory created");
             }
         }

@@ -2,13 +2,11 @@ package vision.controllers;
 
 import com.jfoenix.controls.JFXCheckBox;
 import de.felixroske.jfxsupport.FXMLController;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.javafx_own_components.AssociatedCheckBoxes;
+import vision.repository.SelectionRepository;
 import vision.service.ScreensManager;
 
 import java.net.URL;
@@ -134,6 +132,11 @@ public class DataForExtractionController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        createAssociations();
+        addListenersForCheckboxes();
+    }
+
+    private void createAssociations() {
         new AssociatedCheckBoxes(allBasic, createChkBoxList(nameSurname, email, jobTitles, cityCountry, urls, gender, phones));
         new AssociatedCheckBoxes(allWork, createChkBoxList(experiencesTitles, experoence));
         new AssociatedCheckBoxes(allSkills, createChkBoxList(skills, programmingLanguages, programmingSkills));
@@ -143,6 +146,37 @@ public class DataForExtractionController implements Initializable {
         new AssociatedCheckBoxes(allLanguages, createChkBoxList(languages));
         new AssociatedCheckBoxes(allAccomplishments, createChkBoxList(accomplishments, awards, credibility));
         new AssociatedCheckBoxes(allAdditionalInfo, createChkBoxList(additionalInfo));
+    }
+
+    private void addListenersForCheckboxes() {
+        nameSurname.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.nameSurname = newValue);
+        email.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.email = newValue);
+        jobTitles.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.jobTitles = newValue);
+        cityCountry.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.cityCountry = newValue);
+        urls.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.urls = newValue);
+        gender.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.gender = newValue);
+        phones.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.phones = newValue);
+
+        experiencesTitles.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.experiencesTitles = newValue);
+        experoence.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.experience = newValue);
+
+        skills.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.skills = newValue);
+        programmingLanguages.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.programmingLanguages = newValue);
+        programmingSkills.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.programmingSkills = newValue);
+
+        education.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.education = newValue);
+
+        summary.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.summary = newValue);
+
+        languages.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.languages = newValue);
+
+        accomplishments.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.accomplishments = newValue);
+        awards.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.awards = newValue);
+        credibility.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.credibility = newValue);
+
+        interests.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.interests = newValue);
+
+        additionalInfo.selectedProperty().addListener((observable, oldValue, newValue) -> SelectionRepository.additionalInfo = newValue);
     }
 
     private List<JFXCheckBox> createChkBoxList(JFXCheckBox... jfxCheckBoxs) {

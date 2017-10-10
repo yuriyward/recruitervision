@@ -6,9 +6,11 @@ import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.stage.DirectoryChooser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
-import vision.service.FileServiceImpl;
+import vision.service.PDFCreator;
 import vision.service.ScreensManager;
 
 import java.io.File;
@@ -21,7 +23,8 @@ import java.util.ResourceBundle;
 @FXMLController
 public class EndFileController implements Initializable {
     private final ScreensManager screensManager;
-    private final FileServiceImpl fileService;
+    private final PDFCreator pdfCreator;
+    private final static Logger logger = LoggerFactory.getLogger(EndFileController.class);
 
     @FXML
     private JFXTextField selectFolderFld;
@@ -30,9 +33,9 @@ public class EndFileController implements Initializable {
     private File selectedDirectory;
 
     @Autowired
-    public EndFileController(ScreensManager screensManager, FileServiceImpl fileService) {
+    public EndFileController(ScreensManager screensManager, PDFCreator pdfCreator) {
         this.screensManager = screensManager;
-        this.fileService = fileService;
+        this.pdfCreator = pdfCreator;
     }
 
     @Override
@@ -67,7 +70,12 @@ public class EndFileController implements Initializable {
     @FXML
     void extractPDF() {
         if (folderExist()) {
-            System.out.println("Parsed");
+            if (pdfCreator.createDocument(selectFolderFld.getText())) {
+                screensManager.showMaterialDialogForCandidatesList(selectFolderFld.getText());
+            } else {
+                screensManager.showMaterialDialog("Error during creation of candidates list", "File not created, please restart app and repeat", "OK");
+            }
+            logger.info("Candidate list created");
         }
     }
 
