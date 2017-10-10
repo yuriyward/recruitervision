@@ -12,13 +12,13 @@
  */
 package com.ontotext.jape.automaton;
 
+import com.ontotext.jape.pda.StatePDA;
+import com.ontotext.jape.pda.TransitionPDA;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-
-import com.ontotext.jape.pda.StatePDA;
-import com.ontotext.jape.pda.TransitionPDA;
 
 /**
  * This class provides basic functionalities for standard one-tape automata. The

@@ -29,3 +29,5 @@ build/
 handle_test/
 
 tmpFiles/
+
+*.pdf

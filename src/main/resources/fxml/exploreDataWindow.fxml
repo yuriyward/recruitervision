@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.HTMLEditor?>
-
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ExploreDataController">
    <children>
       <Label layoutX="455.0" layoutY="240.0" prefHeight="50.0" prefWidth="71.0" text="loading..." AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="240.0" />

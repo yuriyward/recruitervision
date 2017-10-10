@@ -13,10 +13,9 @@
  */
 package com.ontotext.jape.pda;
 
+import com.ontotext.jape.automaton.TripleTransitions;
 import gate.fsm.State;
 import gate.jape.RightHandSide;
-
-import com.ontotext.jape.automaton.TripleTransitions;
 
 public class StatePDA extends State {
 

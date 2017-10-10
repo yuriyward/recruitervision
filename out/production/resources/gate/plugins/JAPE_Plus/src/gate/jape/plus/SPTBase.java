@@ -14,47 +14,23 @@
  */
 package gate.jape.plus;
 
-import gate.Annotation;
-import gate.AnnotationSet;
-import gate.Controller;
-import gate.Corpus;
-import gate.CorpusController;
-import gate.Factory;
-import gate.FeatureMap;
-import gate.annotation.AnnotationSetImpl;
-import gate.creole.ANNIEConstants;
-import gate.creole.AbstractLanguageAnalyser;
-import gate.creole.ExecutionException;
-import gate.creole.ExecutionInterruptedException;
-import gate.creole.ResourceInstantiationException;
-import gate.creole.ontology.Ontology;
-import gate.jape.ActionContext;
-import gate.jape.ControllerEventBlocksAction;
-import gate.jape.DefaultActionContext;
-import gate.jape.JapeException;
-import gate.jape.Rule;
-import gate.jape.constraint.ConstraintPredicate;
-import gate.jape.plus.Transducer.SinglePhaseTransducerPDA;
-
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
-
-import org.apache.log4j.Logger;
-
 import cern.colt.Sorting;
 import cern.colt.bitvector.QuickBitVector;
 import cern.colt.function.IntComparator;
 import cern.colt.list.IntArrayList;
-
 import com.ontotext.jape.pda.TransitionPDA;
+import gate.*;
+import gate.annotation.AnnotationSetImpl;
+import gate.creole.*;
+import gate.creole.ontology.Ontology;
+import gate.jape.*;
+import gate.jape.constraint.ConstraintPredicate;
+import gate.jape.plus.Transducer.SinglePhaseTransducerPDA;
+import org.apache.log4j.Logger;
+
+import java.text.NumberFormat;
+import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * An optimised implementation for a JAPE single phase transducer.

@@ -1,12 +1,11 @@
 package gate.resources.img.svg;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  * This class has been automatically generated using <a

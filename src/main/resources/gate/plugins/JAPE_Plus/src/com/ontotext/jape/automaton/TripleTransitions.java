@@ -13,10 +13,10 @@
  */
 package com.ontotext.jape.automaton;
 
-import java.util.Arrays;
-
 import com.ontotext.jape.pda.StatePDA;
 import com.ontotext.jape.pda.TransitionPDA;
+
+import java.util.Arrays;
 
 /**
  * This class is used for the conversion from FSM to Automaton and from

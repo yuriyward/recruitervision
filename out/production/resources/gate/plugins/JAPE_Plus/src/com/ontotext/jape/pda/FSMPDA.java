@@ -13,31 +13,15 @@
  */
 package com.ontotext.jape.pda;
 
-import static gate.jape.KleeneOperator.Type.OPTIONAL;
-import static gate.jape.KleeneOperator.Type.PLUS;
-import static gate.jape.KleeneOperator.Type.RANGE;
-import static gate.jape.KleeneOperator.Type.STAR;
+import com.ontotext.jape.automaton.*;
 import gate.fsm.FSM;
-import gate.jape.BasicPatternElement;
-import gate.jape.ComplexPatternElement;
-import gate.jape.ConstraintGroup;
-import gate.jape.KleeneOperator;
-import gate.jape.LeftHandSide;
-import gate.jape.PatternElement;
-import gate.jape.PrioritisedRuleList;
-import gate.jape.Rule;
-import gate.jape.SinglePhaseTransducer;
+import gate.jape.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.ontotext.jape.automaton.Automaton;
-import com.ontotext.jape.automaton.AutomatonBuildHelp;
-import com.ontotext.jape.automaton.ClosedHashOfStrings;
-import com.ontotext.jape.automaton.Constants;
-import com.ontotext.jape.automaton.GenericWholeArrray;
-import com.ontotext.jape.automaton.TripleTransitions;
+import static gate.jape.KleeneOperator.Type.*;
 
 public class FSMPDA extends FSM {
 	

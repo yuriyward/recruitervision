@@ -13,9 +13,8 @@
  */
 package com.ontotext.jape.automaton;
 
-import gate.jape.BasicPatternElement;
-
 import com.ontotext.jape.pda.TransitionPDA;
+import gate.jape.BasicPatternElement;
 
 /**
  * This class implements closed hash of elements of type Transition

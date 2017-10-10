@@ -14,22 +14,14 @@
  */
 package gate.jape.plus;
 
-import gate.Annotation;
-import gate.AnnotationSet;
-import gate.Controller;
-import gate.Factory;
-import gate.Gate;
-import gate.LanguageAnalyser;
-import gate.Resource;
+import com.ontotext.jape.pda.FSMPDA;
+import gate.*;
 import gate.creole.AbstractLanguageAnalyser;
 import gate.creole.ControllerAwarePR;
 import gate.creole.ExecutionException;
 import gate.creole.ResourceInstantiationException;
-import gate.creole.metadata.CreoleParameter;
-import gate.creole.metadata.CreoleResource;
+import gate.creole.metadata.*;
 import gate.creole.metadata.Optional;
-import gate.creole.metadata.RunTime;
-import gate.creole.metadata.Sharable;
 import gate.creole.ontology.Ontology;
 import gate.event.AnnotationSetEvent;
 import gate.event.AnnotationSetListener;
@@ -37,11 +29,7 @@ import gate.event.ProgressListener;
 import gate.event.StatusListener;
 import gate.gui.ActionsPublisher;
 import gate.gui.MainFrame;
-import gate.jape.ControllerEventBlocksAction;
-import gate.jape.DefaultActionContext;
-import gate.jape.MultiPhaseTransducer;
-import gate.jape.Rule;
-import gate.jape.SinglePhaseTransducer;
+import gate.jape.*;
 import gate.jape.constraint.AnnotationAccessor;
 import gate.jape.constraint.ConstraintPredicate;
 import gate.jape.parser.ParseCpsl;
@@ -51,39 +39,18 @@ import gate.util.GateClassLoader;
 import gate.util.GateException;
 import gate.util.Javac;
 import gate.util.persistence.PersistenceManager;
+import org.apache.log4j.Logger;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-
-import org.apache.log4j.Logger;
-
-import com.ontotext.jape.pda.FSMPDA;
 
 
 /**

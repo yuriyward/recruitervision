@@ -15,12 +15,13 @@
 
 package gate.jape.plus;
 
+import cern.colt.list.IntArrayList;
+import cern.colt.map.OpenIntIntHashMap;
+import com.ontotext.jape.pda.FSMPDA;
+import com.ontotext.jape.pda.StatePDA;
+import com.ontotext.jape.pda.TransitionPDA;
 import gate.creole.ResourceInstantiationException;
-import gate.jape.Constraint;
-import gate.jape.JapeConstants;
-import gate.jape.RightHandSide;
-import gate.jape.Rule;
-import gate.jape.SinglePhaseTransducer;
+import gate.jape.*;
 import gate.jape.constraint.ConstraintPredicate;
 import gate.jape.constraint.ContainsPredicate;
 import gate.jape.constraint.WithinPredicate;
@@ -35,19 +36,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import cern.colt.list.IntArrayList;
-import cern.colt.map.OpenIntIntHashMap;
-
-import com.ontotext.jape.pda.FSMPDA;
-import com.ontotext.jape.pda.StatePDA;
-import com.ontotext.jape.pda.TransitionPDA;
+import java.util.*;
 
 /**
  * An utility class for converting a default JAPE transducer into a JAPE-Plus transducer. 
