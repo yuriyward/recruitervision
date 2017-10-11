@@ -44,10 +44,6 @@ public class MainWindowController implements Initializable {
 
     @FXML
     @Getter
-    private JFXButton processingId;
-
-    @FXML
-    @Getter
     private JFXButton showParsedDataBtn;
 
     @FXML
@@ -81,11 +77,6 @@ public class MainWindowController implements Initializable {
     @FXML
     void advancedSelectionBtn(ActionEvent event) {
         screensManager.showAdvancedSelectionWindow();
-    }
-
-    @FXML
-    void processingBtn(ActionEvent event) {
-
     }
 
     @FXML

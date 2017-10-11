@@ -4,10 +4,12 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.scene.Cursor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vision.Start;
 import vision.models.CV;
 import vision.models.Filed;
 import vision.repository.FiledRepository;
@@ -43,6 +45,7 @@ public class PDFCreator {
 
     public boolean createDocument(String path) {
         try {
+            Start.getScene().setCursor(Cursor.WAIT);
             Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, new FileOutputStream(path + CommonUtils.DELIMITER + "Resume candidates list. Created by RecruiterVision [" + dateFormat.format(new Date()) + "].pdf"));
             document.open();
@@ -50,6 +53,7 @@ public class PDFCreator {
             addContent(document);
             document.close();
             logger.info("Data saved to candidates list file");
+            Start.getScene().setCursor(Cursor.DEFAULT);
             return true;
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
@@ -95,7 +99,7 @@ public class PDFCreator {
         if (SelectionRepository.education)
             addEducation(table);
         if (SelectionRepository.additionalInfo)
-            addAdditonalInfo(table);
+            addAdditionalInfo(table);
         if (SelectionRepository.interests)
             addInterests(table);
     }
@@ -118,6 +122,16 @@ public class PDFCreator {
         table.addCell(cell);
         PdfPCell cell2 = new PdfPCell(new Phrase(content, contentFont));
         cell2.setPaddingBottom(5f);
+        table.addCell(cell2);
+    }
+
+    private void addFileWithSectionValue(PdfPTable table, String fileName, String content, boolean highlighted) {
+        PdfPCell cell = new PdfPCell(new Phrase(fileName, fileNameFont));
+        cell.setPaddingBottom(5f);
+        table.addCell(cell);
+        PdfPCell cell2 = new PdfPCell(new Phrase(content, contentFont));
+        cell2.setPaddingBottom(5f);
+        cell2.setBackgroundColor(BaseColor.YELLOW);
         table.addCell(cell2);
     }
 
@@ -145,7 +159,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getSummarySection());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsSummaryAndAdd(table, filed, value);
         }
     }
 
@@ -183,7 +197,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getLanguagesSection());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsLanguagesAndAdd(table, filed, value);
         }
     }
 
@@ -193,17 +207,17 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getEducationSection());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsEducationAndAdd(table, filed, value);
         }
     }
 
-    private void addAdditonalInfo(PdfPTable table) {
+    private void addAdditionalInfo(PdfPTable table) {
         addSectionName(table, "Additional info");
         addSubsection(table, "Content");
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getAdditionalInfo());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsAdditionalInfoAndAdd(table, filed, value);
         }
     }
 
@@ -213,7 +227,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getInterests());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsInterestsAndAdd(table, filed, value);
         }
     }
 
@@ -222,7 +236,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getCandidateName()) + " " + CommonUtils.getIfNullEmptyString(cv.getCandidateMiddleName()) + " " + CommonUtils.getIfNullEmptyString(cv.getCandidateSurname());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsBaseDataAndAdd(table, filed, value);
         }
     }
 
@@ -231,7 +245,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getGender());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsBaseDataAndAdd(table, filed, value);
         }
     }
 
@@ -240,7 +254,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getEmails());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsBaseDataAndAdd(table, filed, value);
         }
     }
 
@@ -249,7 +263,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getCity()) + " " + CommonUtils.getIfNullEmptyString(cv.getCountry());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsBaseDataAndAdd(table, filed, value);
         }
     }
 
@@ -258,7 +272,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getPhones());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsBaseDataAndAdd(table, filed, value);
         }
     }
 
@@ -267,7 +281,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getCandidateJobTitles());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsBaseDataAndAdd(table, filed, value);
         }
     }
 
@@ -276,7 +290,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getURLs());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsBaseDataAndAdd(table, filed, value);
         }
     }
 
@@ -285,7 +299,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getExperienceMain());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsWorkExperienceAndAdd(table, filed, value);
         }
     }
 
@@ -294,7 +308,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getExperienceText());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsWorkExperienceAndAdd(table, filed, value);
         }
     }
 
@@ -303,7 +317,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getSkillsSection());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsSkillsAndAdd(table, filed, value);
         }
     }
 
@@ -312,7 +326,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getProgrammingLanguages());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsSkillsAndAdd(table, filed, value);
         }
     }
 
@@ -321,7 +335,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getProgrammingSkills());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsSkillsAndAdd(table, filed, value);
         }
     }
 
@@ -330,7 +344,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getAccomplishments());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsAccomplishmentsAndAdd(table, filed, value);
         }
     }
 
@@ -339,7 +353,7 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getAwards());
-            addFileWithSectionValue(table, filed.getFile().getName(), value);
+            containsAccomplishmentsAndAdd(table, filed, value);
         }
     }
 
@@ -348,6 +362,141 @@ public class PDFCreator {
         for (Filed filed : filedRepository.getFiledList()) {
             CV cv = filed.getExtractedData();
             String value = CommonUtils.getIfNullEmptyString(cv.getCredibility());
+            containsAccomplishmentsAndAdd(table, filed, value);
+        }
+    }
+
+    private void containsBaseDataAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedBase != null)
+            for (String val : SelectionRepository.advancedBase) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsSummaryAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedSummary != null)
+            for (String val : SelectionRepository.advancedSummary) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsWorkExperienceAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedWork != null)
+            for (String val : SelectionRepository.advancedWork) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsSkillsAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedSkills != null)
+            for (String val : SelectionRepository.advancedSkills) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsAccomplishmentsAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedAccomplishments != null)
+            for (String val : SelectionRepository.advancedAccomplishments) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsLanguagesAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedLanguages != null)
+            for (String val : SelectionRepository.advancedLanguages) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsEducationAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedEducation != null)
+            for (String val : SelectionRepository.advancedEducation) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsAdditionalInfoAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedAdditionalInfo != null)
+            for (String val : SelectionRepository.advancedAdditionalInfo) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
+            addFileWithSectionValue(table, filed.getFile().getName(), value);
+        }
+    }
+
+    private void containsInterestsAndAdd(PdfPTable table, Filed filed, String value) {
+        boolean contains = false;
+        if (SelectionRepository.advancedInterests != null)
+            for (String val : SelectionRepository.advancedInterests) {
+                if (value.contains(val)) {
+                    contains = true;
+                }
+            }
+        if (contains) {
+            addFileWithSectionValue(table, filed.getFile().getName(), value, true);
+        } else {
             addFileWithSectionValue(table, filed.getFile().getName(), value);
         }
     }

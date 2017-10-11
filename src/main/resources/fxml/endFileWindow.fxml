@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.EndFileController">
    <children>
       <Pane layoutX="70.0" layoutY="115.0" prefHeight="60.0" style="-fx-background-color: #1ABB9C; -fx-background-radius: 0;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="80.0">
@@ -67,8 +76,8 @@
       </Pane>
       <JFXButton layoutX="540.0" layoutY="463.0" onAction="#extractDOC" style="-fx-background-color: #337AB7; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Extract now!" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="329.0" AnchorPane.topAnchor="375.0" />
       <Separator layoutX="454.0" layoutY="486.0" prefHeight="5.0" prefWidth="200.0" AnchorPane.bottomAnchor="385.0" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="360.0" />
-      <JFXTextField fx:id="selectFolderFld" labelFloat="true" layoutX="37.0" layoutY="23.0" prefHeight="30.0" promptText="Select folder for save file" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="25.0" />
-      <JFXButton defaultButton="true" layoutX="589.0" layoutY="25.0" onAction="#selectFolderBtn" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00A65A;" text="Select ..." textFill="WHITE">
+      <JFXTextField fx:id="selectFolderFld" labelFloat="true" layoutX="37.0" layoutY="23.0" prefHeight="30.0" prefWidth="711.0" promptText="Select folder for save file" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="25.0" />
+      <JFXButton defaultButton="true" layoutX="771.0" layoutY="25.0" onAction="#selectFolderBtn" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00A65A;" text="Select ..." textFill="WHITE">
          <font>
             <Font name="Roboto Medium" size="14.0" />
          </font>
@@ -82,7 +91,7 @@
             </JFXButton>
          </left>
          <right>
-            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Back to Home" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
