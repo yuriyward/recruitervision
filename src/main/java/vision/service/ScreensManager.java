@@ -9,7 +9,7 @@ import vision.Start;
 import vision.controllers.ExploreDataController;
 import vision.controllers.MainWindowController;
 import vision.controllers.ParsedFileDataController;
-import vision.javafx_own_components.MaterialDialog;
+import vision.own_components.MaterialDialog;
 import vision.models.Filed;
 import vision.view.*;
 
@@ -37,6 +37,7 @@ public class ScreensManager {
 
     @Autowired
     ParsedFilesView parsedFilesView;
+
 
     @Autowired
     ExploreDataView exploreDataView;

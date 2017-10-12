@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
-import vision.javafx_own_components.TagBar;
+import vision.own_components.TagBar;
 import vision.models.CV;
 import vision.models.Filed;
 import vision.utils.CommonUtils;

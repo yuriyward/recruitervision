@@ -1,4 +1,4 @@
-package vision.javafx_own_components;
+package vision.own_components;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;

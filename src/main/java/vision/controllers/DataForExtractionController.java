@@ -5,7 +5,7 @@ import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.javafx_own_components.AssociatedCheckBoxes;
+import vision.own_components.AssociatedCheckBoxes;
 import vision.repository.SelectionRepository;
 import vision.service.ScreensManager;
 

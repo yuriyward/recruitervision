@@ -6,7 +6,9 @@ import gate.creole.ResourceInstantiationException;
 import gate.persist.PersistenceException;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
+import javafx.application.Platform;
 import javafx.scene.Cursor;
+import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ import org.springframework.stereotype.Service;
 import vision.Start;
 import vision.models.CV;
 import vision.models.Filed;
+import vision.push_notification.animations.Animations;
+import vision.push_notification.notification.NotificationController;
+import vision.push_notification.notification.Notifications;
 import vision.repository.FiledRepository;
 import vision.utils.CommonUtils;
 import vision.utils.Props;
@@ -135,6 +140,11 @@ public class GateServiceImpl implements GateService {
             fillCVdata(document);
         }
         long endTime = System.nanoTime();
+        Platform.runLater(() -> {
+            NotificationController notification = new NotificationController("All files extracted", "Now you can check content of all CV files or create candidates list", Notifications.SUCCESS);
+            notification.setAnimation(Animations.POPUP);
+            notification.showAndDismiss(Duration.seconds(5));
+        });
         Start.getScene().setCursor(Cursor.DEFAULT);
         logger.info("Execution time: " + (endTime - startTime) + " [ns]");
         logger.info("Data extracted");

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="100.0" prefWidth="560.0" style="-fx-border-color: #00a65a; -fx-border-width: 2; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="rectangleColor" arcHeight="5.0" arcWidth="5.0" fill="#00a65a" height="97.0" layoutX="1.0" layoutY="1.0" stroke="#00a65a" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 0;" width="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="imageIcon" fitHeight="75.0" fitWidth="75.0" layoutX="61.0" layoutY="13.0" pickOnBounds="true" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="12.0" />
+      <Label fx:id="lblTitle" layoutX="155.0" layoutY="14.0" text="Title" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMessage" layoutX="154.0" layoutY="49.0" prefWidth="286.0" text="Message" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="47.0">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblClose" alignment="TOP_CENTER" layoutX="481.0" layoutY="4.0" prefHeight="32.0" prefWidth="26.0" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
-import vision.javafx_own_components.TagBar;
+import vision.own_components.TagBar;
 import vision.repository.SelectionRepository;
 import vision.service.ScreensManager;
 

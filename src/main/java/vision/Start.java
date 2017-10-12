@@ -3,7 +3,7 @@ package vision;
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import javafx.application.Platform;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import vision.javafx_own_components.SplashScreen;
+import vision.own_components.SplashScreen;
 import vision.utils.Props;
 import vision.view.MainWindowView;
 

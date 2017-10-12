@@ -1,4 +1,4 @@
-package vision.javafx_own_components;
+package vision.own_components;
 
 /**
  * @author Yuriy on 22.07.2017.
