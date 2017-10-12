@@ -3,15 +3,8 @@
 }
 
 .button {
-    -fx-background-color:  #00A65A;
+    -fx-background-color: #00A65A;
     -fx-font-size: 16;
     -fx-font-weight: bold;
     -fx-text-fill: white
 }
-
-/*.button:hover {*/
-    /*-fx-background-color: #00b86a;*/
-    /*-fx-font-size: 16;*/
-    /*-fx-font-weight: bold;*/
-    /*-fx-text-fill: white*/
-/*}*/

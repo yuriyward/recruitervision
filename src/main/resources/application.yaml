@@ -4,3 +4,6 @@ spring:
 javafx:
     title: Recruiter Vision
     appicons: /images/icon.png
+    stage:
+      resizable: false
+#      style: undecorated

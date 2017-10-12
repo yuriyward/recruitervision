@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -11,18 +12,36 @@
          <children>
             <VBox minWidth="180.0" prefWidth="220.0">
                <children>
-                  <JFXButton fx:id="homeBtn" buttonType="RAISED" minHeight="70.0" minWidth="180.0" onAction="#homeBtnAct" prefHeight="160.0" prefWidth="219.0" text="Home" />
-                  <JFXButton fx:id="filesBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#filesBtnAct" prefHeight="75.0" prefWidth="219.0" text="CV Files" />
-                  <JFXButton fx:id="showParsedDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#showParsedData" prefHeight="75.0" prefWidth="219.0" text="Persed data" />
-                  <JFXButton fx:id="informationBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#informationBtnAct" prefHeight="75.0" prefWidth="219.0" text="Selection" />
-                  <JFXButton fx:id="advancedSelectionId" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#advancedSelectionBtn" prefHeight="75.0" prefWidth="219.0" text="Highlightings" />
-                  <JFXButton fx:id="endFileBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#endFileBtnAct" prefHeight="75.0" prefWidth="219.0" text="End file" />
-                  <JFXButton buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text=" " />
+                  <JFXButton fx:id="homeBtn" buttonType="RAISED" minHeight="70.0" minWidth="180.0" onAction="#homeBtnAct" prefHeight="160.0" prefWidth="219.0" text="Home">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="HOME" glyphStyle="-fx-fill:white" size="22" text="" />
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="filesBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#filesBtnAct" prefHeight="75.0" prefWidth="219.0" text="CV Files">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FILES_ALT" glyphStyle="-fx-fill:white" size="22" />
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="showParsedDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#showParsedData" prefHeight="75.0" prefWidth="219.0" text="Persed data">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="LEANPUB" glyphStyle="-fx-fill:white" size="22" />
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="informationBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#informationBtnAct" prefHeight="75.0" prefWidth="219.0" text="Selection">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CHECK_SQUARE_ALT" glyphStyle="-fx-fill:white" size="22" />
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="advancedSelectionId" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#advancedSelectionBtn" prefHeight="75.0" prefWidth="219.0" text="Highlightings">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="TASKS" glyphStyle="-fx-fill:white" size="22" text="" />
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="endFileBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#endFileBtnAct" prefHeight="75.0" prefWidth="219.0" text="End file">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FILE_PDF_ALT" glyphStyle="-fx-fill:white" size="22" />
+                     </graphic></JFXButton>
+                  <JFXButton buttonType="RAISED" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="219.0" style="-fx-background-color: #00A65A; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text=" " />
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorPane" minHeight="600.0" minWidth="620.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="anchorPane" minHeight="650.0" minWidth="620.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

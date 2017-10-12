@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.ParsedFilesController">
    <children>
       <TableView fx:id="millingTable" layoutX="41.0" layoutY="54.0" stylesheets="@../css/table-style.css" AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
@@ -25,10 +33,13 @@
       </TableView>
       <JFXToolbar layoutX="304.0" layoutY="688.0" prefWidth="350.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <right>
-            <JFXButton buttonType="RAISED" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
+            <JFXButton buttonType="RAISED" contentDisplay="RIGHT" onAction="#nextPageClick" prefWidth="150.0" style="-fx-background-color: #00A65A;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="CHEVRON_RIGHT" glyphStyle="-fx-fill:white" size="15" />
+               </graphic>
             </JFXButton>
          </right>
          <left>
@@ -36,25 +47,37 @@
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="CHEVRON_LEFT" glyphStyle="-fx-fill:white" size="15" />
+               </graphic>
             </JFXButton>
          </left>
       </JFXToolbar>
-      <Pane layoutX="20.0" layoutY="583.0" prefHeight="70.0" prefWidth="540.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0">
+      <Pane layoutX="20.0" layoutY="583.0" prefHeight="70.0" prefWidth="559.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0">
          <children>
-            <JFXButton defaultButton="true" layoutX="26.0" layoutY="20.0" onAction="#showParsed" style="-fx-background-color: #337AB7;" text="Show parsed data" textFill="WHITE">
+            <JFXButton defaultButton="true" layoutX="29.0" layoutY="18.0" onAction="#showParsed" prefHeight="35.0" style="-fx-background-color: #337AB7;" text="Show parsed data" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="LEANPUB" glyphStyle="-fx-fill:white" size="17" />
+               </graphic>
             </JFXButton>
-            <JFXButton defaultButton="true" layoutX="193.0" layoutY="20.0" onAction="#showExtracted" style="-fx-background-color: #337AB7;" text="Show extraced data" textFill="WHITE">
+            <JFXButton defaultButton="true" layoutX="202.0" layoutY="18.0" onAction="#showExtracted" prefHeight="35.0" style="-fx-background-color: #337AB7;" text="Show extraced data" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
+               <graphic>
+                  <MaterialIconView glyphName="FIND_IN_PAGE" glyphStyle="-fx-fill:white" size="17" />
+               </graphic>
             </JFXButton>
-            <JFXButton defaultButton="true" layoutX="371.0" layoutY="20.0" onAction="#extract" style="-fx-background-color: #2E86C1;" text="Extract data from files" textFill="WHITE">
+            <JFXButton defaultButton="true" layoutX="377.0" layoutY="18.0" maxHeight="-Infinity" onAction="#extract" prefHeight="35.0" style="-fx-background-color: #2E86C1;" text="Extract data from files" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
+               <graphic>
+                  <MaterialIconView glyphName="QUEUE_PLAY_NEXT" glyphStyle="-fx-fill:white" size="17" text="" />
+               </graphic>
             </JFXButton>
          </children>
       </Pane>
