@@ -57,7 +57,8 @@ public class FileServiceImpl implements FileService {
 
     public boolean saveCorpusToDatastore(Corpus corpus, File path) {
         try {
-            DataStore dataStore = Factory.createDataStore("gate.persist.SerialDataStore", CommonUtils.getFileUrl(path).toString());
+            logger.info(CommonUtils.getFileUrl(path).toString());
+            DataStore dataStore = Factory.createDataStore("gate.persist.SerialDataStore", CommonUtils.getFileUrl(path).toString() + "/DataStore created by RecruiterVision");
             dataStore.open();
             Corpus serializedCorpus = (Corpus) dataStore.adopt(corpus);
             serializedCorpus.setName("Parsed files saved by RecruiterVision");
