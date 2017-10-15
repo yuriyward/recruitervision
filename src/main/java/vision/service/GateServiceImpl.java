@@ -388,4 +388,10 @@ public class GateServiceImpl implements GateService {
         corpus.clear();
         logger.info("Corpus cleared");
     }
+
+    @Override
+    public Corpus getCorpus() {
+        return corpus;
+    }
+
 }

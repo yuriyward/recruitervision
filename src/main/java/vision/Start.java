@@ -2,8 +2,6 @@ package vision;
 
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import javafx.application.Platform;
-import javafx.scene.paint.Color;
-import javafx.stage.StageStyle;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import vision.own_components.SplashScreen;
 import vision.utils.Props;

@@ -53,7 +53,7 @@
             </JFXButton>
          </left>
       </JFXToolbar>
-      <Pane layoutX="20.0" layoutY="583.0" prefHeight="70.0" prefWidth="559.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0">
+      <Pane layoutX="20.0" layoutY="583.0" prefHeight="70.0" prefWidth="808.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0">
          <children>
             <JFXButton defaultButton="true" layoutX="29.0" layoutY="18.0" onAction="#showParsed" prefHeight="35.0" style="-fx-background-color: #337AB7;" text="Show parsed data" textFill="WHITE">
                <font>
@@ -71,12 +71,20 @@
                   <MaterialIconView glyphName="FIND_IN_PAGE" glyphStyle="-fx-fill:white" size="17" />
                </graphic>
             </JFXButton>
-            <JFXButton defaultButton="true" layoutX="377.0" layoutY="18.0" maxHeight="-Infinity" onAction="#extract" prefHeight="35.0" style="-fx-background-color: #2E86C1;" text="Extract data from files" textFill="WHITE">
+            <JFXButton defaultButton="true" layoutX="377.0" layoutY="18.0" maxHeight="-Infinity" onAction="#extract" prefHeight="35.0" style="-fx-background-color: #00A65A;" text="Extract data from files" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
                <graphic>
                   <MaterialIconView glyphName="QUEUE_PLAY_NEXT" glyphStyle="-fx-fill:white" size="17" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton defaultButton="true" layoutX="562.0" layoutY="18.0" maxHeight="-Infinity" onAction="#saveToDatastore" prefHeight="35.0" style="-fx-background-color: #F39C12;" text="Save parsed files to Datastore" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView glyphName="FLOPPY_ALT" glyphStyle="-fx-fill:white" size="17" />
                </graphic>
             </JFXButton>
          </children>

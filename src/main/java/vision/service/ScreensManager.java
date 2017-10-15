@@ -9,8 +9,8 @@ import vision.Start;
 import vision.controllers.ExploreDataController;
 import vision.controllers.MainWindowController;
 import vision.controllers.ParsedFileDataController;
-import vision.own_components.MaterialDialog;
 import vision.models.Filed;
+import vision.own_components.MaterialDialog;
 import vision.view.*;
 
 /**

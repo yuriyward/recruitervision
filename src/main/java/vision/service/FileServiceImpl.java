@@ -1,5 +1,9 @@
 package vision.service;
 
+import gate.Corpus;
+import gate.DataStore;
+import gate.Factory;
+import gate.persist.PersistenceException;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +52,20 @@ public class FileServiceImpl implements FileService {
             if (new File(path).mkdir()) {
                 logger.info("New user directory created");
             }
+        }
+    }
+
+    public boolean saveCorpusToDatastore(Corpus corpus, File path) {
+        try {
+            DataStore dataStore = Factory.createDataStore("gate.persist.SerialDataStore", CommonUtils.getFileUrl(path).toString());
+            dataStore.open();
+            Corpus serializedCorpus = (Corpus) dataStore.adopt(corpus);
+            serializedCorpus.setName("Parsed files saved by RecruiterVision");
+            dataStore.sync(serializedCorpus);
+            return true;
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

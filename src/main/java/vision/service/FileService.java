@@ -1,5 +1,7 @@
 package vision.service;
 
+import gate.Corpus;
+
 import java.io.File;
 
 /**
@@ -9,4 +11,6 @@ public interface FileService {
     File saveParsedText(String path, File file, String text);
 
     void removeFileFromUserDirectory(File file);
+
+    boolean saveCorpusToDatastore(Corpus corpus, File path);
 }

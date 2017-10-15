@@ -1,5 +1,6 @@
 package vision.service;
 
+import gate.Corpus;
 import vision.models.Filed;
 
 /**
@@ -14,4 +15,5 @@ public interface GateService {
     void executeController();
     void extractData();
     void clearCorpus();
+    Corpus getCorpus();
 }

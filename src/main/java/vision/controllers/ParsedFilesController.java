@@ -11,15 +11,19 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import vision.Start;
 import vision.models.Filed;
 import vision.repository.FiledRepository;
+import vision.service.FileService;
 import vision.service.GateService;
 import vision.service.ScreensManager;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +37,8 @@ public class ParsedFilesController implements Initializable {
 
     private final FiledRepository filedRepository;
     private final GateService gateService;
+    private final FileService fileService;
+    private DirectoryChooser directoryChooser;
 
     @FXML
     private TableView<Filed> millingTable;
@@ -65,10 +71,11 @@ public class ParsedFilesController implements Initializable {
 
 
     @Autowired
-    public ParsedFilesController(ScreensManager screensManager, FiledRepository filedRepository, GateService gateService) {
+    public ParsedFilesController(ScreensManager screensManager, FiledRepository filedRepository, GateService gateService, FileService fileService) {
         this.screensManager = screensManager;
         this.filedRepository = filedRepository;
         this.gateService = gateService;
+        this.fileService = fileService;
         initGate();
         addSubscription();
     }
@@ -130,6 +137,7 @@ public class ParsedFilesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initTable();
         initRightClick();
+        directoryChooser = new DirectoryChooser();
     }
 
     private void initTable() {
@@ -212,6 +220,19 @@ public class ParsedFilesController implements Initializable {
             logger.info("File removed from Parsed files table [" + filed.getFile().getName() + "]");
         }
     }
+
+    @FXML
+    void saveToDatastore() {
+        File selectedDirectory = directoryChooser.showDialog(Start.getStage());
+        if (selectedDirectory != null) {
+            if (fileService.saveCorpusToDatastore(gateService.getCorpus(), selectedDirectory)) {
+                screensManager.showMaterialDialog("Datastore created", "Datastore saved to [" + selectedDirectory.getPath() + "]", "Thanks");
+            } else {
+                screensManager.showMaterialDialog("Error", "Program can't create datastore", "Ok, i will try later again");
+            }
+        }
+    }
+
 
     private void clearTable() {
         observableFiles.clear();
