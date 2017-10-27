@@ -17,7 +17,7 @@
 
 <AnchorPane minHeight="600.0" minWidth="620.0" prefHeight="750.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vision.controllers.EndFileController">
    <children>
-      <Pane layoutX="300.0" layoutY="86.0" prefHeight="60.0" prefWidth="380.0" style="-fx-background-color: #1ABB9C; -fx-background-radius: 0;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="86.0">
+      <Pane layoutX="75.0" layoutY="111.0" prefHeight="60.0" prefWidth="380.0" style="-fx-background-color: #1ABB9C; -fx-background-radius: 0;" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="111.0">
          <children>
             <Label alignment="CENTER" layoutX="157.0" layoutY="13.0" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="PDF">
                <graphic>
@@ -25,7 +25,7 @@
                </graphic></Label>
          </children>
       </Pane>
-      <Pane layoutX="300.0" layoutY="156.0" prefHeight="281.0" prefWidth="380.0" style="-fx-background-radius: 2; -fx-background-color: #EFEFEF;" AnchorPane.bottomAnchor="313.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="156.0">
+      <Pane layoutX="75.0" layoutY="181.0" prefHeight="281.0" prefWidth="380.0" style="-fx-background-radius: 2; -fx-background-color: #EFEFEF;" AnchorPane.bottomAnchor="288.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="181.0">
          <children>
             <GridPane layoutX="14.0" layoutY="14.0">
               <columnConstraints>
@@ -54,9 +54,9 @@
                <graphic>
                   <MaterialIconView glyphName="PICTURE_AS_PDF" glyphStyle="-fx-fill: white" size="22.0" />
                </graphic></JFXButton>
+            <Separator layoutY="189.0" prefHeight="2.0" prefWidth="380.0" />
          </children>
       </Pane>
-      <Separator layoutX="300.0" layoutY="369.0" prefHeight="2.0" prefWidth="380.0" AnchorPane.bottomAnchor="379.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="369.0" />
       <JFXTextField fx:id="selectFolderFld" labelFloat="true" layoutX="37.0" layoutY="23.0" prefHeight="30.0" prefWidth="711.0" promptText="Select folder for save file" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="25.0" />
       <JFXButton defaultButton="true" layoutX="771.0" layoutY="25.0" onAction="#selectFolderBtn" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: #00A65A;" text="Select ..." textFill="WHITE">
          <font>
@@ -88,5 +88,47 @@
             </JFXButton>
          </right>
       </JFXToolbar>
+      <Pane layoutX="518.0" layoutY="111.0" prefHeight="60.0" prefWidth="380.0" style="-fx-background-color: #1ABB9C; -fx-background-radius: 0;">
+         <children>
+            <Label alignment="CENTER" layoutX="145.0" layoutY="13.0" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text=" JSON">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FILE_TEXT" glyphStyle="-fx-fill:white" size="20" />
+               </graphic>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="518.0" layoutY="181.0" prefHeight="281.0" prefWidth="380.0" style="-fx-background-radius: 2; -fx-background-color: #EFEFEF;">
+         <children>
+            <GridPane layoutX="14.0" layoutY="14.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="53.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label contentDisplay="CENTER" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Can be imported into another program" GridPane.columnIndex="1" />
+                  <Label contentDisplay="CENTER" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Easily find interesting information" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label contentDisplay="CENTER" prefHeight="40.0" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Information is separate by section names" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <FontAwesomeIconView glyphName="GRATIPAY" glyphStyle="-fx-fill:#7387a8" size="25" text="" />
+                  <FontAwesomeIconView glyphName="SEARCH" glyphStyle="-fx-fill:#7387a8" size="25" GridPane.rowIndex="3" />
+                  <FontAwesomeIconView glyphName="TH_LIST" glyphStyle="-fx-fill:#7387a8" size="25" GridPane.rowIndex="4" />
+                  <Label contentDisplay="CENTER" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Easily understood by parsers" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <FontAwesomeIconView glyphName="FILE" glyphStyle="-fx-fill:#7387a8" size="25" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <JFXButton layoutX="115.0" layoutY="225.0" onAction="#extractJSON" style="-fx-background-color: #337AB7; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Extract now!">
+               <graphic>
+                  <MaterialIconView glyphName="PICTURE_AS_PDF" glyphStyle="-fx-fill: white" size="22.0" />
+               </graphic>
+            </JFXButton>
+            <Separator layoutY="189.0" prefHeight="2.0" prefWidth="380.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

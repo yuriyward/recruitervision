@@ -20,7 +20,7 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="FILES_ALT" glyphStyle="-fx-fill:white" size="22" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="showParsedDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#showParsedData" prefHeight="75.0" prefWidth="219.0" text="Persed data">
+                  <JFXButton fx:id="showParsedDataBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#showParsedData" prefHeight="75.0" prefWidth="219.0" text="Parsed data">
                      <graphic>
                         <FontAwesomeIconView glyphName="LEANPUB" glyphStyle="-fx-fill:white" size="22" />
                      </graphic></JFXButton>
@@ -32,7 +32,7 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="TASKS" glyphStyle="-fx-fill:white" size="22" text="" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="endFileBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#endFileBtnAct" prefHeight="75.0" prefWidth="219.0" text="End file">
+                  <JFXButton fx:id="endFileBtn" buttonType="RAISED" minHeight="40.0" minWidth="180.0" onAction="#endFileBtnAct" prefHeight="75.0" prefWidth="219.0" text="Output file">
                      <graphic>
                         <FontAwesomeIconView glyphName="FILE_PDF_ALT" glyphStyle="-fx-fill:white" size="22" />
                      </graphic></JFXButton>
@@ -41,7 +41,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorPane" minHeight="650.0" minWidth="620.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="anchorPane" layoutX="226.0" minHeight="650.0" minWidth="620.0" prefWidth="980.0" style="-fx-background-color: #FCFFF5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0" />
       <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

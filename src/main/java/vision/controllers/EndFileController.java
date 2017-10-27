@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import vision.Start;
+import vision.service.JSONCreator;
 import vision.service.PDFCreator;
 import vision.service.ScreensManager;
 
@@ -24,18 +25,19 @@ import java.util.ResourceBundle;
 public class EndFileController implements Initializable {
     private final ScreensManager screensManager;
     private final PDFCreator pdfCreator;
+    private final JSONCreator jsonCreator;
     private final static Logger logger = LoggerFactory.getLogger(EndFileController.class);
 
     @FXML
     private JFXTextField selectFolderFld;
 
     private DirectoryChooser directoryChooser;
-    private File selectedDirectory;
 
     @Autowired
-    public EndFileController(ScreensManager screensManager, PDFCreator pdfCreator) {
+    public EndFileController(ScreensManager screensManager, PDFCreator pdfCreator, JSONCreator jsonCreator) {
         this.screensManager = screensManager;
         this.pdfCreator = pdfCreator;
+        this.jsonCreator = jsonCreator;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class EndFileController implements Initializable {
 
     @FXML
     void selectFolderBtn() {
-        selectedDirectory = directoryChooser.showDialog(Start.getStage());
+        File selectedDirectory = directoryChooser.showDialog(Start.getStage());
         if (selectedDirectory != null)
             selectFolderFld.setText(selectedDirectory.getPath());
     }
@@ -63,11 +65,6 @@ public class EndFileController implements Initializable {
     }
 
     @FXML
-    void extractDOC() {
-
-    }
-
-    @FXML
     void extractPDF() {
         if (folderExist()) {
             if (pdfCreator.createDocument(selectFolderFld.getText())) {
@@ -76,6 +73,18 @@ public class EndFileController implements Initializable {
                 screensManager.showMaterialDialog("Error during creation of candidates list", "File not created, please restart app and repeat", "OK");
             }
             logger.info("Candidate list created");
+        }
+    }
+
+    @FXML
+    void extractJSON() {
+        if (folderExist()) {
+            if (jsonCreator.createJsonFile(selectFolderFld.getText())) {
+                screensManager.showMaterialDialogForCandidatesList(selectFolderFld.getText());
+            } else {
+                screensManager.showMaterialDialog("Error during creation a .json file", "File not created, please restart app and repeat", "OK");
+            }
+            logger.info("The .json file created");
         }
     }
 
